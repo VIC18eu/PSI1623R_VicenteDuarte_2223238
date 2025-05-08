@@ -51,9 +51,5 @@ namespace ProjetoFinal
             this.Close();
         }
 
-        private void lblCriarConta_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

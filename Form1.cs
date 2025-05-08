@@ -42,7 +42,9 @@ namespace ProjetoFinal
             }
             if (Contas.Login(txtUser.Text, txtPassword.Text))
             {
-                Application.Exit();
+                this.Hide();
+                Manager manager = new Manager();
+                manager.Show();
             }
         }
     }

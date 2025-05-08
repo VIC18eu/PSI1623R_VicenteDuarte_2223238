@@ -145,6 +145,7 @@
             this.lblLogin.Size = new System.Drawing.Size(210, 15);
             this.lblLogin.TabIndex = 6;
             this.lblLogin.Text = "Já tem uma conta? Inicie sessão agora.";
+            this.lblLogin.Click += new System.EventHandler(this.lblLogin_Click);
             // 
             // CriarConta
             // 
