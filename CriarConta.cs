@@ -12,10 +12,10 @@ using System.Windows.Forms;
 
 namespace ProjetoFinal
 {
-    public partial class Form1 : MaterialForm
+    public partial class CriarConta : MaterialForm
     {
 
-        public Form1()
+        public CriarConta()
         {
             InitializeComponent();
             var materialSkinManager = MaterialSkinManager.Instance;
@@ -26,16 +26,12 @@ namespace ProjetoFinal
                 Accent.Blue200, TextShade.WHITE);
         }
 
-        private void lblCriarConta_Click(object sender, EventArgs e)
+        private void btnRegister_Click(object sender, EventArgs e)
         {
-            CriarConta criarConta = new CriarConta();
-            criarConta.Show();
-            this.Hide();
-        }
-
-        private void btnLogin_Click(object sender, EventArgs e)
-        {
-            Contas.Login(txtUser.Text, txtPassword.Text);
+            Contas.CriarConta(txtUser.Text, txtPassword.Text);
+            Form1 form1 = new Form1();
+            form1.Show();
+            this.Close();
         }
     }
 }

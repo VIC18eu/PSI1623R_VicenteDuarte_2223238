@@ -13,5 +13,11 @@ namespace ProjetoFinal
         {
             MessageBox.Show("Succeso ao Iniciar Sessão!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        public static void CriarConta(string email, string password)
+        {
+            MessageBox.Show("Conta registada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
     }
 }
