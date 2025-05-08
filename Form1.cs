@@ -35,7 +35,15 @@ namespace ProjetoFinal
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            Contas.Login(txtUser.Text, txtPassword.Text);
+            if (txtUser.Text.Trim() == string.Empty || txtPassword.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Preencha todos os campos!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (Contas.Login(txtUser.Text, txtPassword.Text))
+            {
+                Application.Exit();
+            }
         }
     }
 }

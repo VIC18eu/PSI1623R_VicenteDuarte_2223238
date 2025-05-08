@@ -39,6 +39,7 @@
             // btnLogin
             // 
             this.btnLogin.AutoSize = false;
+            this.btnLogin.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnLogin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLogin.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.btnLogin.Depth = 0;
@@ -100,7 +101,7 @@
             this.txtPassword.AnimateReadOnly = false;
             this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPassword.Depth = 0;
-            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtPassword.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtPassword.Hint = "Password";
             this.txtPassword.LeadingIcon = null;
             this.txtPassword.Location = new System.Drawing.Point(242, 245);
@@ -108,6 +109,7 @@
             this.txtPassword.MouseState = MaterialSkin.MouseState.OUT;
             this.txtPassword.Multiline = false;
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Password = true;
             this.txtPassword.Size = new System.Drawing.Size(325, 50);
             this.txtPassword.TabIndex = 3;
             this.txtPassword.Text = "";
@@ -118,7 +120,7 @@
             this.lblCriarConta.AutoSize = true;
             this.lblCriarConta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblCriarConta.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblCriarConta.Location = new System.Drawing.Point(268, 360);
+            this.lblCriarConta.Location = new System.Drawing.Point(248, 357);
             this.lblCriarConta.Name = "lblCriarConta";
             this.lblCriarConta.Size = new System.Drawing.Size(243, 15);
             this.lblCriarConta.TabIndex = 5;

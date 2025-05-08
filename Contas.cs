@@ -9,14 +9,16 @@ namespace ProjetoFinal
 {
     internal class Contas
     {
-        public static void Login(string email, string password)
+        public static bool Login(string email, string password)
         {
             MessageBox.Show("Succeso ao Iniciar Sessão!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return true;
         }
 
-        public static void CriarConta(string email, string password)
+        public static bool CriarConta(string email, string password)
         {
             MessageBox.Show("Conta registada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return true;
         }
 
     }
