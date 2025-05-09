@@ -24,7 +24,6 @@ namespace ProjetoFinal
                 Accent.Blue200, TextShade.WHITE);
             InitializeComponent();
 
-            sidebar.BackColor = Color.LightGray;
             header.BackColor = Color.FromArgb(25, 118, 210);
             this.FormBorderStyle = FormBorderStyle.None;
 
