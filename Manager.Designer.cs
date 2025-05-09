@@ -109,6 +109,7 @@
             this.DrawerShowIconsWhenHidden = true;
             this.DrawerTabControl = this.sidebar;
             this.DrawerWidth = 250;
+            this.MinimumSize = new System.Drawing.Size(900, 450);
             this.Name = "Manager";
             this.Padding = new System.Windows.Forms.Padding(0, 24, 0, 0);
             this.sidebar.ResumeLayout(false);
