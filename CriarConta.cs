@@ -41,7 +41,6 @@ namespace ProjetoFinal
                 return;
             }
             string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
-
             if (!Regex.IsMatch(txtUser.Text, pattern))
             {
                 MessageBox.Show("O email deve ter o formato correto (ex: exemplo@dominio.com)!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);

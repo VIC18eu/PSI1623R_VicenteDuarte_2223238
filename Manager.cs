@@ -22,10 +22,18 @@ namespace ProjetoFinal
             materialSkinManager.ColorScheme = new ColorScheme(
                 Primary.Blue800, Primary.Blue900, Primary.Blue800,
                 Accent.Blue200, TextShade.WHITE);
+
             InitializeComponent();
 
             header.BackColor = Color.FromArgb(25, 118, 210);
             this.FormBorderStyle = FormBorderStyle.None;
+
+            txtUser.Font = new Font("Arial", 12, FontStyle.Bold);
+            txtUser.ForeColor = Color.White;
+            txtUser.BackColor = Color.FromArgb(25, 118, 210);
+            txtFarmacia.Font = new Font("Arial", 9, FontStyle.Bold);
+            txtFarmacia.ForeColor = Color.White;
+            txtFarmacia.BackColor = Color.FromArgb(25, 118, 210);
 
         }
     }

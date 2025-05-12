@@ -9,6 +9,7 @@ namespace ProjetoFinal
 {
     internal class Contas
     {
+        public static string Email;
         public static bool Login(string email, string password)
         {
             using (var context = new Entities())
@@ -17,6 +18,7 @@ namespace ProjetoFinal
 
                 if (utilizador != null)
                 {
+                    Email = email;
                     MessageBox.Show("Sucesso ao Iniciar Sessão!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return true;
                 }
@@ -25,6 +27,7 @@ namespace ProjetoFinal
                     MessageBox.Show("Credenciais inválidas!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
+
             }
         }
 
