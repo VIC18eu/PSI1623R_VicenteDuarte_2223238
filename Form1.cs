@@ -29,7 +29,7 @@ namespace ProjetoFinal
         private void lblCriarConta_Click(object sender, EventArgs e)
         {
             CriarConta criarConta = new CriarConta();
-            criarConta.Show();
+            criarConta.ShowDialog();
             this.Hide();
         }
 
@@ -44,7 +44,7 @@ namespace ProjetoFinal
             {
                 this.Hide();
                 Manager manager = new Manager();
-                manager.Show();
+                manager.ShowDialog();
             }
         }
     }

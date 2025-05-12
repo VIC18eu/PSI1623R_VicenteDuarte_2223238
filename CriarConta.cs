@@ -38,16 +38,21 @@ namespace ProjetoFinal
                 MessageBox.Show("As passwords não correspondem!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            Contas.CriarConta(txtUser.Text.Trim(), txtPassword.Text.Trim());
-            Form1 form1 = new Form1();
-            form1.Show();
-            this.Close();
+            if (Contas.CriarConta(txtUser.Text.Trim(), txtPassword.Text.Trim()))
+            {
+                this.Hide();               // Esconde o form de registo
+                Form1 form1 = new Form1();
+                form1.ShowDialog();        // Mostra o Form1 controladamente
+                this.Close();              // Fecha o registo após fechar o login
+            }
+
+
         }
 
         private void lblLogin_Click(object sender, EventArgs e)
         {
             Form1 form1 = new Form1();
-            form1.Show();
+            form1.ShowDialog();
             this.Close();
         }
 

@@ -11,15 +11,53 @@ namespace ProjetoFinal
     {
         public static bool Login(string email, string password)
         {
-            MessageBox.Show("Succeso ao Iniciar Sessão!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            return true;
+            using (var context = new Entities())
+            {
+                var utilizador = context.Utilizadores.FirstOrDefault(u => u.Email == email && u.PalavraPasse == password);
+
+                if (utilizador != null)
+                {
+                    MessageBox.Show("Sucesso ao Iniciar Sessão!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Credenciais inválidas!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
         }
 
         public static bool CriarConta(string email, string password)
         {
-            MessageBox.Show("Conta registada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            return true;
+            using (var context = new Entities())
+            {
+                bool existe = context.Utilizadores.Any(u => u.Email == email);
+
+                if (existe)
+                {
+                    MessageBox.Show("Já existe uma conta com esse e-mail.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+                var random = new Random();
+                int numeroAleatorio = random.Next(1000, 9999);
+
+                var novoUtilizador = new Utilizadores
+                {
+                    Email = email,
+                    PalavraPasse = password,
+                    Nome = "user" + numeroAleatorio
+                };
+
+                context.Utilizadores.Add(novoUtilizador);
+                context.SaveChanges();
+
+                MessageBox.Show("Conta registada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return true;
+            }
         }
+
 
     }
 }
