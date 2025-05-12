@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
+
 
 namespace ProjetoFinal
 {
@@ -31,6 +33,18 @@ namespace ProjetoFinal
             if (txtUser.Text.Trim() == string.Empty || txtPassword.Text.Trim() == string.Empty || txtConfirmarPass.Text.Trim() == string.Empty)
             {
                 MessageBox.Show("Preencha todos os campos!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (txtUser.Text != txtUser.Text.Trim() || txtUser.Text != txtUser.Text.ToLower())
+            {
+                MessageBox.Show("O email deve ter o formato correto!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+
+            if (!Regex.IsMatch(txtUser.Text, pattern))
+            {
+                MessageBox.Show("O email deve ter o formato correto (ex: exemplo@dominio.com)!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (txtPassword.Text.Trim() != txtConfirmarPass.Text.Trim())
