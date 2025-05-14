@@ -28,9 +28,9 @@ namespace ProjetoFinal
 
         private void lblCriarConta_Click(object sender, EventArgs e)
         {
+            this.Hide();
             CriarConta criarConta = new CriarConta();
             criarConta.ShowDialog();
-            this.Hide();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)

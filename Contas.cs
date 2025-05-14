@@ -10,15 +10,17 @@ namespace ProjetoFinal
     internal class Contas
     {
         public static string Email;
+        public static string Farmacia;
         public static bool Login(string email, string password)
         {
             using (var context = new Entities())
             {
-                var utilizador = context.Utilizadores.FirstOrDefault(u => u.Email == email && u.PalavraPasse == password);
+                var utilizador = context.Utilizador.FirstOrDefault(u => u.Email == email && u.PalavraPasse == password);
 
                 if (utilizador != null)
                 {
                     Email = email;
+                    Farmacia = "Default";
                     MessageBox.Show("Sucesso ao Iniciar Sessão!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return true;
                 }
@@ -35,7 +37,7 @@ namespace ProjetoFinal
         {
             using (var context = new Entities())
             {
-                bool existe = context.Utilizadores.Any(u => u.Email == email);
+                bool existe = context.Utilizador.Any(u => u.Email == email);
 
                 if (existe)
                 {
@@ -46,14 +48,14 @@ namespace ProjetoFinal
                 var random = new Random();
                 int numeroAleatorio = random.Next(1000, 9999);
 
-                var novoUtilizador = new Utilizadores
+                var novoUtilizador = new Utilizador
                 {
                     Email = email,
                     PalavraPasse = password,
                     Nome = "user" + numeroAleatorio
                 };
 
-                context.Utilizadores.Add(novoUtilizador);
+                context.Utilizador.Add(novoUtilizador);
                 context.SaveChanges();
 
                 MessageBox.Show("Conta registada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);

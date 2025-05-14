@@ -12,22 +12,23 @@ namespace ProjetoFinal
     using System;
     using System.Collections.Generic;
     
-    public partial class Medicamentos
+    public partial class Utilizador
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Medicamentos()
+        public Utilizador()
         {
-            this.Stock = new HashSet<Stock>();
+            this.Farmacia = new HashSet<Farmacia>();
+            this.Funcionario = new HashSet<Funcionario>();
         }
     
-        public int Id { get; set; }
+        public string Email { get; set; }
         public string Nome { get; set; }
-        public string Descricao { get; set; }
-        public string Categoria { get; set; }
-        public string Fabricante { get; set; }
-        public string Dosagem { get; set; }
+        public string PalavraPasse { get; set; }
+        public string Imagem { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Stock> Stock { get; set; }
+        public virtual ICollection<Farmacia> Farmacia { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Funcionario> Funcionario { get; set; }
     }
 }

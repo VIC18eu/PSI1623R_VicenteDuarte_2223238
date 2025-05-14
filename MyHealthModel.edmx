@@ -4,8 +4,8 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MyHealth.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Farmacias">
+      <Schema Namespace="MyHealthModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Farmacia">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -16,7 +16,7 @@
           <Property Name="Email" Type="nvarchar" MaxLength="100" />
           <Property Name="DonoEmail" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
-        <EntityType Name="Funcionarios">
+        <EntityType Name="Funcionario">
           <Key>
             <PropertyRef Name="EmailUtilizador" />
             <PropertyRef Name="FarmaciaId" />
@@ -25,7 +25,7 @@
           <Property Name="FarmaciaId" Type="int" Nullable="false" />
           <Property Name="Categoria" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="Medicamentos">
+        <EntityType Name="Medicamento">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -36,16 +36,7 @@
           <Property Name="Fabricante" Type="nvarchar" MaxLength="100" />
           <Property Name="Dosagem" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="ReservaProduto">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ReservaId" Type="int" Nullable="false" />
-          <Property Name="StockId" Type="int" Nullable="false" />
-          <Property Name="Quantidade" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Reservas">
+        <EntityType Name="Reserva">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -54,6 +45,15 @@
           <Property Name="NomeCliente" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="DataReserva" Type="datetime" />
           <Property Name="Estado" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ReservaProduto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReservaId" Type="int" Nullable="false" />
+          <Property Name="StockId" Type="int" Nullable="false" />
+          <Property Name="Quantidade" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Stock">
           <Key>
@@ -74,55 +74,56 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <EntityType Name="Utilizadores">
+        <EntityType Name="Utilizador">
           <Key>
             <PropertyRef Name="Email" />
           </Key>
           <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Nome" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="PalavraPasse" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Imagem" Type="varchar(max)" />
         </EntityType>
         <Association Name="FK__Farmacias__DonoE__398D8EEE">
-          <End Role="Utilizadores" Type="Self.Utilizadores" Multiplicity="1" />
-          <End Role="Farmacias" Type="Self.Farmacias" Multiplicity="*" />
+          <End Role="Utilizador" Type="Self.Utilizador" Multiplicity="1" />
+          <End Role="Farmacia" Type="Self.Farmacia" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Utilizadores">
+            <Principal Role="Utilizador">
               <PropertyRef Name="Email" />
             </Principal>
-            <Dependent Role="Farmacias">
+            <Dependent Role="Farmacia">
               <PropertyRef Name="DonoEmail" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Funcionar__Email__5812160E">
-          <End Role="Utilizadores" Type="Self.Utilizadores" Multiplicity="1" />
-          <End Role="Funcionarios" Type="Self.Funcionarios" Multiplicity="*" />
+          <End Role="Utilizador" Type="Self.Utilizador" Multiplicity="1" />
+          <End Role="Funcionario" Type="Self.Funcionario" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Utilizadores">
+            <Principal Role="Utilizador">
               <PropertyRef Name="Email" />
             </Principal>
-            <Dependent Role="Funcionarios">
+            <Dependent Role="Funcionario">
               <PropertyRef Name="EmailUtilizador" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Funcionar__Farma__59063A47">
-          <End Role="Farmacias" Type="Self.Farmacias" Multiplicity="1" />
-          <End Role="Funcionarios" Type="Self.Funcionarios" Multiplicity="*" />
+          <End Role="Farmacia" Type="Self.Farmacia" Multiplicity="1" />
+          <End Role="Funcionario" Type="Self.Funcionario" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Farmacias">
+            <Principal Role="Farmacia">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Funcionarios">
+            <Dependent Role="Funcionario">
               <PropertyRef Name="FarmaciaId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__ReservaPr__Reser__49C3F6B7">
-          <End Role="Reservas" Type="Self.Reservas" Multiplicity="1" />
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="1" />
           <End Role="ReservaProduto" Type="Self.ReservaProduto" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Reservas">
+            <Principal Role="Reserva">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ReservaProduto">
@@ -143,22 +144,22 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Reservas__Farmac__46E78A0C">
-          <End Role="Farmacias" Type="Self.Farmacias" Multiplicity="1" />
-          <End Role="Reservas" Type="Self.Reservas" Multiplicity="*" />
+          <End Role="Farmacia" Type="Self.Farmacia" Multiplicity="1" />
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Farmacias">
+            <Principal Role="Farmacia">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Reservas">
+            <Dependent Role="Reserva">
               <PropertyRef Name="FarmaciaId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Stock__FarmaciaI__4316F928">
-          <End Role="Farmacias" Type="Self.Farmacias" Multiplicity="1" />
+          <End Role="Farmacia" Type="Self.Farmacia" Multiplicity="1" />
           <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Farmacias">
+            <Principal Role="Farmacia">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Stock">
@@ -167,10 +168,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Stock__Medicamen__4222D4EF">
-          <End Role="Medicamentos" Type="Self.Medicamentos" Multiplicity="1" />
+          <End Role="Medicamento" Type="Self.Medicamento" Multiplicity="1" />
           <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Medicamentos">
+            <Principal Role="Medicamento">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Stock">
@@ -178,29 +179,29 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="MyHealthStoreContainer">
-          <EntitySet Name="Farmacias" EntityType="Self.Farmacias" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Funcionarios" EntityType="Self.Funcionarios" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Medicamentos" EntityType="Self.Medicamentos" Schema="dbo" store:Type="Tables" />
+        <EntityContainer Name="MyHealthModelStoreContainer">
+          <EntitySet Name="Farmacia" EntityType="Self.Farmacia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Funcionario" EntityType="Self.Funcionario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Medicamento" EntityType="Self.Medicamento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reserva" EntityType="Self.Reserva" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReservaProduto" EntityType="Self.ReservaProduto" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Reservas" EntityType="Self.Reservas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Utilizadores" EntityType="Self.Utilizadores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Utilizador" EntityType="Self.Utilizador" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Farmacias__DonoE__398D8EEE" Association="Self.FK__Farmacias__DonoE__398D8EEE">
-            <End Role="Utilizadores" EntitySet="Utilizadores" />
-            <End Role="Farmacias" EntitySet="Farmacias" />
+            <End Role="Utilizador" EntitySet="Utilizador" />
+            <End Role="Farmacia" EntitySet="Farmacia" />
           </AssociationSet>
           <AssociationSet Name="FK__Funcionar__Email__5812160E" Association="Self.FK__Funcionar__Email__5812160E">
-            <End Role="Utilizadores" EntitySet="Utilizadores" />
-            <End Role="Funcionarios" EntitySet="Funcionarios" />
+            <End Role="Utilizador" EntitySet="Utilizador" />
+            <End Role="Funcionario" EntitySet="Funcionario" />
           </AssociationSet>
           <AssociationSet Name="FK__Funcionar__Farma__59063A47" Association="Self.FK__Funcionar__Farma__59063A47">
-            <End Role="Farmacias" EntitySet="Farmacias" />
-            <End Role="Funcionarios" EntitySet="Funcionarios" />
+            <End Role="Farmacia" EntitySet="Farmacia" />
+            <End Role="Funcionario" EntitySet="Funcionario" />
           </AssociationSet>
           <AssociationSet Name="FK__ReservaPr__Reser__49C3F6B7" Association="Self.FK__ReservaPr__Reser__49C3F6B7">
-            <End Role="Reservas" EntitySet="Reservas" />
+            <End Role="Reserva" EntitySet="Reserva" />
             <End Role="ReservaProduto" EntitySet="ReservaProduto" />
           </AssociationSet>
           <AssociationSet Name="FK__ReservaPr__Stock__4AB81AF0" Association="Self.FK__ReservaPr__Stock__4AB81AF0">
@@ -208,15 +209,15 @@
             <End Role="ReservaProduto" EntitySet="ReservaProduto" />
           </AssociationSet>
           <AssociationSet Name="FK__Reservas__Farmac__46E78A0C" Association="Self.FK__Reservas__Farmac__46E78A0C">
-            <End Role="Farmacias" EntitySet="Farmacias" />
-            <End Role="Reservas" EntitySet="Reservas" />
+            <End Role="Farmacia" EntitySet="Farmacia" />
+            <End Role="Reserva" EntitySet="Reserva" />
           </AssociationSet>
           <AssociationSet Name="FK__Stock__FarmaciaI__4316F928" Association="Self.FK__Stock__FarmaciaI__4316F928">
-            <End Role="Farmacias" EntitySet="Farmacias" />
+            <End Role="Farmacia" EntitySet="Farmacia" />
             <End Role="Stock" EntitySet="Stock" />
           </AssociationSet>
           <AssociationSet Name="FK__Stock__Medicamen__4222D4EF" Association="Self.FK__Stock__Medicamen__4222D4EF">
-            <End Role="Medicamentos" EntitySet="Medicamentos" />
+            <End Role="Medicamento" EntitySet="Medicamento" />
             <End Role="Stock" EntitySet="Stock" />
           </AssociationSet>
         </EntityContainer>
@@ -224,8 +225,8 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="MyHealth" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Farmacias">
+      <Schema Namespace="MyHealthModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Farmacia">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -235,12 +236,12 @@
           <Property Name="Telefone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="DonoEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Utilizadores" Relationship="Self.FK__Farmacias__DonoE__398D8EEE" FromRole="Farmacias" ToRole="Utilizadores" />
-          <NavigationProperty Name="Funcionarios" Relationship="Self.FK__Funcionar__Farma__59063A47" FromRole="Farmacias" ToRole="Funcionarios" />
-          <NavigationProperty Name="Reservas" Relationship="Self.FK__Reservas__Farmac__46E78A0C" FromRole="Farmacias" ToRole="Reservas" />
-          <NavigationProperty Name="Stock" Relationship="Self.FK__Stock__FarmaciaI__4316F928" FromRole="Farmacias" ToRole="Stock" />
+          <NavigationProperty Name="Utilizador" Relationship="Self.FK__Farmacias__DonoE__398D8EEE" FromRole="Farmacia" ToRole="Utilizador" />
+          <NavigationProperty Name="Funcionario" Relationship="Self.FK__Funcionar__Farma__59063A47" FromRole="Farmacia" ToRole="Funcionario" />
+          <NavigationProperty Name="Reserva" Relationship="Self.FK__Reservas__Farmac__46E78A0C" FromRole="Farmacia" ToRole="Reserva" />
+          <NavigationProperty Name="Stock" Relationship="Self.FK__Stock__FarmaciaI__4316F928" FromRole="Farmacia" ToRole="Stock" />
         </EntityType>
-        <EntityType Name="Funcionarios">
+        <EntityType Name="Funcionario">
           <Key>
             <PropertyRef Name="EmailUtilizador" />
             <PropertyRef Name="FarmaciaId" />
@@ -248,10 +249,10 @@
           <Property Name="EmailUtilizador" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FarmaciaId" Type="Int32" Nullable="false" />
           <Property Name="Categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Farmacias" Relationship="Self.FK__Funcionar__Farma__59063A47" FromRole="Funcionarios" ToRole="Farmacias" />
-          <NavigationProperty Name="Utilizadores" Relationship="Self.FK__Funcionar__Email__5812160E" FromRole="Funcionarios" ToRole="Utilizadores" />
+          <NavigationProperty Name="Farmacia" Relationship="Self.FK__Funcionar__Farma__59063A47" FromRole="Funcionario" ToRole="Farmacia" />
+          <NavigationProperty Name="Utilizador" Relationship="Self.FK__Funcionar__Email__5812160E" FromRole="Funcionario" ToRole="Utilizador" />
         </EntityType>
-        <EntityType Name="Medicamentos">
+        <EntityType Name="Medicamento">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -261,7 +262,19 @@
           <Property Name="Categoria" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Fabricante" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Dosagem" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Stock" Relationship="Self.FK__Stock__Medicamen__4222D4EF" FromRole="Medicamentos" ToRole="Stock" />
+          <NavigationProperty Name="Stock" Relationship="Self.FK__Stock__Medicamen__4222D4EF" FromRole="Medicamento" ToRole="Stock" />
+        </EntityType>
+        <EntityType Name="Reserva">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FarmaciaId" Type="Int32" Nullable="false" />
+          <Property Name="NomeCliente" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DataReserva" Type="DateTime" Precision="3" />
+          <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Farmacia" Relationship="Self.FK__Reservas__Farmac__46E78A0C" FromRole="Reserva" ToRole="Farmacia" />
+          <NavigationProperty Name="ReservaProduto" Relationship="Self.FK__ReservaPr__Reser__49C3F6B7" FromRole="Reserva" ToRole="ReservaProduto" />
         </EntityType>
         <EntityType Name="ReservaProduto">
           <Key>
@@ -271,20 +284,8 @@
           <Property Name="ReservaId" Type="Int32" Nullable="false" />
           <Property Name="StockId" Type="Int32" Nullable="false" />
           <Property Name="Quantidade" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Reservas" Relationship="Self.FK__ReservaPr__Reser__49C3F6B7" FromRole="ReservaProduto" ToRole="Reservas" />
+          <NavigationProperty Name="Reserva" Relationship="Self.FK__ReservaPr__Reser__49C3F6B7" FromRole="ReservaProduto" ToRole="Reserva" />
           <NavigationProperty Name="Stock" Relationship="Self.FK__ReservaPr__Stock__4AB81AF0" FromRole="ReservaProduto" ToRole="Stock" />
-        </EntityType>
-        <EntityType Name="Reservas">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FarmaciaId" Type="Int32" Nullable="false" />
-          <Property Name="NomeCliente" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DataReserva" Type="DateTime" Precision="3" />
-          <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Farmacias" Relationship="Self.FK__Reservas__Farmac__46E78A0C" FromRole="Reservas" ToRole="Farmacias" />
-          <NavigationProperty Name="ReservaProduto" Relationship="Self.FK__ReservaPr__Reser__49C3F6B7" FromRole="Reservas" ToRole="ReservaProduto" />
         </EntityType>
         <EntityType Name="Stock">
           <Key>
@@ -294,8 +295,8 @@
           <Property Name="MedicamentoId" Type="Int32" Nullable="false" />
           <Property Name="FarmaciaId" Type="Int32" Nullable="false" />
           <Property Name="Quantidade" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Farmacias" Relationship="Self.FK__Stock__FarmaciaI__4316F928" FromRole="Stock" ToRole="Farmacias" />
-          <NavigationProperty Name="Medicamentos" Relationship="Self.FK__Stock__Medicamen__4222D4EF" FromRole="Stock" ToRole="Medicamentos" />
+          <NavigationProperty Name="Farmacia" Relationship="Self.FK__Stock__FarmaciaI__4316F928" FromRole="Stock" ToRole="Farmacia" />
+          <NavigationProperty Name="Medicamento" Relationship="Self.FK__Stock__Medicamen__4222D4EF" FromRole="Stock" ToRole="Medicamento" />
           <NavigationProperty Name="ReservaProduto" Relationship="Self.FK__ReservaPr__Stock__4AB81AF0" FromRole="Stock" ToRole="ReservaProduto" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -308,57 +309,58 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="Utilizadores">
+        <EntityType Name="Utilizador">
           <Key>
             <PropertyRef Name="Email" />
           </Key>
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PalavraPasse" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Farmacias" Relationship="Self.FK__Farmacias__DonoE__398D8EEE" FromRole="Utilizadores" ToRole="Farmacias" />
-          <NavigationProperty Name="Funcionarios" Relationship="Self.FK__Funcionar__Email__5812160E" FromRole="Utilizadores" ToRole="Funcionarios" />
+          <Property Name="Imagem" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Farmacia" Relationship="Self.FK__Farmacias__DonoE__398D8EEE" FromRole="Utilizador" ToRole="Farmacia" />
+          <NavigationProperty Name="Funcionario" Relationship="Self.FK__Funcionar__Email__5812160E" FromRole="Utilizador" ToRole="Funcionario" />
         </EntityType>
         <Association Name="FK__Farmacias__DonoE__398D8EEE">
-          <End Role="Utilizadores" Type="Self.Utilizadores" Multiplicity="1" />
-          <End Role="Farmacias" Type="Self.Farmacias" Multiplicity="*" />
+          <End Role="Utilizador" Type="Self.Utilizador" Multiplicity="1" />
+          <End Role="Farmacia" Type="Self.Farmacia" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Utilizadores">
+            <Principal Role="Utilizador">
               <PropertyRef Name="Email" />
             </Principal>
-            <Dependent Role="Farmacias">
+            <Dependent Role="Farmacia">
               <PropertyRef Name="DonoEmail" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Funcionar__Farma__59063A47">
-          <End Role="Farmacias" Type="Self.Farmacias" Multiplicity="1" />
-          <End Role="Funcionarios" Type="Self.Funcionarios" Multiplicity="*" />
+          <End Role="Farmacia" Type="Self.Farmacia" Multiplicity="1" />
+          <End Role="Funcionario" Type="Self.Funcionario" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Farmacias">
+            <Principal Role="Farmacia">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Funcionarios">
+            <Dependent Role="Funcionario">
               <PropertyRef Name="FarmaciaId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Reservas__Farmac__46E78A0C">
-          <End Role="Farmacias" Type="Self.Farmacias" Multiplicity="1" />
-          <End Role="Reservas" Type="Self.Reservas" Multiplicity="*" />
+          <End Role="Farmacia" Type="Self.Farmacia" Multiplicity="1" />
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Farmacias">
+            <Principal Role="Farmacia">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Reservas">
+            <Dependent Role="Reserva">
               <PropertyRef Name="FarmaciaId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Stock__FarmaciaI__4316F928">
-          <End Role="Farmacias" Type="Self.Farmacias" Multiplicity="1" />
+          <End Role="Farmacia" Type="Self.Farmacia" Multiplicity="1" />
           <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Farmacias">
+            <Principal Role="Farmacia">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Stock">
@@ -367,22 +369,22 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Funcionar__Email__5812160E">
-          <End Role="Utilizadores" Type="Self.Utilizadores" Multiplicity="1" />
-          <End Role="Funcionarios" Type="Self.Funcionarios" Multiplicity="*" />
+          <End Role="Utilizador" Type="Self.Utilizador" Multiplicity="1" />
+          <End Role="Funcionario" Type="Self.Funcionario" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Utilizadores">
+            <Principal Role="Utilizador">
               <PropertyRef Name="Email" />
             </Principal>
-            <Dependent Role="Funcionarios">
+            <Dependent Role="Funcionario">
               <PropertyRef Name="EmailUtilizador" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Stock__Medicamen__4222D4EF">
-          <End Role="Medicamentos" Type="Self.Medicamentos" Multiplicity="1" />
+          <End Role="Medicamento" Type="Self.Medicamento" Multiplicity="1" />
           <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Medicamentos">
+            <Principal Role="Medicamento">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Stock">
@@ -391,10 +393,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__ReservaPr__Reser__49C3F6B7">
-          <End Role="Reservas" Type="Self.Reservas" Multiplicity="1" />
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="1" />
           <End Role="ReservaProduto" Type="Self.ReservaProduto" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Reservas">
+            <Principal Role="Reserva">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ReservaProduto">
@@ -415,40 +417,40 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Farmacias" EntityType="Self.Farmacias" />
-          <EntitySet Name="Funcionarios" EntityType="Self.Funcionarios" />
-          <EntitySet Name="Medicamentos" EntityType="Self.Medicamentos" />
+          <EntitySet Name="Farmacia" EntityType="Self.Farmacia" />
+          <EntitySet Name="Funcionario" EntityType="Self.Funcionario" />
+          <EntitySet Name="Medicamento" EntityType="Self.Medicamento" />
+          <EntitySet Name="Reserva" EntityType="Self.Reserva" />
           <EntitySet Name="ReservaProduto" EntityType="Self.ReservaProduto" />
-          <EntitySet Name="Reservas" EntityType="Self.Reservas" />
           <EntitySet Name="Stock" EntityType="Self.Stock" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="Utilizadores" EntityType="Self.Utilizadores" />
+          <EntitySet Name="Utilizador" EntityType="Self.Utilizador" />
           <AssociationSet Name="FK__Farmacias__DonoE__398D8EEE" Association="Self.FK__Farmacias__DonoE__398D8EEE">
-            <End Role="Utilizadores" EntitySet="Utilizadores" />
-            <End Role="Farmacias" EntitySet="Farmacias" />
+            <End Role="Utilizador" EntitySet="Utilizador" />
+            <End Role="Farmacia" EntitySet="Farmacia" />
           </AssociationSet>
           <AssociationSet Name="FK__Funcionar__Farma__59063A47" Association="Self.FK__Funcionar__Farma__59063A47">
-            <End Role="Farmacias" EntitySet="Farmacias" />
-            <End Role="Funcionarios" EntitySet="Funcionarios" />
+            <End Role="Farmacia" EntitySet="Farmacia" />
+            <End Role="Funcionario" EntitySet="Funcionario" />
           </AssociationSet>
           <AssociationSet Name="FK__Reservas__Farmac__46E78A0C" Association="Self.FK__Reservas__Farmac__46E78A0C">
-            <End Role="Farmacias" EntitySet="Farmacias" />
-            <End Role="Reservas" EntitySet="Reservas" />
+            <End Role="Farmacia" EntitySet="Farmacia" />
+            <End Role="Reserva" EntitySet="Reserva" />
           </AssociationSet>
           <AssociationSet Name="FK__Stock__FarmaciaI__4316F928" Association="Self.FK__Stock__FarmaciaI__4316F928">
-            <End Role="Farmacias" EntitySet="Farmacias" />
+            <End Role="Farmacia" EntitySet="Farmacia" />
             <End Role="Stock" EntitySet="Stock" />
           </AssociationSet>
           <AssociationSet Name="FK__Funcionar__Email__5812160E" Association="Self.FK__Funcionar__Email__5812160E">
-            <End Role="Utilizadores" EntitySet="Utilizadores" />
-            <End Role="Funcionarios" EntitySet="Funcionarios" />
+            <End Role="Utilizador" EntitySet="Utilizador" />
+            <End Role="Funcionario" EntitySet="Funcionario" />
           </AssociationSet>
           <AssociationSet Name="FK__Stock__Medicamen__4222D4EF" Association="Self.FK__Stock__Medicamen__4222D4EF">
-            <End Role="Medicamentos" EntitySet="Medicamentos" />
+            <End Role="Medicamento" EntitySet="Medicamento" />
             <End Role="Stock" EntitySet="Stock" />
           </AssociationSet>
           <AssociationSet Name="FK__ReservaPr__Reser__49C3F6B7" Association="Self.FK__ReservaPr__Reser__49C3F6B7">
-            <End Role="Reservas" EntitySet="Reservas" />
+            <End Role="Reserva" EntitySet="Reserva" />
             <End Role="ReservaProduto" EntitySet="ReservaProduto" />
           </AssociationSet>
           <AssociationSet Name="FK__ReservaPr__Stock__4AB81AF0" Association="Self.FK__ReservaPr__Stock__4AB81AF0">
@@ -461,10 +463,10 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MyHealthStoreContainer" CdmEntityContainer="Entities">
-          <EntitySetMapping Name="Farmacias">
-            <EntityTypeMapping TypeName="MyHealth.Farmacias">
-              <MappingFragment StoreEntitySet="Farmacias">
+        <EntityContainerMapping StorageEntityContainer="MyHealthModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Farmacia">
+            <EntityTypeMapping TypeName="MyHealthModel.Farmacia">
+              <MappingFragment StoreEntitySet="Farmacia">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nome" ColumnName="Nome" />
                 <ScalarProperty Name="Endereco" ColumnName="Endereco" />
@@ -474,18 +476,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Funcionarios">
-            <EntityTypeMapping TypeName="MyHealth.Funcionarios">
-              <MappingFragment StoreEntitySet="Funcionarios">
+          <EntitySetMapping Name="Funcionario">
+            <EntityTypeMapping TypeName="MyHealthModel.Funcionario">
+              <MappingFragment StoreEntitySet="Funcionario">
                 <ScalarProperty Name="EmailUtilizador" ColumnName="EmailUtilizador" />
                 <ScalarProperty Name="FarmaciaId" ColumnName="FarmaciaId" />
                 <ScalarProperty Name="Categoria" ColumnName="Categoria" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Medicamentos">
-            <EntityTypeMapping TypeName="MyHealth.Medicamentos">
-              <MappingFragment StoreEntitySet="Medicamentos">
+          <EntitySetMapping Name="Medicamento">
+            <EntityTypeMapping TypeName="MyHealthModel.Medicamento">
+              <MappingFragment StoreEntitySet="Medicamento">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nome" ColumnName="Nome" />
                 <ScalarProperty Name="Descricao" ColumnName="Descricao" />
@@ -495,19 +497,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ReservaProduto">
-            <EntityTypeMapping TypeName="MyHealth.ReservaProduto">
-              <MappingFragment StoreEntitySet="ReservaProduto">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ReservaId" ColumnName="ReservaId" />
-                <ScalarProperty Name="StockId" ColumnName="StockId" />
-                <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Reservas">
-            <EntityTypeMapping TypeName="MyHealth.Reservas">
-              <MappingFragment StoreEntitySet="Reservas">
+          <EntitySetMapping Name="Reserva">
+            <EntityTypeMapping TypeName="MyHealthModel.Reserva">
+              <MappingFragment StoreEntitySet="Reserva">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FarmaciaId" ColumnName="FarmaciaId" />
                 <ScalarProperty Name="NomeCliente" ColumnName="NomeCliente" />
@@ -516,8 +508,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ReservaProduto">
+            <EntityTypeMapping TypeName="MyHealthModel.ReservaProduto">
+              <MappingFragment StoreEntitySet="ReservaProduto">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ReservaId" ColumnName="ReservaId" />
+                <ScalarProperty Name="StockId" ColumnName="StockId" />
+                <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Stock">
-            <EntityTypeMapping TypeName="MyHealth.Stock">
+            <EntityTypeMapping TypeName="MyHealthModel.Stock">
               <MappingFragment StoreEntitySet="Stock">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="MedicamentoId" ColumnName="MedicamentoId" />
@@ -527,7 +529,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="MyHealth.sysdiagrams">
+            <EntityTypeMapping TypeName="MyHealthModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -537,12 +539,13 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Utilizadores">
-            <EntityTypeMapping TypeName="MyHealth.Utilizadores">
-              <MappingFragment StoreEntitySet="Utilizadores">
+          <EntitySetMapping Name="Utilizador">
+            <EntityTypeMapping TypeName="MyHealthModel.Utilizador">
+              <MappingFragment StoreEntitySet="Utilizador">
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Nome" ColumnName="Nome" />
                 <ScalarProperty Name="PalavraPasse" ColumnName="PalavraPasse" />
+                <ScalarProperty Name="Imagem" ColumnName="Imagem" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

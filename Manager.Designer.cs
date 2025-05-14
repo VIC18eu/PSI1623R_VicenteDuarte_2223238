@@ -31,6 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manager));
             this.header = new System.Windows.Forms.Panel();
+            this.ftPerfil = new System.Windows.Forms.PictureBox();
+            this.txtFarmacia = new System.Windows.Forms.Label();
+            this.txtUser = new System.Windows.Forms.Label();
             this.sidebar = new MaterialSkin.Controls.MaterialTabControl();
             this.home = new System.Windows.Forms.TabPage();
             this.reservas = new System.Windows.Forms.TabPage();
@@ -38,14 +41,15 @@
             this.funcionarios = new System.Windows.Forms.TabPage();
             this.settings = new System.Windows.Forms.TabPage();
             this.sideBarImages = new System.Windows.Forms.ImageList(this.components);
-            this.txtUser = new System.Windows.Forms.Label();
-            this.txtFarmacia = new System.Windows.Forms.Label();
             this.header.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ftPerfil)).BeginInit();
             this.sidebar.SuspendLayout();
             this.SuspendLayout();
             // 
             // header
             // 
+            this.header.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.header.Controls.Add(this.ftPerfil);
             this.header.Controls.Add(this.txtFarmacia);
             this.header.Controls.Add(this.txtUser);
             this.header.Dock = System.Windows.Forms.DockStyle.Top;
@@ -54,6 +58,41 @@
             this.header.Name = "header";
             this.header.Size = new System.Drawing.Size(1667, 87);
             this.header.TabIndex = 1;
+            // 
+            // ftPerfil
+            // 
+            this.ftPerfil.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ftPerfil.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ftPerfil.Location = new System.Drawing.Point(1557, 25);
+            this.ftPerfil.Name = "ftPerfil";
+            this.ftPerfil.Size = new System.Drawing.Size(55, 50);
+            this.ftPerfil.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ftPerfil.TabIndex = 2;
+            this.ftPerfil.TabStop = false;
+            this.ftPerfil.Click += new System.EventHandler(this.AbrirPerfil);
+            // 
+            // txtFarmacia
+            // 
+            this.txtFarmacia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFarmacia.AutoSize = true;
+            this.txtFarmacia.Location = new System.Drawing.Point(1470, 53);
+            this.txtFarmacia.Name = "txtFarmacia";
+            this.txtFarmacia.Size = new System.Drawing.Size(79, 16);
+            this.txtFarmacia.TabIndex = 1;
+            this.txtFarmacia.Text = "A carregar...";
+            // 
+            // txtUser
+            // 
+            this.txtUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtUser.AutoSize = true;
+            this.txtUser.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.txtUser.Location = new System.Drawing.Point(1449, 27);
+            this.txtUser.Name = "txtUser";
+            this.txtUser.Size = new System.Drawing.Size(100, 20);
+            this.txtUser.TabIndex = 0;
+            this.txtUser.Text = "A carregar...";
+            this.txtUser.Click += new System.EventHandler(this.AbrirPerfil);
             // 
             // sidebar
             // 
@@ -141,27 +180,6 @@
             this.sideBarImages.Images.SetKeyName(3, "icons8-home-48.png");
             this.sideBarImages.Images.SetKeyName(4, "icons8-settings-48.png");
             // 
-            // txtUser
-            // 
-            this.txtUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtUser.AutoSize = true;
-            this.txtUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.txtUser.Location = new System.Drawing.Point(1435, 27);
-            this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(100, 20);
-            this.txtUser.TabIndex = 0;
-            this.txtUser.Text = "A carregar...";
-            // 
-            // txtFarmacia
-            // 
-            this.txtFarmacia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFarmacia.AutoSize = true;
-            this.txtFarmacia.Location = new System.Drawing.Point(1456, 53);
-            this.txtFarmacia.Name = "txtFarmacia";
-            this.txtFarmacia.Size = new System.Drawing.Size(79, 16);
-            this.txtFarmacia.TabIndex = 1;
-            this.txtFarmacia.Text = "A carregar...";
-            // 
             // Manager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -169,6 +187,7 @@
             this.ClientSize = new System.Drawing.Size(1667, 831);
             this.Controls.Add(this.sidebar);
             this.Controls.Add(this.header);
+            this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DrawerShowIconsWhenHidden = true;
             this.DrawerTabControl = this.sidebar;
             this.DrawerWidth = 250;
@@ -178,6 +197,7 @@
             this.Padding = new System.Windows.Forms.Padding(0, 30, 0, 0);
             this.header.ResumeLayout(false);
             this.header.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ftPerfil)).EndInit();
             this.sidebar.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -194,5 +214,6 @@
         private System.Windows.Forms.TabPage settings;
         private System.Windows.Forms.Label txtUser;
         private System.Windows.Forms.Label txtFarmacia;
+        private System.Windows.Forms.PictureBox ftPerfil;
     }
 }

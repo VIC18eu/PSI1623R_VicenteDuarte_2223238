@@ -12,13 +12,13 @@ namespace ProjetoFinal
     using System;
     using System.Collections.Generic;
     
-    public partial class Funcionarios
+    public partial class Funcionario
     {
         public string EmailUtilizador { get; set; }
         public int FarmaciaId { get; set; }
         public string Categoria { get; set; }
     
-        public virtual Farmacias Farmacias { get; set; }
-        public virtual Utilizadores Utilizadores { get; set; }
+        public virtual Farmacia Farmacia { get; set; }
+        public virtual Utilizador Utilizador { get; set; }
     }
 }

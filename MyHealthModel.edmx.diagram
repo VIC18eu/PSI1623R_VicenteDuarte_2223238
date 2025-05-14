@@ -4,23 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3536becb914441a98b092b8d3aa7a04f" Name="Diagram1">
-        <EntityTypeShape EntityType="MyHealth.Farmacias" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyHealth.Funcionarios" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyHealth.Medicamentos" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyHealth.ReservaProduto" Width="1.5" PointX="7.5" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyHealth.Reservas" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyHealth.Stock" Width="1.5" PointX="8.25" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyHealth.sysdiagrams" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyHealth.Utilizadores" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
-        <AssociationConnector Association="MyHealth.FK__Farmacias__DonoE__398D8EEE" ManuallyRouted="false" />
-        <AssociationConnector Association="MyHealth.FK__Funcionar__Farma__59063A47" ManuallyRouted="false" />
-        <AssociationConnector Association="MyHealth.FK__Reservas__Farmac__46E78A0C" ManuallyRouted="false" />
-        <AssociationConnector Association="MyHealth.FK__Stock__FarmaciaI__4316F928" ManuallyRouted="false" />
-        <AssociationConnector Association="MyHealth.FK__Funcionar__Email__5812160E" ManuallyRouted="false" />
-        <AssociationConnector Association="MyHealth.FK__Stock__Medicamen__4222D4EF" ManuallyRouted="false" />
-        <AssociationConnector Association="MyHealth.FK__ReservaPr__Reser__49C3F6B7" ManuallyRouted="false" />
-        <AssociationConnector Association="MyHealth.FK__ReservaPr__Stock__4AB81AF0" ManuallyRouted="false" />
+      <Diagram DiagramId="3f8705581b814c589146a909e7450068" Name="Diagram1">
+        <EntityTypeShape EntityType="MyHealthModel.Farmacia" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyHealthModel.Funcionario" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyHealthModel.Medicamento" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyHealthModel.Reserva" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyHealthModel.ReservaProduto" Width="1.5" PointX="7.5" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyHealthModel.Stock" Width="1.5" PointX="8.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyHealthModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyHealthModel.Utilizador" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <AssociationConnector Association="MyHealthModel.FK__Farmacias__DonoE__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="MyHealthModel.FK__Funcionar__Farma__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="MyHealthModel.FK__Reservas__Farmac__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="MyHealthModel.FK__Stock__FarmaciaI__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="MyHealthModel.FK__Funcionar__Email__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="MyHealthModel.FK__Stock__Medicamen__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="MyHealthModel.FK__ReservaPr__Reser__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="MyHealthModel.FK__ReservaPr__Stock__4AB81AF0" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

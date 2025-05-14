@@ -25,8 +25,8 @@ namespace ProjetoFinal
         public int FarmaciaId { get; set; }
         public int Quantidade { get; set; }
     
-        public virtual Farmacias Farmacias { get; set; }
-        public virtual Medicamentos Medicamentos { get; set; }
+        public virtual Farmacia Farmacia { get; set; }
+        public virtual Medicamento Medicamento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ReservaProduto> ReservaProduto { get; set; }
     }

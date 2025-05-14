@@ -19,7 +19,7 @@ namespace ProjetoFinal
         public int StockId { get; set; }
         public int Quantidade { get; set; }
     
-        public virtual Reservas Reservas { get; set; }
+        public virtual Reserva Reserva { get; set; }
         public virtual Stock Stock { get; set; }
     }
 }

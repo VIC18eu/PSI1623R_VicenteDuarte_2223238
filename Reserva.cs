@@ -12,22 +12,22 @@ namespace ProjetoFinal
     using System;
     using System.Collections.Generic;
     
-    public partial class Utilizadores
+    public partial class Reserva
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Utilizadores()
+        public Reserva()
         {
-            this.Farmacias = new HashSet<Farmacias>();
-            this.Funcionarios = new HashSet<Funcionarios>();
+            this.ReservaProduto = new HashSet<ReservaProduto>();
         }
     
-        public string Email { get; set; }
-        public string Nome { get; set; }
-        public string PalavraPasse { get; set; }
+        public int Id { get; set; }
+        public int FarmaciaId { get; set; }
+        public string NomeCliente { get; set; }
+        public Nullable<System.DateTime> DataReserva { get; set; }
+        public string Estado { get; set; }
     
+        public virtual Farmacia Farmacia { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Farmacias> Farmacias { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Funcionarios> Funcionarios { get; set; }
+        public virtual ICollection<ReservaProduto> ReservaProduto { get; set; }
     }
 }

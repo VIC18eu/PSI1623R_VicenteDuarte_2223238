@@ -25,13 +25,13 @@ namespace ProjetoFinal
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Farmacias> Farmacias { get; set; }
-        public virtual DbSet<Funcionarios> Funcionarios { get; set; }
-        public virtual DbSet<Medicamentos> Medicamentos { get; set; }
+        public virtual DbSet<Farmacia> Farmacia { get; set; }
+        public virtual DbSet<Funcionario> Funcionario { get; set; }
+        public virtual DbSet<Medicamento> Medicamento { get; set; }
+        public virtual DbSet<Reserva> Reserva { get; set; }
         public virtual DbSet<ReservaProduto> ReservaProduto { get; set; }
-        public virtual DbSet<Reservas> Reservas { get; set; }
         public virtual DbSet<Stock> Stock { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<Utilizadores> Utilizadores { get; set; }
+        public virtual DbSet<Utilizador> Utilizador { get; set; }
     }
 }

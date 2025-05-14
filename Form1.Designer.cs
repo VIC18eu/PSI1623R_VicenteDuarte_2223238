@@ -45,12 +45,12 @@
             this.btnLogin.Depth = 0;
             this.btnLogin.HighEmphasis = true;
             this.btnLogin.Icon = null;
-            this.btnLogin.Location = new System.Drawing.Point(337, 316);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnLogin.Location = new System.Drawing.Point(449, 389);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.btnLogin.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btnLogin.Size = new System.Drawing.Size(116, 35);
+            this.btnLogin.Size = new System.Drawing.Size(155, 43);
             this.btnLogin.TabIndex = 0;
             this.btnLogin.Text = "Login";
             this.btnLogin.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -66,12 +66,13 @@
             this.txtUser.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtUser.Hint = "Email";
             this.txtUser.LeadingIcon = null;
-            this.txtUser.Location = new System.Drawing.Point(242, 152);
+            this.txtUser.Location = new System.Drawing.Point(323, 187);
+            this.txtUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtUser.MaxLength = 50;
             this.txtUser.MouseState = MaterialSkin.MouseState.OUT;
             this.txtUser.Multiline = false;
             this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(325, 50);
+            this.txtUser.Size = new System.Drawing.Size(433, 50);
             this.txtUser.TabIndex = 1;
             this.txtUser.Text = "";
             this.txtUser.TrailingIcon = null;
@@ -80,9 +81,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(242, 128);
+            this.label1.Location = new System.Drawing.Point(323, 158);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 24);
+            this.label1.Size = new System.Drawing.Size(74, 29);
             this.label1.TabIndex = 2;
             this.label1.Text = "Email";
             // 
@@ -90,9 +92,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(242, 221);
+            this.label2.Location = new System.Drawing.Point(323, 272);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 24);
+            this.label2.Size = new System.Drawing.Size(120, 29);
             this.label2.TabIndex = 4;
             this.label2.Text = "Password";
             // 
@@ -104,13 +107,14 @@
             this.txtPassword.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtPassword.Hint = "Password";
             this.txtPassword.LeadingIcon = null;
-            this.txtPassword.Location = new System.Drawing.Point(242, 245);
+            this.txtPassword.Location = new System.Drawing.Point(323, 302);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPassword.MaxLength = 50;
             this.txtPassword.MouseState = MaterialSkin.MouseState.OUT;
             this.txtPassword.Multiline = false;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Password = true;
-            this.txtPassword.Size = new System.Drawing.Size(325, 50);
+            this.txtPassword.Size = new System.Drawing.Size(433, 50);
             this.txtPassword.TabIndex = 3;
             this.txtPassword.Text = "";
             this.txtPassword.TrailingIcon = null;
@@ -120,26 +124,29 @@
             this.lblCriarConta.AutoSize = true;
             this.lblCriarConta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblCriarConta.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblCriarConta.Location = new System.Drawing.Point(248, 357);
+            this.lblCriarConta.Location = new System.Drawing.Point(331, 439);
+            this.lblCriarConta.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCriarConta.Name = "lblCriarConta";
-            this.lblCriarConta.Size = new System.Drawing.Size(243, 15);
+            this.lblCriarConta.Size = new System.Drawing.Size(307, 20);
             this.lblCriarConta.TabIndex = 5;
             this.lblCriarConta.Text = "Ainda não tem uma conta? Registe-se agora.";
             this.lblCriarConta.Click += new System.EventHandler(this.lblCriarConta_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1067, 554);
             this.Controls.Add(this.lblCriarConta);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtUser);
             this.Controls.Add(this.btnLogin);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "Form1";
+            this.Padding = new System.Windows.Forms.Padding(4, 79, 4, 4);
             this.Sizable = false;
             this.ResumeLayout(false);
             this.PerformLayout();
