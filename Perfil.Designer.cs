@@ -36,6 +36,7 @@
             this.btnFoto = new MaterialSkin.Controls.MaterialButton();
             this.btnClose = new MaterialSkin.Controls.MaterialButton();
             this.btnSalvar = new MaterialSkin.Controls.MaterialButton();
+            this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             ((System.ComponentModel.ISupportInitialize)(this.ftPerfil)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,7 +70,7 @@
             this.lblEmail.AutoSize = true;
             this.lblEmail.Depth = 0;
             this.lblEmail.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblEmail.Location = new System.Drawing.Point(232, 130);
+            this.lblEmail.Location = new System.Drawing.Point(297, 130);
             this.lblEmail.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(49, 19);
@@ -81,7 +82,7 @@
             this.lblPassword.AutoSize = true;
             this.lblPassword.Depth = 0;
             this.lblPassword.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblPassword.Location = new System.Drawing.Point(232, 176);
+            this.lblPassword.Location = new System.Drawing.Point(232, 188);
             this.lblPassword.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(75, 19);
@@ -103,6 +104,7 @@
             // btnFoto
             // 
             this.btnFoto.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnFoto.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFoto.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.btnFoto.Depth = 0;
             this.btnFoto.HighEmphasis = true;
@@ -123,11 +125,13 @@
             // btnClose
             // 
             this.btnClose.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnClose.BackColor = System.Drawing.SystemColors.Control;
+            this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClose.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.btnClose.Depth = 0;
             this.btnClose.HighEmphasis = true;
             this.btnClose.Icon = null;
-            this.btnClose.Location = new System.Drawing.Point(251, 442);
+            this.btnClose.Location = new System.Drawing.Point(259, 442);
             this.btnClose.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnClose.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnClose.Name = "btnClose";
@@ -137,16 +141,20 @@
             this.btnClose.Text = "Cancelar";
             this.btnClose.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnClose.UseAccentColor = false;
-            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnSalvar
             // 
             this.btnSalvar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnSalvar.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnSalvar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSalvar.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.btnSalvar.Depth = 0;
+            this.btnSalvar.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnSalvar.HighEmphasis = true;
             this.btnSalvar.Icon = null;
-            this.btnSalvar.Location = new System.Drawing.Point(112, 442);
+            this.btnSalvar.Location = new System.Drawing.Point(119, 442);
             this.btnSalvar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnSalvar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnSalvar.Name = "btnSalvar";
@@ -156,7 +164,20 @@
             this.btnSalvar.Text = "Guardar";
             this.btnSalvar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnSalvar.UseAccentColor = false;
-            this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.UseVisualStyleBackColor = false;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
+            // 
+            // materialLabel2
+            // 
+            this.materialLabel2.AutoSize = true;
+            this.materialLabel2.Depth = 0;
+            this.materialLabel2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel2.Location = new System.Drawing.Point(232, 130);
+            this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel2.Name = "materialLabel2";
+            this.materialLabel2.Size = new System.Drawing.Size(49, 19);
+            this.materialLabel2.TabIndex = 8;
+            this.materialLabel2.Text = "Email: ";
             // 
             // Perfil
             // 
@@ -164,6 +185,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(499, 534);
+            this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnFoto);
@@ -176,6 +198,7 @@
             this.MinimizeBox = false;
             this.Name = "Perfil";
             this.Sizable = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Perfil";
             ((System.ComponentModel.ISupportInitialize)(this.ftPerfil)).EndInit();
             this.ResumeLayout(false);
@@ -193,5 +216,6 @@
         private MaterialSkin.Controls.MaterialButton btnFoto;
         private MaterialSkin.Controls.MaterialButton btnClose;
         private MaterialSkin.Controls.MaterialButton btnSalvar;
+        private MaterialSkin.Controls.MaterialLabel materialLabel2;
     }
 }

@@ -14,11 +14,14 @@ namespace ProjetoFinal
 {
     public partial class Perfil : MaterialForm
     {
+        public static Image PUBLICFOTO;
+        public static string Nome;
         public Perfil()
         {
-
             InitializeComponent();
             CarregarPerfil();
+            Nome = txtNome.Text;
+            PUBLICFOTO = ftPerfil.Image;
         }
 
         private void CarregarPerfil()
@@ -28,6 +31,7 @@ namespace ProjetoFinal
 
             btnSalvar.UseVisualStyleBackColor = false;
             btnSalvar.BackColor = Color.Green;
+            btnSalvar.ForeColor = Color.Green;
 
             using (var context = new Entities())
             {
@@ -36,7 +40,7 @@ namespace ProjetoFinal
                 if (user != null)
                 {
                     this.Text = "Perfil de " + user.Nome;
-                    lblEmail.Text = "Email: " + user.Email;
+                    lblEmail.Text = user.Email;
                     lblPassword.Text = "Password: ";
                     foreach (var item in user.PalavraPasse)
                     {
@@ -84,6 +88,50 @@ namespace ProjetoFinal
                 ftPerfil.Image = Image.FromFile(openFileDialog.FileName);
                 ftPerfil.SizeMode = PictureBoxSizeMode.Zoom;
             }
+        }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            Nome = txtNome.Text;
+            PUBLICFOTO = ftPerfil.Image;
+            string nome = txtNome.Text;
+            if (ftPerfil.Image == null)
+            {
+                MessageBox.Show("Nenhuma imagem carregada.");
+                return;
+            }
+
+            string imagemBase64;
+            using (MemoryStream ms = new MemoryStream())
+            {
+                ftPerfil.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                byte[] imageBytes = ms.ToArray();
+                imagemBase64 = Convert.ToBase64String(imageBytes);
+            }
+
+            // Atualizar na BD
+            using (var contexto = new Entities())
+            {
+                var pessoa = contexto.Utilizador.Find(lblEmail.Text);
+
+                if (pessoa == null)
+                {
+                    MessageBox.Show("Pessoa não encontrada.");
+                    return;
+                }
+
+                pessoa.Nome = nome;
+                pessoa.Imagem = imagemBase64;
+
+                contexto.SaveChanges();
+                this.Close();
+            }
+
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

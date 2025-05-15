@@ -37,6 +37,10 @@ namespace ProjetoFinal
             txtFarmacia.BackColor = Color.FromArgb(25, 118, 210);
             CarregarPerfil();
 
+            AjustarTxtUser();
+
+            this.header.Resize += (s, e) => AjustarTxtUser();
+
         }
         private void CarregarPerfil()
         {
@@ -82,6 +86,36 @@ namespace ProjetoFinal
         {
             Perfil perfil = new Perfil();
             perfil.ShowDialog();
+            ftPerfil.Image = Perfil.PUBLICFOTO;
+            txtUser.Text = Perfil.Nome;
+            AjustarTxtUser();
+        }
+
+        private void AjustarTxtUser()
+        {
+            // Largura máxima disponível antes da imagem
+            int maxRight = ftPerfil.Left - 10; // deixa um pequeno espaço de 10px
+
+            // Medir a largura que o texto vai ocupar
+            using (Graphics g = txtUser.CreateGraphics())
+            {
+                SizeF textSize = g.MeasureString(txtUser.Text, txtUser.Font);
+
+                // Calcula a nova posição Left para a label, para que o lado direito fique alinhado em maxRight
+                int newLeft = (int)(maxRight - textSize.Width);
+
+                if (newLeft < 0) newLeft = 0; // Evita sair da tela
+
+                txtUser.Left = newLeft;
+
+                // Ajusta a largura da label para o texto
+                txtUser.Width = (int)textSize.Width;
+            }
+        }
+
+        private void txtFarmacia_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

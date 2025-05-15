@@ -41,6 +41,7 @@
             this.funcionarios = new System.Windows.Forms.TabPage();
             this.settings = new System.Windows.Forms.TabPage();
             this.sideBarImages = new System.Windows.Forms.ImageList(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.header.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ftPerfil)).BeginInit();
             this.sidebar.SuspendLayout();
@@ -73,25 +74,29 @@
             // 
             // txtFarmacia
             // 
-            this.txtFarmacia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFarmacia.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.txtFarmacia.AutoSize = true;
             this.txtFarmacia.Location = new System.Drawing.Point(1470, 53);
             this.txtFarmacia.Name = "txtFarmacia";
+            this.txtFarmacia.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtFarmacia.Size = new System.Drawing.Size(79, 16);
             this.txtFarmacia.TabIndex = 1;
             this.txtFarmacia.Text = "A carregar...";
+            this.txtFarmacia.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.txtFarmacia.Click += new System.EventHandler(this.txtFarmacia_Click);
             // 
             // txtUser
             // 
-            this.txtUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtUser.AutoSize = true;
             this.txtUser.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtUser.Location = new System.Drawing.Point(1449, 27);
             this.txtUser.Name = "txtUser";
+            this.txtUser.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtUser.Size = new System.Drawing.Size(100, 20);
             this.txtUser.TabIndex = 0;
             this.txtUser.Text = "A carregar...";
+            this.txtUser.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.txtUser.Click += new System.EventHandler(this.AbrirPerfil);
             // 
             // sidebar
@@ -180,6 +185,13 @@
             this.sideBarImages.Images.SetKeyName(3, "icons8-home-48.png");
             this.sideBarImages.Images.SetKeyName(4, "icons8-settings-48.png");
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 32);
+            this.contextMenuStrip1.Click += new System.EventHandler(this.txtFarmacia_Click);
+            // 
             // Manager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -215,5 +227,6 @@
         private System.Windows.Forms.Label txtUser;
         private System.Windows.Forms.Label txtFarmacia;
         private System.Windows.Forms.PictureBox ftPerfil;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }
