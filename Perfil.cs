@@ -73,5 +73,17 @@ namespace ProjetoFinal
             }
         }
 
+        private void btnFoto_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = "Selecionar Imagem";
+            openFileDialog.Filter = "Arquivos de Imagem|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                ftPerfil.Image = Image.FromFile(openFileDialog.FileName);
+                ftPerfil.SizeMode = PictureBoxSizeMode.Zoom;
+            }
+        }
     }
 }

@@ -68,7 +68,7 @@
             // 
             this.lblEmail.AutoSize = true;
             this.lblEmail.Depth = 0;
-            this.lblEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.lblEmail.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.lblEmail.Location = new System.Drawing.Point(232, 130);
             this.lblEmail.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblEmail.Name = "lblEmail";
@@ -80,7 +80,7 @@
             // 
             this.lblPassword.AutoSize = true;
             this.lblPassword.Depth = 0;
-            this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.lblPassword.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.lblPassword.Location = new System.Drawing.Point(232, 176);
             this.lblPassword.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblPassword.Name = "lblPassword";
@@ -118,6 +118,7 @@
             this.btnFoto.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnFoto.UseAccentColor = false;
             this.btnFoto.UseVisualStyleBackColor = true;
+            this.btnFoto.Click += new System.EventHandler(this.btnFoto_Click);
             // 
             // btnClose
             // 
