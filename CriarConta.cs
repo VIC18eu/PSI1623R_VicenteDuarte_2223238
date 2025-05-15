@@ -53,9 +53,9 @@ namespace ProjetoFinal
             }
             if (Contas.CriarConta(txtUser.Text.Trim(), txtPassword.Text.Trim()))
             {
+                this.Close();              // Fecha o registo após fechar o login
                 Form1 form1 = new Form1();
                 form1.ShowDialog();        // Mostra o Form1 controladamente
-                this.Close();              // Fecha o registo após fechar o login
             }
 
 
@@ -63,9 +63,9 @@ namespace ProjetoFinal
 
         private void lblLogin_Click(object sender, EventArgs e)
         {
+            this.Close();
             Form1 form1 = new Form1();
-            form1.ShowDialog();
-            this.Hide();
+            form1.Show();
         }
 
     }
