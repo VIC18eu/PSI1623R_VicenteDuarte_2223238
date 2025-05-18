@@ -51,7 +51,7 @@ namespace ProjetoFinal
                 if (user != null)
                 {
                     txtUser.Text = user.Nome;
-                    txtFarmacia.Text = Contas.Farmacia;
+                    txtFarmacia.Text = context.Farmacia.FirstOrDefault(f => f.Id == Contas.Farmacia).Nome;
 
                     // Verifica se a imagem existe
                     if (!string.IsNullOrEmpty(user.Imagem))

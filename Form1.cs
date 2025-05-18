@@ -43,8 +43,8 @@ namespace ProjetoFinal
             if (Contas.Login(txtUser.Text, txtPassword.Text))
             {
                 this.Hide();
-                Manager manager = new Manager();
-                manager.ShowDialog();
+                Farmacias farmacias = new Farmacias();
+                farmacias.Show();
             }
         }
     }
