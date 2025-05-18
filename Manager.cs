@@ -113,9 +113,50 @@ namespace ProjetoFinal
             }
         }
 
+        private void MostrarMenuFarmacias()
+        {
+            // Cria um novo ContextMenuStrip
+            ContextMenuStrip menu = new ContextMenuStrip();
+
+            using (var db = new Entities())
+            {
+                string email = Contas.Email; // Substituir pela lógica real
+
+                // Busca as farmácias do usuário
+                var farmacias = db.Farmacia
+                                  .Where(f => f.DonoEmail == email)
+                                  .ToList();
+
+                if (farmacias.Any())
+                {
+                    foreach (var farmacia in farmacias)
+                    {
+                        var item = new ToolStripMenuItem(farmacia.Nome);
+                        item.Tag = farmacia; // Guarda o objeto para uso posterior
+                        item.Click += (s, ev) =>
+                        {
+                            txtFarmacia.Text = farmacia.Nome;
+                            // Se quiser guardar o ID em alguma variável:
+                            // farmaciaSelecionadaId = farmacia.Id;
+                        };
+                        menu.Items.Add(item);
+                    }
+                }
+                else
+                {
+                    menu.Items.Add(new ToolStripMenuItem("Nenhuma farmácia encontrada") { Enabled = false });
+                }
+            }
+
+            // Exibe o menu abaixo do TextBox
+            var ponto = txtFarmacia.PointToScreen(new Point(0, txtFarmacia.Height));
+            menu.Show(ponto);
+        }
+
+
         private void txtFarmacia_Click(object sender, EventArgs e)
         {
-
+            MostrarMenuFarmacias();
         }
     }
 }
