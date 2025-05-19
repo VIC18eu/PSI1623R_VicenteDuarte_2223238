@@ -107,6 +107,7 @@ namespace ProjetoFinal
                 if (newLeft < 0) newLeft = 0; // Evita sair da tela
 
                 txtUser.Left = newLeft;
+                txtFarmacia.Left = newLeft + 10;
 
                 // Ajusta a largura da label para o texto
                 txtUser.Width = (int)textSize.Width;
