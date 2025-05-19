@@ -45,9 +45,7 @@ namespace ProjetoFinal
 
             using (var context = new Entities())
             {
-                var farmacias = context.Farmacia
-                    .Where(f => f.DonoEmail == Contas.Email)
-                    .ToList();
+                var farmacias = context.Farmacia.Where(f => f.DonoEmail == Contas.Email).ToList();
 
                 foreach (var farmacia in farmacias)
                 {

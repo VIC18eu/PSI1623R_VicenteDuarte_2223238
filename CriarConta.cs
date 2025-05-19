@@ -56,6 +56,7 @@ namespace ProjetoFinal
                 this.Close();              // Fecha o registo após fechar o login
                 Form1 form1 = new Form1();
                 form1.ShowDialog();        // Mostra o Form1 controladamente
+                return;
             }
 
 

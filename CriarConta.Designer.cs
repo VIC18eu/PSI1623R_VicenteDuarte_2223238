@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CriarConta));
             this.btnRegister = new MaterialSkin.Controls.MaterialButton();
             this.txtUser = new MaterialSkin.Controls.MaterialTextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -46,12 +47,12 @@
             this.btnRegister.Depth = 0;
             this.btnRegister.HighEmphasis = true;
             this.btnRegister.Icon = null;
-            this.btnRegister.Location = new System.Drawing.Point(337, 342);
-            this.btnRegister.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnRegister.Location = new System.Drawing.Point(449, 421);
+            this.btnRegister.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.btnRegister.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btnRegister.Size = new System.Drawing.Size(116, 35);
+            this.btnRegister.Size = new System.Drawing.Size(155, 43);
             this.btnRegister.TabIndex = 0;
             this.btnRegister.Text = "Criar Conta";
             this.btnRegister.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -67,12 +68,13 @@
             this.txtUser.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtUser.Hint = "Email";
             this.txtUser.LeadingIcon = null;
-            this.txtUser.Location = new System.Drawing.Point(242, 122);
+            this.txtUser.Location = new System.Drawing.Point(323, 150);
+            this.txtUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtUser.MaxLength = 50;
             this.txtUser.MouseState = MaterialSkin.MouseState.OUT;
             this.txtUser.Multiline = false;
             this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(325, 50);
+            this.txtUser.Size = new System.Drawing.Size(433, 50);
             this.txtUser.TabIndex = 1;
             this.txtUser.Text = "";
             this.txtUser.TrailingIcon = null;
@@ -81,9 +83,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(242, 98);
+            this.label1.Location = new System.Drawing.Point(323, 121);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 24);
+            this.label1.Size = new System.Drawing.Size(74, 29);
             this.label1.TabIndex = 2;
             this.label1.Text = "Email";
             // 
@@ -91,9 +94,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(242, 194);
+            this.label2.Location = new System.Drawing.Point(323, 239);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 24);
+            this.label2.Size = new System.Drawing.Size(120, 29);
             this.label2.TabIndex = 4;
             this.label2.Text = "Password";
             // 
@@ -105,13 +109,14 @@
             this.txtPassword.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtPassword.Hint = "Password";
             this.txtPassword.LeadingIcon = null;
-            this.txtPassword.Location = new System.Drawing.Point(242, 218);
+            this.txtPassword.Location = new System.Drawing.Point(323, 268);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPassword.MaxLength = 50;
             this.txtPassword.MouseState = MaterialSkin.MouseState.OUT;
             this.txtPassword.Multiline = false;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Password = true;
-            this.txtPassword.Size = new System.Drawing.Size(325, 50);
+            this.txtPassword.Size = new System.Drawing.Size(433, 50);
             this.txtPassword.TabIndex = 3;
             this.txtPassword.Text = "";
             this.txtPassword.TrailingIcon = null;
@@ -124,13 +129,14 @@
             this.txtConfirmarPass.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtConfirmarPass.Hint = "Confirme a sua Password";
             this.txtConfirmarPass.LeadingIcon = null;
-            this.txtConfirmarPass.Location = new System.Drawing.Point(242, 274);
+            this.txtConfirmarPass.Location = new System.Drawing.Point(323, 337);
+            this.txtConfirmarPass.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtConfirmarPass.MaxLength = 50;
             this.txtConfirmarPass.MouseState = MaterialSkin.MouseState.OUT;
             this.txtConfirmarPass.Multiline = false;
             this.txtConfirmarPass.Name = "txtConfirmarPass";
             this.txtConfirmarPass.Password = true;
-            this.txtConfirmarPass.Size = new System.Drawing.Size(325, 50);
+            this.txtConfirmarPass.Size = new System.Drawing.Size(433, 50);
             this.txtConfirmarPass.TabIndex = 5;
             this.txtConfirmarPass.Text = "";
             this.txtConfirmarPass.TrailingIcon = null;
@@ -140,18 +146,19 @@
             this.lblLogin.AutoSize = true;
             this.lblLogin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblLogin.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblLogin.Location = new System.Drawing.Point(268, 383);
+            this.lblLogin.Location = new System.Drawing.Point(357, 471);
+            this.lblLogin.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLogin.Name = "lblLogin";
-            this.lblLogin.Size = new System.Drawing.Size(210, 15);
+            this.lblLogin.Size = new System.Drawing.Size(265, 20);
             this.lblLogin.TabIndex = 6;
             this.lblLogin.Text = "Já tem uma conta? Inicie sessão agora.";
             this.lblLogin.Click += new System.EventHandler(this.lblLogin_Click);
             // 
             // CriarConta
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1067, 554);
             this.Controls.Add(this.lblLogin);
             this.Controls.Add(this.txtConfirmarPass);
             this.Controls.Add(this.label2);
@@ -159,8 +166,11 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtUser);
             this.Controls.Add(this.btnRegister);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "CriarConta";
+            this.Padding = new System.Windows.Forms.Padding(4, 79, 4, 4);
             this.Sizable = false;
             this.ResumeLayout(false);
             this.PerformLayout();
