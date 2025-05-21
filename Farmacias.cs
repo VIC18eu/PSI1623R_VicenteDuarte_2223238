@@ -31,6 +31,54 @@ namespace ProjetoFinal
                 ColumnCount = 1,
                 BackColor = this.BackColor
             };
+            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 60)); // barra superior
+            layout.RowStyles.Add(new RowStyle(SizeType.Percent, 100)); // cards
+
+            // Painel superior com botão e pesquisa
+            Panel barraSuperior = new Panel
+            {
+                Dock = DockStyle.Fill,
+                Height = 100,
+                Padding = new Padding(20, 10, 20, 0),
+                BackColor = this.BackColor
+            };
+
+            // Caixa de pesquisa
+            TextBox txtPesquisa = new TextBox
+            {
+                Width = 350,
+                Font = new Font("Segoe UI", 15F),
+                Margin = new Padding(0, 0, 0, 0)
+            };
+
+            // Botão "Adicionar" estilo Material
+            MaterialButton btnAdicionar = new MaterialButton
+            {
+                Text = "Adicionar",
+                Dock = DockStyle.None,
+                Anchor = AnchorStyles.Right,
+                AutoSize = false,
+                Width = 120,
+                HighEmphasis = true,
+                Margin = new Padding(0)
+            };
+            btnAdicionar.Click += BtnAdicionar_Click;
+
+            // Layout da barra: pesquisa à esquerda, botão à direita
+            TableLayoutPanel barraConteudo = new TableLayoutPanel
+            {
+                Dock = DockStyle.Fill,
+                ColumnCount = 3,
+            };
+            barraConteudo.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F)); // pesquisa
+            barraConteudo.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F)); // botão
+            barraConteudo.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 1F)); // preenchimento
+
+            barraConteudo.Controls.Add(txtPesquisa, 0, 0);
+            barraConteudo.Controls.Add(btnAdicionar, 1, 0);
+
+            barraSuperior.Controls.Add(barraConteudo);
+            layout.Controls.Add(barraSuperior, 0, 0);
 
             // Painel de conteúdo (cards)
             FlowLayoutPanel painel = new FlowLayoutPanel
@@ -42,6 +90,7 @@ namespace ProjetoFinal
             };
             layout.Controls.Add(painel, 0, 1);
             this.Controls.Add(layout);
+
 
             using (var context = new Entities())
             {
@@ -147,6 +196,11 @@ namespace ProjetoFinal
                 managerForm.Show();
                 this.Hide();
             }
+        }
+
+        private void BtnAdicionar_Click(object sender, EventArgs e)
+        {
+            CriarCardsFarmacias();
         }
     } 
 }
