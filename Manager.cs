@@ -17,17 +17,17 @@ namespace ProjetoFinal
     {
         public Manager()
         {
+            InitializeComponent();
+
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new ColorScheme(
                 Primary.Blue800, Primary.Blue900, Primary.Blue800,
                 Accent.Blue200, TextShade.WHITE);
-
-            InitializeComponent();
-
             header.BackColor = Color.FromArgb(25, 118, 210);
             this.FormBorderStyle = FormBorderStyle.None;
+
 
             txtUser.Font = new Font("Arial", 12, FontStyle.Bold);
             txtUser.ForeColor = Color.White;
@@ -107,7 +107,7 @@ namespace ProjetoFinal
                 if (newLeft < 0) newLeft = 0; // Evita sair da tela
 
                 txtUser.Left = newLeft;
-                txtFarmacia.Left = newLeft + 10;
+                txtFarmacia.Left = newLeft;
 
                 // Ajusta a largura da label para o texto
                 txtUser.Width = (int)textSize.Width;
