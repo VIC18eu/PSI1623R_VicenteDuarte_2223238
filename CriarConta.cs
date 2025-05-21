@@ -35,15 +35,8 @@ namespace ProjetoFinal
                 MessageBox.Show("Preencha todos os campos!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (txtUser.Text != txtUser.Text.Trim() || txtUser.Text != txtUser.Text.ToLower())
+            if (!Contas.ValidarEmail(txtUser.Text))
             {
-                MessageBox.Show("O email deve ter o formato correto!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
-            if (!Regex.IsMatch(txtUser.Text, pattern))
-            {
-                MessageBox.Show("O email deve ter o formato correto (ex: exemplo@dominio.com)!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (txtPassword.Text.Trim() != txtConfirmarPass.Text.Trim())

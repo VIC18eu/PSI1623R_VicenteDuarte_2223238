@@ -37,6 +37,7 @@
             this.btnClose = new MaterialSkin.Controls.MaterialButton();
             this.btnSalvar = new MaterialSkin.Controls.MaterialButton();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            this.btnLogout = new MaterialSkin.Controls.MaterialButton();
             ((System.ComponentModel.ISupportInitialize)(this.ftPerfil)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,7 +71,7 @@
             this.lblEmail.AutoSize = true;
             this.lblEmail.Depth = 0;
             this.lblEmail.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblEmail.Location = new System.Drawing.Point(297, 130);
+            this.lblEmail.Location = new System.Drawing.Point(297, 149);
             this.lblEmail.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(49, 19);
@@ -82,7 +83,7 @@
             this.lblPassword.AutoSize = true;
             this.lblPassword.Depth = 0;
             this.lblPassword.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblPassword.Location = new System.Drawing.Point(232, 188);
+            this.lblPassword.Location = new System.Drawing.Point(232, 203);
             this.lblPassword.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(75, 19);
@@ -172,12 +173,32 @@
             this.materialLabel2.AutoSize = true;
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel2.Location = new System.Drawing.Point(232, 130);
+            this.materialLabel2.Location = new System.Drawing.Point(232, 149);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
             this.materialLabel2.Size = new System.Drawing.Size(49, 19);
             this.materialLabel2.TabIndex = 8;
             this.materialLabel2.Text = "Email: ";
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnLogout.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLogout.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnLogout.Depth = 0;
+            this.btnLogout.HighEmphasis = true;
+            this.btnLogout.Icon = null;
+            this.btnLogout.Location = new System.Drawing.Point(390, 86);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnLogout.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnLogout.Size = new System.Drawing.Size(78, 36);
+            this.btnLogout.TabIndex = 9;
+            this.btnLogout.Text = "Logout";
+            this.btnLogout.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnLogout.UseAccentColor = false;
+            this.btnLogout.UseVisualStyleBackColor = true;
             // 
             // Perfil
             // 
@@ -194,6 +215,7 @@
             this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.ftPerfil);
             this.Controls.Add(this.txtNome);
+            this.Controls.Add(this.btnLogout);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Perfil";
@@ -217,5 +239,7 @@
         private MaterialSkin.Controls.MaterialButton btnClose;
         private MaterialSkin.Controls.MaterialButton btnSalvar;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
+        private MaterialSkin.Controls.MaterialButton btnLogout;
+
     }
 }

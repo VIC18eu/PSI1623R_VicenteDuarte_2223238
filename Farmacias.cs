@@ -19,9 +19,13 @@ namespace ProjetoFinal
             InitializeComponent();
             CriarCardsFarmacias();
         }
+        private FlowLayoutPanel painelCards; // Tornar o painel global para recriar os cards
+        private List<Farmacia> todasFarmacias; // Guardar as farmácias carregadas
+
         private void CriarCardsFarmacias()
         {
             this.Padding = new Padding(0, 64, 0, 0); // 64px é a altura da titlebar
+            this.Controls.Clear(); // Para recarregar o layout se necessário
 
             // Layout principal
             TableLayoutPanel layout = new TableLayoutPanel
@@ -31,7 +35,7 @@ namespace ProjetoFinal
                 ColumnCount = 1,
                 BackColor = this.BackColor
             };
-            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 60)); // barra superior
+            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 70)); // barra superior
             layout.RowStyles.Add(new RowStyle(SizeType.Percent, 100)); // cards
 
             // Painel superior com botão e pesquisa
@@ -43,149 +47,173 @@ namespace ProjetoFinal
                 BackColor = this.BackColor
             };
 
+            // Botão de pesquisa
+            MaterialButton btnPesquisar = new MaterialButton
+            {
+                Text = "Pesquisar",
+                AutoSize = false,
+                Width = 110,
+                HighEmphasis = true,
+                Margin = new Padding(0, 0, 10, 0)
+            };
+
             // Caixa de pesquisa
             TextBox txtPesquisa = new TextBox
             {
-                Width = 350,
-                Font = new Font("Segoe UI", 15F),
-                Margin = new Padding(0, 0, 0, 0)
+                Width = 300,
+                Font = new Font("Segoe UI", 14F),
+                Margin = new Padding(0)
             };
 
-            // Botão "Adicionar" estilo Material
+            // Botão "Adicionar"
             MaterialButton btnAdicionar = new MaterialButton
             {
                 Text = "Adicionar",
-                Dock = DockStyle.None,
-                Anchor = AnchorStyles.Right,
                 AutoSize = false,
                 Width = 120,
                 HighEmphasis = true,
+                Anchor = AnchorStyles.Right,
                 Margin = new Padding(0)
             };
             btnAdicionar.Click += BtnAdicionar_Click;
 
-            // Layout da barra: pesquisa à esquerda, botão à direita
+            // Layout da barra: botão, texto, botão
             TableLayoutPanel barraConteudo = new TableLayoutPanel
             {
                 Dock = DockStyle.Fill,
-                ColumnCount = 3,
+                ColumnCount = 4,
             };
-            barraConteudo.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F)); // pesquisa
-            barraConteudo.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F)); // botão
-            barraConteudo.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 1F)); // preenchimento
+            barraConteudo.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));       // botão pesquisar
+            barraConteudo.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));  // textbox
+            barraConteudo.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));       // botão adicionar
+            barraConteudo.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 1F));   // preenchimento
 
-            barraConteudo.Controls.Add(txtPesquisa, 0, 0);
-            barraConteudo.Controls.Add(btnAdicionar, 1, 0);
+            barraConteudo.Controls.Add(btnPesquisar, 0, 0);
+            barraConteudo.Controls.Add(txtPesquisa, 1, 0);
+            barraConteudo.Controls.Add(btnAdicionar, 2, 0);
 
             barraSuperior.Controls.Add(barraConteudo);
             layout.Controls.Add(barraSuperior, 0, 0);
 
-            // Painel de conteúdo (cards)
-            FlowLayoutPanel painel = new FlowLayoutPanel
+            // Painel dos cards
+            painelCards = new FlowLayoutPanel
             {
                 Dock = DockStyle.Fill,
                 AutoScroll = true,
                 WrapContents = true,
                 Padding = new Padding(20)
             };
-            layout.Controls.Add(painel, 0, 1);
+            layout.Controls.Add(painelCards, 0, 1);
             this.Controls.Add(layout);
 
-
+            // Carregar farmácias do banco
             using (var context = new Entities())
             {
-                var farmacias = context.Farmacia.Where(f => f.DonoEmail == Contas.Email).ToList();
+                todasFarmacias = context.Farmacia
+                    .Where(f => f.DonoEmail == Contas.Email)
+                    .ToList();
+            }
 
-                foreach (var farmacia in farmacias)
+            MostrarCards(todasFarmacias);
+
+            // Evento de clique no botão "Pesquisar"
+            btnPesquisar.Click += (s, e) =>
+            {
+                string termo = txtPesquisa.Text.ToLower().Trim();
+                var filtradas = todasFarmacias
+                    .Where(f => f.Nome.ToLower().Contains(termo))
+                    .ToList();
+                MostrarCards(filtradas);
+            };
+        }
+
+        private void MostrarCards(List<Farmacia> farmacias)
+        {
+            painelCards.Controls.Clear();
+
+            foreach (var farmacia in farmacias)
+            {
+                Panel card = new Panel
                 {
-                    Panel card = new Panel
-                    {
-                        Width = 300,
-                        Height = 160,
-                        BackColor = Color.White,
-                        BorderStyle = BorderStyle.FixedSingle,
-                        Margin = new Padding(10)
-                    };
+                    Width = 300,
+                    Height = 160,
+                    BackColor = Color.White,
+                    BorderStyle = BorderStyle.FixedSingle,
+                    Margin = new Padding(10)
+                };
 
-                    // Container principal dentro do card
-                    TableLayoutPanel cardLayout = new TableLayoutPanel
-                    {
-                        Dock = DockStyle.Fill,
-                        RowCount = 2,
-                        ColumnCount = 1
-                    };
-                    cardLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 75F)); // conteúdo
-                    cardLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 25F)); // botão
-                    card.Controls.Add(cardLayout);
+                TableLayoutPanel cardLayout = new TableLayoutPanel
+                {
+                    Dock = DockStyle.Fill,
+                    RowCount = 2,
+                    ColumnCount = 1
+                };
+                cardLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 75F));
+                cardLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+                card.Controls.Add(cardLayout);
 
-                    // Conteúdo do card
-                    FlowLayoutPanel content = new FlowLayoutPanel
-                    {
-                        FlowDirection = FlowDirection.TopDown,
-                        Dock = DockStyle.Fill,
-                        Padding = new Padding(10),
-                        WrapContents = false
-                    };
+                FlowLayoutPanel content = new FlowLayoutPanel
+                {
+                    FlowDirection = FlowDirection.TopDown,
+                    Dock = DockStyle.Fill,
+                    Padding = new Padding(10),
+                    WrapContents = false
+                };
 
-                    var lblNome = new MaterialLabel
-                    {
-                        Text = farmacia.Nome,
-                        Font = new Font("Roboto", 12F, FontStyle.Bold),
-                        AutoSize = true
-                    };
+                var lblNome = new MaterialLabel
+                {
+                    Text = farmacia.Nome,
+                    Font = new Font("Roboto", 12F, FontStyle.Bold),
+                    AutoSize = true
+                };
 
-                    var spacer = new Label
-                    {
-                        Height = 8,
-                        Width = 1 // não importa, é só espaçamento vertical
-                    };
+                var spacer = new Label { Height = 8, Width = 1 };
 
-                    var lblEndereco = new MaterialLabel
-                    {
-                        Text = "Endereço: " + farmacia.Endereco,
-                        FontType = MaterialSkin.MaterialSkinManager.fontType.Body2,
-                        AutoSize = true
-                    };
+                var lblEndereco = new MaterialLabel
+                {
+                    Text = "Endereço: " + farmacia.Endereco,
+                    FontType = MaterialSkin.MaterialSkinManager.fontType.Body2,
+                    AutoSize = true
+                };
 
-                    var lblEmail = new MaterialLabel
-                    {
-                        Text = "Email: " + farmacia.Email,
-                        FontType = MaterialSkin.MaterialSkinManager.fontType.Body2,
-                        AutoSize = true
-                    };
+                var lblEmail = new MaterialLabel
+                {
+                    Text = "Email: " + farmacia.Email,
+                    FontType = MaterialSkin.MaterialSkinManager.fontType.Body2,
+                    AutoSize = true
+                };
 
-                    content.Controls.Add(lblNome);
-                    content.Controls.Add(spacer);
-                    content.Controls.Add(lblEndereco);
-                    content.Controls.Add(lblEmail);
+                content.Controls.Add(lblNome);
+                content.Controls.Add(spacer);
+                content.Controls.Add(lblEndereco);
+                content.Controls.Add(lblEmail);
 
-                    // Botão alinhado à direita
-                    Panel btnPanel = new Panel
-                    {
-                        Dock = DockStyle.Fill,
-                        Padding = new Padding(0, 0, 10, 10)
-                    };
+                Panel btnPanel = new Panel
+                {
+                    Dock = DockStyle.Fill,
+                    Padding = new Padding(0, 0, 10, 10)
+                };
 
-                    var btnSelecionar = new MaterialButton
-                    {
-                        Text = "Selecionar",
-                        Tag = farmacia,
-                        Anchor = AnchorStyles.Bottom | AnchorStyles.Right,
-                        Dock = DockStyle.Right,
-                        Width = 120,
-                        Cursor = Cursors.Hand
-                    };
-                    btnSelecionar.Click += BtnSelecionar_Click;
+                var btnSelecionar = new MaterialButton
+                {
+                    Text = "Selecionar",
+                    Tag = farmacia,
+                    Anchor = AnchorStyles.Bottom | AnchorStyles.Right,
+                    Dock = DockStyle.Right,
+                    Width = 120,
+                    Cursor = Cursors.Hand
+                };
+                btnSelecionar.Click += BtnSelecionar_Click;
 
-                    btnPanel.Controls.Add(btnSelecionar);
+                btnPanel.Controls.Add(btnSelecionar);
+                cardLayout.Controls.Add(content, 0, 0);
+                cardLayout.Controls.Add(btnPanel, 0, 1);
 
-                    cardLayout.Controls.Add(content, 0, 0);
-                    cardLayout.Controls.Add(btnPanel, 0, 1);
-
-                    painel.Controls.Add(card);
-                }
+                painelCards.Controls.Add(card);
             }
         }
+
+
 
         private void BtnSelecionar_Click(object sender, EventArgs e)
         {
@@ -200,6 +228,8 @@ namespace ProjetoFinal
 
         private void BtnAdicionar_Click(object sender, EventArgs e)
         {
+            AdicionarFarmacia adicionarFarmacia = new AdicionarFarmacia();
+            adicionarFarmacia.ShowDialog();
             CriarCardsFarmacias();
         }
     } 
