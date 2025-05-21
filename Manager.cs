@@ -100,17 +100,20 @@ namespace ProjetoFinal
             using (Graphics g = txtUser.CreateGraphics())
             {
                 SizeF textSize = g.MeasureString(txtUser.Text, txtUser.Font);
+                SizeF textSizeF = g.MeasureString(txtFarmacia.Text, txtUser.Font);
 
                 // Calcula a nova posição Left para a label, para que o lado direito fique alinhado em maxRight
                 int newLeft = (int)(maxRight - textSize.Width);
+                int newLeftF = (int)(maxRight - textSizeF.Width);
 
                 if (newLeft < 0) newLeft = 0; // Evita sair da tela
 
                 txtUser.Left = newLeft;
-                txtFarmacia.Left = newLeft;
+                txtFarmacia.Left = newLeftF;
 
                 // Ajusta a largura da label para o texto
                 txtUser.Width = (int)textSize.Width;
+                txtFarmacia.Width = (int)textSizeF.Width;
             }
         }
 
