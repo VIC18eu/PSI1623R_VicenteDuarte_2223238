@@ -72,6 +72,7 @@
     <Compile Include="AdicionarFarmacia.Designer.cs">
       <DependentUpon>AdicionarFarmacia.cs</DependentUpon>
     </Compile>
+    <Compile Include="Configuracoes.cs" />
     <Compile Include="Contas.cs" />
     <Compile Include="CriarConta.cs">
       <SubType>Form</SubType>
@@ -146,6 +147,7 @@
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>MyHealthModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Theme.cs" />
     <Compile Include="Utilizador.cs">
       <DependentUpon>MyHealthModel.tt</DependentUpon>
     </Compile>

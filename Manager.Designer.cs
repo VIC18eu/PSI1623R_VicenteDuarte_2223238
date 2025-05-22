@@ -44,12 +44,24 @@ namespace ProjetoFinal
             this.funcionarios = new System.Windows.Forms.TabPage();
             this.settings = new System.Windows.Forms.TabPage();
             this.fundo = new System.Windows.Forms.Panel();
+            this.groupAccount = new System.Windows.Forms.GroupBox();
+            this.switchKeepSession = new MaterialSkin.Controls.MaterialSwitch();
+            this.groupSystem = new System.Windows.Forms.GroupBox();
+            this.switchNotifications = new MaterialSkin.Controls.MaterialSwitch();
+            this.switchUpdates = new MaterialSkin.Controls.MaterialSwitch();
+            this.comboLanguage = new MaterialSkin.Controls.MaterialComboBox();
+            this.groupAppearance = new System.Windows.Forms.GroupBox();
+            this.switchDarkMode = new MaterialSkin.Controls.MaterialSwitch();
+            this.comboFontSize = new MaterialSkin.Controls.MaterialComboBox();
             this.sideBarImages = new System.Windows.Forms.ImageList(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.header.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ftPerfil)).BeginInit();
             this.sidebar.SuspendLayout();
             this.settings.SuspendLayout();
+            this.groupAccount.SuspendLayout();
+            this.groupSystem.SuspendLayout();
+            this.groupAppearance.SuspendLayout();
             this.SuspendLayout();
             // 
             // header
@@ -172,7 +184,11 @@ namespace ProjetoFinal
             // 
             // settings
             // 
-            this.settings.Controls.Add(this.fundo);
+            this.settings.AutoScroll = true;
+            this.settings.Controls.Add(this.groupAccount);
+            this.settings.Controls.Add(this.groupSystem);
+            this.settings.Controls.Add(this.groupAppearance);
+            this.settings.Dock = System.Windows.Forms.DockStyle.Fill;
             this.settings.ImageKey = "icons8-settings-48.png";
             this.settings.Location = new System.Drawing.Point(4, 47);
             this.settings.Name = "settings";
@@ -188,6 +204,154 @@ namespace ProjetoFinal
             this.fundo.Name = "fundo";
             this.fundo.Size = new System.Drawing.Size(1659, 663);
             this.fundo.TabIndex = 0;
+            // 
+            // groupAccount
+            // 
+            this.groupAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.groupAccount.Controls.Add(this.switchKeepSession);
+            this.groupAccount.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupAccount.Location = new System.Drawing.Point(0, 440);
+            this.groupAccount.Margin = new System.Windows.Forms.Padding(0, 30, 0, 0);
+            this.groupAccount.Name = "groupAccount";
+            this.groupAccount.Padding = new System.Windows.Forms.Padding(10);
+            this.groupAccount.Size = new System.Drawing.Size(1659, 130);
+            this.groupAccount.TabIndex = 0;
+            this.groupAccount.TabStop = false;
+            this.groupAccount.Text = "Conta";
+            // 
+            // switchKeepSession
+            // 
+            this.switchKeepSession.Depth = 0;
+            this.switchKeepSession.Location = new System.Drawing.Point(20, 35);
+            this.switchKeepSession.Margin = new System.Windows.Forms.Padding(0);
+            this.switchKeepSession.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.switchKeepSession.MouseState = MaterialSkin.MouseState.HOVER;
+            this.switchKeepSession.Name = "switchKeepSession";
+            this.switchKeepSession.Ripple = true;
+            this.switchKeepSession.Size = new System.Drawing.Size(500, 70);
+            this.switchKeepSession.TabIndex = 0;
+            this.switchKeepSession.Text = " Manter Sessão Iniciada";
+            // 
+            // groupSystem
+            // 
+            this.groupSystem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.groupSystem.Controls.Add(this.switchNotifications);
+            this.groupSystem.Controls.Add(this.switchUpdates);
+            this.groupSystem.Controls.Add(this.comboLanguage);
+            this.groupSystem.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupSystem.Location = new System.Drawing.Point(0, 180);
+            this.groupSystem.Name = "groupSystem";
+            this.groupSystem.Padding = new System.Windows.Forms.Padding(10);
+            this.groupSystem.Size = new System.Drawing.Size(1659, 260);
+            this.groupSystem.TabIndex = 1;
+            this.groupSystem.TabStop = false;
+            this.groupSystem.Text = "Sistema";
+            // 
+            // switchNotifications
+            // 
+            this.switchNotifications.Checked = true;
+            this.switchNotifications.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.switchNotifications.Depth = 0;
+            this.switchNotifications.Location = new System.Drawing.Point(20, 30);
+            this.switchNotifications.Margin = new System.Windows.Forms.Padding(0);
+            this.switchNotifications.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.switchNotifications.MouseState = MaterialSkin.MouseState.HOVER;
+            this.switchNotifications.Name = "switchNotifications";
+            this.switchNotifications.Ripple = true;
+            this.switchNotifications.Size = new System.Drawing.Size(500, 70);
+            this.switchNotifications.TabIndex = 0;
+            this.switchNotifications.Text = " Ativar Notificações";
+            // 
+            // switchUpdates
+            // 
+            this.switchUpdates.Checked = true;
+            this.switchUpdates.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.switchUpdates.Depth = 0;
+            this.switchUpdates.Location = new System.Drawing.Point(20, 80);
+            this.switchUpdates.Margin = new System.Windows.Forms.Padding(0);
+            this.switchUpdates.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.switchUpdates.MouseState = MaterialSkin.MouseState.HOVER;
+            this.switchUpdates.Name = "switchUpdates";
+            this.switchUpdates.Ripple = true;
+            this.switchUpdates.Size = new System.Drawing.Size(500, 70);
+            this.switchUpdates.TabIndex = 1;
+            this.switchUpdates.Text = " Atualizações Automáticas";
+            // 
+            // comboLanguage
+            // 
+            this.comboLanguage.AutoResize = false;
+            this.comboLanguage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.comboLanguage.Depth = 0;
+            this.comboLanguage.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.comboLanguage.DropDownHeight = 174;
+            this.comboLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboLanguage.DropDownWidth = 121;
+            this.comboLanguage.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.comboLanguage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.comboLanguage.IntegralHeight = false;
+            this.comboLanguage.ItemHeight = 43;
+            this.comboLanguage.Items.AddRange(new object[] {
+            "Português"});
+            this.comboLanguage.Location = new System.Drawing.Point(20, 140);
+            this.comboLanguage.MaxDropDownItems = 4;
+            this.comboLanguage.MouseState = MaterialSkin.MouseState.OUT;
+            this.comboLanguage.Name = "comboLanguage";
+            this.comboLanguage.Size = new System.Drawing.Size(180, 49);
+            this.comboLanguage.StartIndex = 0;
+            this.comboLanguage.TabIndex = 2;
+            // 
+            // groupAppearance
+            // 
+            this.groupAppearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.groupAppearance.Controls.Add(this.switchDarkMode);
+            this.groupAppearance.Controls.Add(this.comboFontSize);
+            this.groupAppearance.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupAppearance.Location = new System.Drawing.Point(0, 0);
+            this.groupAppearance.Name = "groupAppearance";
+            this.groupAppearance.Padding = new System.Windows.Forms.Padding(10);
+            this.groupAppearance.Size = new System.Drawing.Size(1659, 180);
+            this.groupAppearance.TabIndex = 2;
+            this.groupAppearance.TabStop = false;
+            this.groupAppearance.Text = "Aparência";
+            // 
+            // switchDarkMode
+            // 
+            this.switchDarkMode.Depth = 0;
+            this.switchDarkMode.Location = new System.Drawing.Point(20, 30);
+            this.switchDarkMode.Margin = new System.Windows.Forms.Padding(0);
+            this.switchDarkMode.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.switchDarkMode.MouseState = MaterialSkin.MouseState.HOVER;
+            this.switchDarkMode.Name = "switchDarkMode";
+            this.switchDarkMode.Ripple = true;
+            this.switchDarkMode.Size = new System.Drawing.Size(500, 70);
+            this.switchDarkMode.TabIndex = 0;
+            this.switchDarkMode.Text = " Modo Escuro";
+            this.switchDarkMode.CheckedChanged += new System.EventHandler(this.switchDarkMode_CheckedChanged);
+            // 
+            // comboFontSize
+            // 
+            this.comboFontSize.AutoResize = false;
+            this.comboFontSize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.comboFontSize.Depth = 0;
+            this.comboFontSize.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.comboFontSize.DropDownHeight = 174;
+            this.comboFontSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboFontSize.DropDownWidth = 121;
+            this.comboFontSize.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.comboFontSize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.comboFontSize.IntegralHeight = false;
+            this.comboFontSize.ItemHeight = 43;
+            this.comboFontSize.Items.AddRange(new object[] {
+            "Pequena",
+            "Média",
+            "Grande"});
+            this.comboFontSize.Location = new System.Drawing.Point(30, 90);
+            this.comboFontSize.MaxDropDownItems = 4;
+            this.comboFontSize.MouseState = MaterialSkin.MouseState.OUT;
+            this.comboFontSize.Name = "comboFontSize";
+            this.comboFontSize.Size = new System.Drawing.Size(180, 49);
+            this.comboFontSize.StartIndex = 0;
+            this.comboFontSize.TabIndex = 1;
             // 
             // sideBarImages
             // 
@@ -205,91 +369,6 @@ namespace ProjetoFinal
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             this.contextMenuStrip1.Click += new System.EventHandler(this.txtFarmacia_Click);
-            this.settings.Controls.Clear();
-            this.settings.AutoScroll = true;
-            this.settings.Dock = DockStyle.Fill; // para ocupar o máximo espaço possível no formulário
-
-            // --- Grupo Aparência ---
-            var groupAppearance = new System.Windows.Forms.GroupBox();
-            groupAppearance.Text = "Aparência";
-            groupAppearance.Dock = DockStyle.Top;
-            groupAppearance.Height = 180;  // altura maior para dar espaço
-            groupAppearance.Padding = new Padding(10);
-            groupAppearance.BackColor = Color.FromArgb(250, 250, 250);
-
-            // Switch Modo Escuro
-            var switchDarkMode = new MaterialSkin.Controls.MaterialSwitch();
-            switchDarkMode.Text = " Modo Escuro";
-            switchDarkMode.Location = new Point(20, 30);
-            switchDarkMode.Size = new Size(500, 70);
-            groupAppearance.Controls.Add(switchDarkMode);
-
-            // Combo Tamanho da Fonte
-            var comboFontSize = new MaterialSkin.Controls.MaterialComboBox();
-            comboFontSize.Items.AddRange(new string[] { "Pequena", "Média", "Grande" });
-            comboFontSize.SelectedIndex = 1;
-            comboFontSize.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboFontSize.Location = new Point(30, 90);
-            comboFontSize.Size = new Size(180, 80);
-            groupAppearance.Controls.Add(comboFontSize);
-
-            this.settings.Controls.Add(groupAppearance);
-
-            // --- Grupo Sistema ---
-            var groupSystem = new System.Windows.Forms.GroupBox();
-            groupSystem.Text = "Sistema";
-            groupSystem.Dock = DockStyle.Top;
-            groupSystem.Height = 260;  // mais alto para os switches + combo
-            groupSystem.Padding = new Padding(10);
-            groupSystem.BackColor = Color.FromArgb(250, 250, 250);
-
-            // Switch Notificações
-            var switchNotifications = new MaterialSkin.Controls.MaterialSwitch();
-            switchNotifications.Text = " Ativar Notificações";
-            switchNotifications.Location = new Point(20, 30);
-            switchNotifications.Size = new Size(500, 70);
-            switchNotifications.Checked = true;
-            groupSystem.Controls.Add(switchNotifications);
-
-            // Switch Atualizações Automáticas
-            var switchUpdates = new MaterialSkin.Controls.MaterialSwitch();
-            switchUpdates.Text = " Atualizações Automáticas";
-            switchUpdates.Location = new Point(20, 80);
-            switchUpdates.Size = new Size(500, 70);
-            switchUpdates.Checked = true;
-            groupSystem.Controls.Add(switchUpdates);
-
-            // Combo Idioma
-            var comboLanguage = new MaterialSkin.Controls.MaterialComboBox();
-            comboLanguage.Items.Add("Português");
-            comboLanguage.SelectedIndex = 0;
-            comboLanguage.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboLanguage.Location = new Point(20, 140);
-            comboLanguage.Size = new Size(180, 40);
-            groupSystem.Controls.Add(comboLanguage);
-
-            this.settings.Controls.Add(groupSystem);
-
-            // --- Grupo Conta ---
-            var groupAccount = new System.Windows.Forms.GroupBox();
-            groupAccount.Text = "Conta";
-            groupAccount.Dock = DockStyle.Top;
-            groupAccount.Height = 130;
-            groupAccount.Padding = new Padding(10);
-            groupAccount.BackColor = Color.FromArgb(250, 250, 250);
-
-            // Switch Manter Sessão Iniciada
-            var switchKeepSession = new MaterialSkin.Controls.MaterialSwitch();
-            switchKeepSession.Text = " Manter Sessão Iniciada";
-            switchKeepSession.Location = new Point(20, 35);
-            switchKeepSession.Size = new Size(500, 70);
-            switchKeepSession.Checked = false;
-            switchKeepSession.CheckedChanged += (s, e) => { /* lógica manter sessão */ };
-            groupAccount.Controls.Add(switchKeepSession);
-
-            this.settings.Controls.Add(groupAccount);
-
-
             // 
             // Manager
             // 
@@ -312,6 +391,9 @@ namespace ProjetoFinal
             ((System.ComponentModel.ISupportInitialize)(this.ftPerfil)).EndInit();
             this.sidebar.ResumeLayout(false);
             this.settings.ResumeLayout(false);
+            this.groupAccount.ResumeLayout(false);
+            this.groupSystem.ResumeLayout(false);
+            this.groupAppearance.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -331,5 +413,14 @@ namespace ProjetoFinal
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private MaterialSkin.Controls.MaterialLabel lblTema;
         private Panel fundo;
+        private GroupBox groupAccount;
+        private MaterialSkin.Controls.MaterialSwitch switchKeepSession;
+        private GroupBox groupSystem;
+        private MaterialSkin.Controls.MaterialSwitch switchNotifications;
+        private MaterialSkin.Controls.MaterialSwitch switchUpdates;
+        private MaterialSkin.Controls.MaterialComboBox comboLanguage;
+        private GroupBox groupAppearance;
+        private MaterialSkin.Controls.MaterialSwitch switchDarkMode;
+        private MaterialSkin.Controls.MaterialComboBox comboFontSize;
     }
 }

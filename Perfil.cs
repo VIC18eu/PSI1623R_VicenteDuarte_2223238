@@ -133,5 +133,15 @@ namespace ProjetoFinal
         {
             this.Close();
         }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            Contas.Email = string.Empty;
+            Contas.Farmacia = -1;
+
+            Form1 login = new Form1();
+            login.Show();
+            this.Close();
+        }
     }
 }

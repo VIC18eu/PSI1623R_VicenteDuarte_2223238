@@ -17,17 +17,16 @@ namespace ProjetoFinal
     {
         public Manager()
         {
+            bool modoEscuro = ConfigManager.Configuracoes?.ModoEscuro ?? false;
+            Theme.AplicarTema(this, modoEscuro);
+
             InitializeComponent();
 
-            var materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(
-                Primary.Blue800, Primary.Blue900, Primary.Blue800,
-                Accent.Blue200, TextShade.WHITE);
+            // Define o estado inicial do switch
+            switchDarkMode.Checked = modoEscuro;
+
             header.BackColor = Color.FromArgb(25, 118, 210);
             this.FormBorderStyle = FormBorderStyle.None;
-
 
             txtUser.Font = new Font("Arial", 12, FontStyle.Bold);
             txtUser.ForeColor = Color.White;
@@ -35,8 +34,8 @@ namespace ProjetoFinal
             txtFarmacia.Font = new Font("Arial", 9, FontStyle.Bold);
             txtFarmacia.ForeColor = Color.White;
             txtFarmacia.BackColor = Color.FromArgb(25, 118, 210);
-            CarregarPerfil();
 
+            CarregarPerfil();
             AjustarTxtUser();
 
             this.header.Resize += (s, e) => AjustarTxtUser();
@@ -89,6 +88,10 @@ namespace ProjetoFinal
             ftPerfil.Image = Perfil.PUBLICFOTO;
             txtUser.Text = Perfil.Nome;
             AjustarTxtUser();
+            if (Contas.Email == string.Empty)
+            {
+                this.Hide();
+            }
         }
 
         private void AjustarTxtUser()
@@ -100,7 +103,7 @@ namespace ProjetoFinal
             using (Graphics g = txtUser.CreateGraphics())
             {
                 SizeF textSize = g.MeasureString(txtUser.Text, txtUser.Font);
-                SizeF textSizeF = g.MeasureString(txtFarmacia.Text, txtUser.Font);
+                SizeF textSizeF = g.MeasureString(txtFarmacia.Text, txtFarmacia.Font);
 
                 // Calcula a nova posição Left para a label, para que o lado direito fique alinhado em maxRight
                 int newLeft = (int)(maxRight - textSize.Width);
@@ -140,8 +143,8 @@ namespace ProjetoFinal
                         item.Click += (s, ev) =>
                         {
                             txtFarmacia.Text = farmacia.Nome;
-                            // Se quiser guardar o ID em alguma variável:
-                            // farmaciaSelecionadaId = farmacia.Id;
+                            Contas.Farmacia = farmacia.Id;
+                            AjustarTxtUser();
                         };
                         menu.Items.Add(item);
                     }
@@ -161,6 +164,26 @@ namespace ProjetoFinal
         private void txtFarmacia_Click(object sender, EventArgs e)
         {
             MostrarMenuFarmacias();
+        }
+
+        private void switchDarkMode_CheckedChanged(object sender, EventArgs e)
+        {
+            bool ativado = switchDarkMode.Checked;
+            Theme.AplicarTema(this, ativado);
+
+            ConfigManager.Configuracoes.ModoEscuro = ativado;
+            ConfigManager.Guardar();
+            header.BackColor = Color.FromArgb(25, 118, 210);
+
+            txtUser.Font = new Font("Arial", 12, FontStyle.Bold);
+            txtUser.ForeColor = Color.White;
+            txtUser.BackColor = Color.FromArgb(25, 118, 210);
+            txtFarmacia.Font = new Font("Arial", 9, FontStyle.Bold);
+            txtFarmacia.ForeColor = Color.White;
+            txtFarmacia.BackColor = Color.FromArgb(25, 118, 210);
+            CarregarPerfil();
+
+            AjustarTxtUser();
         }
     }
 }

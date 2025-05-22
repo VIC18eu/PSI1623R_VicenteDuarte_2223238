@@ -199,6 +199,7 @@
             this.btnLogout.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnLogout.UseAccentColor = false;
             this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // Perfil
             // 

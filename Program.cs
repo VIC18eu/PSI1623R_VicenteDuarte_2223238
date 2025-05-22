@@ -16,6 +16,7 @@ namespace ProjetoFinal
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            ConfigManager.Carregar();
             Application.Run(new Form1());
         }
     }
