@@ -18,12 +18,7 @@ namespace ProjetoFinal
         public Form1()
         {
             InitializeComponent();
-            var materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(
-                Primary.Blue800, Primary.Blue900, Primary.Blue800,
-                Accent.Blue200, TextShade.WHITE);
+            Theme.AplicarTema(this, Theme.TemaAtual);
         }
 
         private void lblCriarConta_Click(object sender, EventArgs e)

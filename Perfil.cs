@@ -19,6 +19,8 @@ namespace ProjetoFinal
         public Perfil()
         {
             InitializeComponent();
+
+            Theme.AplicarTema(this, Theme.TemaAtual);
             CarregarPerfil();
             Nome = txtNome.Text;
             PUBLICFOTO = ftPerfil.Image;

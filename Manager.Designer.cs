@@ -43,7 +43,6 @@ namespace ProjetoFinal
             this.stock = new System.Windows.Forms.TabPage();
             this.funcionarios = new System.Windows.Forms.TabPage();
             this.settings = new System.Windows.Forms.TabPage();
-            this.fundo = new System.Windows.Forms.Panel();
             this.groupAccount = new System.Windows.Forms.GroupBox();
             this.switchKeepSession = new MaterialSkin.Controls.MaterialSwitch();
             this.groupSystem = new System.Windows.Forms.GroupBox();
@@ -54,6 +53,7 @@ namespace ProjetoFinal
             this.switchDarkMode = new MaterialSkin.Controls.MaterialSwitch();
             this.comboFontSize = new MaterialSkin.Controls.MaterialComboBox();
             this.sideBarImages = new System.Windows.Forms.ImageList(this.components);
+            this.fundo = new System.Windows.Forms.Panel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.header.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ftPerfil)).BeginInit();
@@ -197,14 +197,6 @@ namespace ProjetoFinal
             this.settings.Text = "Definições";
             this.settings.UseVisualStyleBackColor = true;
             // 
-            // fundo
-            // 
-            this.fundo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fundo.Location = new System.Drawing.Point(0, 0);
-            this.fundo.Name = "fundo";
-            this.fundo.Size = new System.Drawing.Size(1659, 663);
-            this.fundo.TabIndex = 0;
-            // 
             // groupAccount
             // 
             this.groupAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
@@ -231,6 +223,7 @@ namespace ProjetoFinal
             this.switchKeepSession.Size = new System.Drawing.Size(500, 70);
             this.switchKeepSession.TabIndex = 0;
             this.switchKeepSession.Text = " Manter Sessão Iniciada";
+            this.switchKeepSession.CheckedChanged += new System.EventHandler(this.switchKeepSession_CheckedChanged);
             // 
             // groupSystem
             // 
@@ -261,6 +254,7 @@ namespace ProjetoFinal
             this.switchNotifications.Size = new System.Drawing.Size(500, 70);
             this.switchNotifications.TabIndex = 0;
             this.switchNotifications.Text = " Ativar Notificações";
+            this.switchNotifications.CheckedChanged += new System.EventHandler(this.switchNotifications_CheckedChanged);
             // 
             // switchUpdates
             // 
@@ -276,6 +270,7 @@ namespace ProjetoFinal
             this.switchUpdates.Size = new System.Drawing.Size(500, 70);
             this.switchUpdates.TabIndex = 1;
             this.switchUpdates.Text = " Atualizações Automáticas";
+            this.switchUpdates.CheckedChanged += new System.EventHandler(this.switchUpdates_CheckedChanged);
             // 
             // comboLanguage
             // 
@@ -286,7 +281,7 @@ namespace ProjetoFinal
             this.comboLanguage.DropDownHeight = 174;
             this.comboLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboLanguage.DropDownWidth = 121;
-            this.comboLanguage.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.comboLanguage.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.comboLanguage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.comboLanguage.IntegralHeight = false;
             this.comboLanguage.ItemHeight = 43;
@@ -337,7 +332,7 @@ namespace ProjetoFinal
             this.comboFontSize.DropDownHeight = 174;
             this.comboFontSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboFontSize.DropDownWidth = 121;
-            this.comboFontSize.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.comboFontSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.comboFontSize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.comboFontSize.IntegralHeight = false;
             this.comboFontSize.ItemHeight = 43;
@@ -362,6 +357,14 @@ namespace ProjetoFinal
             this.sideBarImages.Images.SetKeyName(2, "icons8-contacts-48.png");
             this.sideBarImages.Images.SetKeyName(3, "icons8-home-48.png");
             this.sideBarImages.Images.SetKeyName(4, "icons8-settings-48.png");
+            // 
+            // fundo
+            // 
+            this.fundo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fundo.Location = new System.Drawing.Point(0, 0);
+            this.fundo.Name = "fundo";
+            this.fundo.Size = new System.Drawing.Size(1659, 663);
+            this.fundo.TabIndex = 0;
             // 
             // contextMenuStrip1
             // 

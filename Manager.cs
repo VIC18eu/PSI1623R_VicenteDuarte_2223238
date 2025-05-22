@@ -22,8 +22,7 @@ namespace ProjetoFinal
 
             InitializeComponent();
 
-            // Define o estado inicial do switch
-            switchDarkMode.Checked = modoEscuro;
+            CarregarSettings();
 
             header.BackColor = Color.FromArgb(25, 118, 210);
             this.FormBorderStyle = FormBorderStyle.None;
@@ -87,11 +86,23 @@ namespace ProjetoFinal
             perfil.ShowDialog();
             ftPerfil.Image = Perfil.PUBLICFOTO;
             txtUser.Text = Perfil.Nome;
-            AjustarTxtUser();
+            
             if (Contas.Email == string.Empty)
             {
                 this.Hide();
             }
+
+            header.BackColor = Color.FromArgb(25, 118, 210);
+
+            txtUser.Font = new Font("Arial", 12, FontStyle.Bold);
+            txtUser.ForeColor = Color.White;
+            txtUser.BackColor = Color.FromArgb(25, 118, 210);
+            txtFarmacia.Font = new Font("Arial", 9, FontStyle.Bold);
+            txtFarmacia.ForeColor = Color.White;
+            txtFarmacia.BackColor = Color.FromArgb(25, 118, 210);
+            CarregarPerfil();
+            AjustarTxtUser();
+
         }
 
         private void AjustarTxtUser()
@@ -184,6 +195,34 @@ namespace ProjetoFinal
             CarregarPerfil();
 
             AjustarTxtUser();
+        }
+
+        private void CarregarSettings()
+        {
+            // Define o estado inicial dos switchs
+            switchDarkMode.Checked = ConfigManager.Configuracoes.ModoEscuro;
+            switchKeepSession.Checked = ConfigManager.Configuracoes.ManterSessaoIniciada;
+            switchNotifications.Checked = ConfigManager.Configuracoes.AtualizacoesAutomaticas;
+            switchUpdates.Checked = ConfigManager.Configuracoes.AtualizacoesAutomaticas;
+            
+        }
+
+        private void switchNotifications_CheckedChanged(object sender, EventArgs e)
+        {
+            ConfigManager.Configuracoes.NotificacoesAtivas = switchNotifications.Checked;
+            ConfigManager.Guardar();
+        }
+
+        private void switchUpdates_CheckedChanged(object sender, EventArgs e)
+        {
+            ConfigManager.Configuracoes.AtualizacoesAutomaticas = switchUpdates.Checked;
+            ConfigManager.Guardar();
+        }
+
+        private void switchKeepSession_CheckedChanged(object sender, EventArgs e)
+        {
+            ConfigManager.Configuracoes.ManterSessaoIniciada = switchKeepSession.Checked;
+            ConfigManager.Guardar();
         }
     }
 }

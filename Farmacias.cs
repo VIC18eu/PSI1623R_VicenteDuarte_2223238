@@ -18,6 +18,7 @@ namespace ProjetoFinal
         {
             InitializeComponent();
             CriarCardsFarmacias();
+            Theme.AplicarTema(this, Theme.TemaAtual);
         }
         private FlowLayoutPanel painelCards; // Tornar o painel global para recriar os cards
         private List<Farmacia> todasFarmacias; // Guardar as farmácias carregadas
@@ -125,6 +126,7 @@ namespace ProjetoFinal
                     .ToList();
                 MostrarCards(filtradas);
             };
+
         }
 
         private void MostrarCards(List<Farmacia> farmacias)
@@ -227,10 +229,9 @@ namespace ProjetoFinal
 
                 painelCards.Controls.Add(card);
             }
+            Theme.AplicarTema(this, Theme.TemaAtual);
+
         }
-
-
-
 
         private void BtnSelecionar_Click(object sender, EventArgs e)
         {
@@ -242,7 +243,6 @@ namespace ProjetoFinal
                 this.Hide();
             }
         }
-
         private void BtnAdicionar_Click(object sender, EventArgs e)
         {
             AdicionarFarmacia adicionarFarmacia = new AdicionarFarmacia();

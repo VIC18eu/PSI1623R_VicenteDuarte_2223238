@@ -16,6 +16,7 @@ namespace ProjetoFinal
         public AdicionarFarmacia()
         {
             InitializeComponent();
+            Theme.AplicarTema(this, Theme.TemaAtual);
         }
 
         private void btnCriar_Click(object sender, EventArgs e)
