@@ -10,8 +10,8 @@ namespace ProjetoFinal
 {
     internal class Contas
     {
-        public static string Email;
-        public static int Farmacia;
+        public static string Email = "";
+        public static int Farmacia = -1;
         public static bool Login(string email, string password)
         {
             using (var context = new Entities())

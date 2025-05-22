@@ -138,7 +138,7 @@ namespace ProjetoFinal
 
             using (var db = new Entities())
             {
-                string email = Contas.Email; // Substituir pela lógica real
+                string email = Contas.Email;
 
                 // Busca as farmácias do usuário
                 var farmacias = db.Farmacia

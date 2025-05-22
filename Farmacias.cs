@@ -135,17 +135,6 @@ namespace ProjetoFinal
 
             if (farmacias == null || farmacias.Count == 0)
             {
-                Label lblVazio = new Label
-                {
-                    Text = "Nenhuma farmácia encontrada.",
-                    Font = new Font("Segoe UI", 14, FontStyle.Italic),
-                    ForeColor = Color.Gray,
-                    AutoSize = false,
-                    TextAlign = ContentAlignment.MiddleCenter,
-                    Dock = DockStyle.Fill
-                };
-
-                painelCards.Controls.Add(lblVazio);
                 return;
             }
 

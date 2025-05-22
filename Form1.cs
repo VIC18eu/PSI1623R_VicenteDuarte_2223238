@@ -25,7 +25,7 @@ namespace ProjetoFinal
         {
             this.Hide();
             CriarConta criarConta = new CriarConta();
-            criarConta.ShowDialog();
+            criarConta.Show();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
