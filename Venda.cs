@@ -12,25 +12,20 @@ namespace ProjetoFinal
     using System;
     using System.Collections.Generic;
     
-    public partial class Stock
+    public partial class Venda
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Stock()
+        public Venda()
         {
-            this.ReservaProduto = new HashSet<ReservaProduto>();
             this.VendaProduto = new HashSet<VendaProduto>();
         }
     
         public int Id { get; set; }
-        public int MedicamentoId { get; set; }
-        public int FarmaciaId { get; set; }
-        public int Quantidade { get; set; }
-        public decimal Preco { get; set; }
+        public System.DateTime DataVenda { get; set; }
+        public string Tipo { get; set; }
+        public decimal ValorTotal { get; set; }
+        public string Cliente { get; set; }
     
-        public virtual Farmacia Farmacia { get; set; }
-        public virtual Medicamento Medicamento { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ReservaProduto> ReservaProduto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VendaProduto> VendaProduto { get; set; }
     }

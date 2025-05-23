@@ -151,6 +151,12 @@
     <Compile Include="Utilizador.cs">
       <DependentUpon>MyHealthModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Venda.cs">
+      <DependentUpon>MyHealthModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VendaProduto.cs">
+      <DependentUpon>MyHealthModel.tt</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AdicionarFarmacia.resx">
       <DependentUpon>AdicionarFarmacia.cs</DependentUpon>
     </EmbeddedResource>

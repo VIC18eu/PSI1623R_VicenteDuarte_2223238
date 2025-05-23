@@ -33,5 +33,7 @@ namespace ProjetoFinal
         public virtual DbSet<Stock> Stock { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Utilizador> Utilizador { get; set; }
+        public virtual DbSet<Venda> Venda { get; set; }
+        public virtual DbSet<VendaProduto> VendaProduto { get; set; }
     }
 }
