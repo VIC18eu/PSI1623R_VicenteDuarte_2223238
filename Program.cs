@@ -31,7 +31,6 @@ namespace ProjetoFinal
             else
             {
                 // Mostrar login
-                
                 Application.Run(new Form1());
             }
         }
