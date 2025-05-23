@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MyHealthModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MyHealthModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Farmacia">
           <Key>
             <PropertyRef Name="Id" />
@@ -63,6 +63,7 @@
           <Property Name="MedicamentoId" Type="int" Nullable="false" />
           <Property Name="FarmaciaId" Type="int" Nullable="false" />
           <Property Name="Quantidade" Type="int" Nullable="false" />
+          <Property Name="Preco" Type="decimal" Precision="10" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -82,6 +83,27 @@
           <Property Name="Nome" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="PalavraPasse" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Imagem" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Venda">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DataVenda" Type="datetime" Nullable="false" />
+          <Property Name="Tipo" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ValorTotal" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Cliente" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VendaProduto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VendaId" Type="int" Nullable="false" />
+          <Property Name="ProdutoId" Type="int" Nullable="false" />
+          <Property Name="Quantidade" Type="int" Nullable="false" />
+          <Property Name="PrecoUnitario" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Subtotal" Type="decimal" Precision="10" Scale="2" Nullable="false" />
         </EntityType>
         <Association Name="FK__Farmacias__DonoE__398D8EEE">
           <End Role="Utilizador" Type="Self.Utilizador" Multiplicity="1" />
@@ -179,6 +201,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__VendaProd__Produ__628FA481">
+          <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+          <End Role="VendaProduto" Type="Self.VendaProduto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VendaProduto">
+              <PropertyRef Name="ProdutoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VendaProd__Venda__619B8048">
+          <End Role="Venda" Type="Self.Venda" Multiplicity="1" />
+          <End Role="VendaProduto" Type="Self.VendaProduto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venda">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VendaProduto">
+              <PropertyRef Name="VendaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="MyHealthModelStoreContainer">
           <EntitySet Name="Farmacia" EntityType="Self.Farmacia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Funcionario" EntityType="Self.Funcionario" Schema="dbo" store:Type="Tables" />
@@ -188,6 +234,8 @@
           <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Utilizador" EntityType="Self.Utilizador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Venda" EntityType="Self.Venda" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VendaProduto" EntityType="Self.VendaProduto" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Farmacias__DonoE__398D8EEE" Association="Self.FK__Farmacias__DonoE__398D8EEE">
             <End Role="Utilizador" EntitySet="Utilizador" />
             <End Role="Farmacia" EntitySet="Farmacia" />
@@ -220,9 +268,16 @@
             <End Role="Medicamento" EntitySet="Medicamento" />
             <End Role="Stock" EntitySet="Stock" />
           </AssociationSet>
+          <AssociationSet Name="FK__VendaProd__Produ__628FA481" Association="Self.FK__VendaProd__Produ__628FA481">
+            <End Role="Stock" EntitySet="Stock" />
+            <End Role="VendaProduto" EntitySet="VendaProduto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VendaProd__Venda__619B8048" Association="Self.FK__VendaProd__Venda__619B8048">
+            <End Role="Venda" EntitySet="Venda" />
+            <End Role="VendaProduto" EntitySet="VendaProduto" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MyHealthModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -298,6 +353,8 @@
           <NavigationProperty Name="Farmacia" Relationship="Self.FK__Stock__FarmaciaI__4316F928" FromRole="Stock" ToRole="Farmacia" />
           <NavigationProperty Name="Medicamento" Relationship="Self.FK__Stock__Medicamen__4222D4EF" FromRole="Stock" ToRole="Medicamento" />
           <NavigationProperty Name="ReservaProduto" Relationship="Self.FK__ReservaPr__Stock__4AB81AF0" FromRole="Stock" ToRole="ReservaProduto" />
+          <Property Name="Preco" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <NavigationProperty Name="VendaProduto" Relationship="MyHealthModel.FK__VendaProd__Produ__628FA481" FromRole="Stock" ToRole="VendaProduto" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -457,7 +514,65 @@
             <End Role="Stock" EntitySet="Stock" />
             <End Role="ReservaProduto" EntitySet="ReservaProduto" />
           </AssociationSet>
+          <EntitySet Name="Venda" EntityType="MyHealthModel.Venda" />
+          <EntitySet Name="VendaProduto" EntityType="MyHealthModel.VendaProduto" />
+          <AssociationSet Name="FK__VendaProd__Produ__628FA481" Association="MyHealthModel.FK__VendaProd__Produ__628FA481">
+            <End Role="Stock" EntitySet="Stock" />
+            <End Role="VendaProduto" EntitySet="VendaProduto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VendaProd__Venda__619B8048" Association="MyHealthModel.FK__VendaProd__Venda__619B8048">
+            <End Role="Venda" EntitySet="Venda" />
+            <End Role="VendaProduto" EntitySet="VendaProduto" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Venda">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DataVenda" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Tipo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ValorTotal" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Cliente" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="VendaProduto" Relationship="MyHealthModel.FK__VendaProd__Venda__619B8048" FromRole="Venda" ToRole="VendaProduto" />
+        </EntityType>
+        <EntityType Name="VendaProduto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VendaId" Type="Int32" Nullable="false" />
+          <Property Name="ProdutoId" Type="Int32" Nullable="false" />
+          <Property Name="Quantidade" Type="Int32" Nullable="false" />
+          <Property Name="PrecoUnitario" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Subtotal" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <NavigationProperty Name="Stock" Relationship="MyHealthModel.FK__VendaProd__Produ__628FA481" FromRole="VendaProduto" ToRole="Stock" />
+          <NavigationProperty Name="Venda" Relationship="MyHealthModel.FK__VendaProd__Venda__619B8048" FromRole="VendaProduto" ToRole="Venda" />
+        </EntityType>
+        <Association Name="FK__VendaProd__Produ__628FA481">
+          <End Type="MyHealthModel.Stock" Role="Stock" Multiplicity="1" />
+          <End Type="MyHealthModel.VendaProduto" Role="VendaProduto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VendaProduto">
+              <PropertyRef Name="ProdutoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VendaProd__Venda__619B8048">
+          <End Type="MyHealthModel.Venda" Role="Venda" Multiplicity="1" />
+          <End Type="MyHealthModel.VendaProduto" Role="VendaProduto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venda">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VendaProduto">
+              <PropertyRef Name="VendaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -521,6 +636,7 @@
           <EntitySetMapping Name="Stock">
             <EntityTypeMapping TypeName="MyHealthModel.Stock">
               <MappingFragment StoreEntitySet="Stock">
+                <ScalarProperty Name="Preco" ColumnName="Preco" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="MedicamentoId" ColumnName="MedicamentoId" />
                 <ScalarProperty Name="FarmaciaId" ColumnName="FarmaciaId" />
@@ -546,6 +662,29 @@
                 <ScalarProperty Name="Nome" ColumnName="Nome" />
                 <ScalarProperty Name="PalavraPasse" ColumnName="PalavraPasse" />
                 <ScalarProperty Name="Imagem" ColumnName="Imagem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Venda">
+            <EntityTypeMapping TypeName="MyHealthModel.Venda">
+              <MappingFragment StoreEntitySet="Venda">
+                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+                <ScalarProperty Name="ValorTotal" ColumnName="ValorTotal" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="DataVenda" ColumnName="DataVenda" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VendaProduto">
+            <EntityTypeMapping TypeName="MyHealthModel.VendaProduto">
+              <MappingFragment StoreEntitySet="VendaProduto">
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="PrecoUnitario" ColumnName="PrecoUnitario" />
+                <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
+                <ScalarProperty Name="ProdutoId" ColumnName="ProdutoId" />
+                <ScalarProperty Name="VendaId" ColumnName="VendaId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
