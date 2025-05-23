@@ -44,7 +44,7 @@ namespace ProjetoFinal
             {
                 this.Hide();              // Fecha o registo após fechar o login
                 Form1 form1 = new Form1();
-                form1.ShowDialog();        // Mostra o Form1 controladamente
+                form1.Show();        // Mostra o Form1 controladamente
                 return;
             }
 
@@ -53,10 +53,9 @@ namespace ProjetoFinal
 
         private void lblLogin_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Hide();    
             Form1 form1 = new Form1();
             form1.Show();
         }
-
     }
 }

@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+
 namespace ProjetoFinal.Properties {
     
     

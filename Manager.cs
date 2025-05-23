@@ -222,6 +222,7 @@ namespace ProjetoFinal
         private void switchKeepSession_CheckedChanged(object sender, EventArgs e)
         {
             ConfigManager.Configuracoes.ManterSessaoIniciada = switchKeepSession.Checked;
+            ConfigManager.Configuracoes.UtilizadorAtual = Contas.Email;
             ConfigManager.Guardar();
         }
     }

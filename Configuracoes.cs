@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Newtonsoft.Json;
+using ProjetoFinal.Properties;
 
 namespace ProjetoFinal
 {
@@ -16,6 +17,7 @@ namespace ProjetoFinal
         public bool NotificacoesAtivas { get; set; } = true;
         public bool AtualizacoesAutomaticas { get; set; } = true;
         public bool ManterSessaoIniciada { get; set; } = false;
+        public string UtilizadorAtual { get; set; } = string.Empty;
     }
 
     public static class ConfigManager
@@ -43,6 +45,17 @@ namespace ProjetoFinal
         {
             string json = JsonConvert.SerializeObject(Configuracoes, Formatting.Indented);
             File.WriteAllText(CaminhoFicheiro, json);
+        }
+
+        public static ConfiguracoesApp Load()
+        {
+            if (!File.Exists(CaminhoFicheiro))
+            {
+                return new ConfiguracoesApp();
+            }
+
+            string json = File.ReadAllText(CaminhoFicheiro);
+            return JsonConvert.DeserializeObject<ConfiguracoesApp>(json);
         }
     }
 

@@ -69,7 +69,7 @@
             this.txtUser.Hint = "Email";
             this.txtUser.LeadingIcon = null;
             this.txtUser.Location = new System.Drawing.Point(323, 150);
-            this.txtUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUser.Margin = new System.Windows.Forms.Padding(4);
             this.txtUser.MaxLength = 50;
             this.txtUser.MouseState = MaterialSkin.MouseState.OUT;
             this.txtUser.Multiline = false;
@@ -110,7 +110,7 @@
             this.txtPassword.Hint = "Password";
             this.txtPassword.LeadingIcon = null;
             this.txtPassword.Location = new System.Drawing.Point(323, 268);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.MaxLength = 50;
             this.txtPassword.MouseState = MaterialSkin.MouseState.OUT;
             this.txtPassword.Multiline = false;
@@ -130,7 +130,7 @@
             this.txtConfirmarPass.Hint = "Confirme a sua Password";
             this.txtConfirmarPass.LeadingIcon = null;
             this.txtConfirmarPass.Location = new System.Drawing.Point(323, 337);
-            this.txtConfirmarPass.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtConfirmarPass.Margin = new System.Windows.Forms.Padding(4);
             this.txtConfirmarPass.MaxLength = 50;
             this.txtConfirmarPass.MouseState = MaterialSkin.MouseState.OUT;
             this.txtConfirmarPass.Multiline = false;
@@ -167,7 +167,7 @@
             this.Controls.Add(this.txtUser);
             this.Controls.Add(this.btnRegister);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "CriarConta";
             this.Padding = new System.Windows.Forms.Padding(4, 79, 4, 4);

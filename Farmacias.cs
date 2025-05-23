@@ -135,6 +135,8 @@ namespace ProjetoFinal
 
             if (farmacias == null || farmacias.Count == 0)
             {
+                Theme.AplicarTema(this, Theme.TemaAtual);
+
                 return;
             }
 
@@ -158,7 +160,7 @@ namespace ProjetoFinal
                 cardLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 75F));
                 cardLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
                 card.Controls.Add(cardLayout);
-
+                
                 FlowLayoutPanel content = new FlowLayoutPanel
                 {
                     FlowDirection = FlowDirection.TopDown,
@@ -219,6 +221,7 @@ namespace ProjetoFinal
                 painelCards.Controls.Add(card);
             }
             Theme.AplicarTema(this, Theme.TemaAtual);
+
 
         }
 
