@@ -55,9 +55,11 @@ namespace ProjetoFinal
             this.sideBarImages = new System.Windows.Forms.ImageList(this.components);
             this.fundo = new System.Windows.Forms.Panel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.chartVendas = new LiveCharts.WinForms.CartesianChart();
             this.header.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ftPerfil)).BeginInit();
             this.sidebar.SuspendLayout();
+            this.home.SuspendLayout();
             this.settings.SuspendLayout();
             this.groupAccount.SuspendLayout();
             this.groupSystem.SuspendLayout();
@@ -138,6 +140,7 @@ namespace ProjetoFinal
             // 
             // home
             // 
+            this.home.Controls.Add(this.chartVendas);
             this.home.ImageKey = "icons8-home-48.png";
             this.home.Location = new System.Drawing.Point(4, 47);
             this.home.Margin = new System.Windows.Forms.Padding(4);
@@ -373,6 +376,14 @@ namespace ProjetoFinal
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             this.contextMenuStrip1.Click += new System.EventHandler(this.txtFarmacia_Click);
             // 
+            // chartVendas
+            // 
+            this.chartVendas.Location = new System.Drawing.Point(44, 41);
+            this.chartVendas.Name = "chartVendas";
+            this.chartVendas.Size = new System.Drawing.Size(757, 271);
+            this.chartVendas.TabIndex = 0;
+            this.chartVendas.Text = "Gráfico de Vendas";
+            // 
             // Manager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -393,6 +404,7 @@ namespace ProjetoFinal
             this.header.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ftPerfil)).EndInit();
             this.sidebar.ResumeLayout(false);
+            this.home.ResumeLayout(false);
             this.settings.ResumeLayout(false);
             this.groupAccount.ResumeLayout(false);
             this.groupSystem.ResumeLayout(false);
@@ -425,5 +437,6 @@ namespace ProjetoFinal
         private GroupBox groupAppearance;
         private MaterialSkin.Controls.MaterialSwitch switchDarkMode;
         private MaterialSkin.Controls.MaterialComboBox comboFontSize;
+        private LiveCharts.WinForms.CartesianChart chartVendas;
     }
 }

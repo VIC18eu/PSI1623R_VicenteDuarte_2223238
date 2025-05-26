@@ -10,6 +10,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LiveCharts;
+using LiveCharts.WinForms;
+using LiveCharts.Wpf;
+using System.Globalization;
+
 
 namespace ProjetoFinal
 {
@@ -39,7 +44,9 @@ namespace ProjetoFinal
 
             this.header.Resize += (s, e) => AjustarTxtUser();
 
+            ConstruirGraficos();
         }
+
         private void CarregarPerfil()
         {
             using (var context = new Entities())
@@ -86,7 +93,7 @@ namespace ProjetoFinal
             perfil.ShowDialog();
             ftPerfil.Image = Perfil.PUBLICFOTO;
             txtUser.Text = Perfil.Nome;
-            
+
             if (Contas.Email == string.Empty)
             {
                 this.Hide();
@@ -102,13 +109,60 @@ namespace ProjetoFinal
             txtFarmacia.BackColor = Color.FromArgb(25, 118, 210);
             CarregarPerfil();
             AjustarTxtUser();
+        }
 
+        private void ConstruirGraficos()
+        {
+            using (var context = new Entities())
+            {
+                // Obter as vendas dos últimos 6 meses
+                var hoje = DateTime.Today;
+                var seisMesesAtras = hoje.AddMonths(-5);
+
+                var vendasPorMes = context.Venda
+                    .Where(v => v.DataVenda >= new DateTime(seisMesesAtras.Year, seisMesesAtras.Month, 1))
+                    .AsEnumerable() // Trocar para LINQ to Objects para usar MonthName
+                    .GroupBy(v => new { v.DataVenda.Year, v.DataVenda.Month })
+                    .OrderBy(g => g.Key.Year).ThenBy(g => g.Key.Month)
+                    .Select(g => new
+                    {
+                        Mes = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(g.Key.Month),
+                        Total = g.Sum(v => v.ValorTotal)
+                    })
+                    .ToList();
+
+                var valores = new ChartValues<decimal>(vendasPorMes.Select(v => v.Total));
+                var labels = vendasPorMes.Select(v => v.Mes).ToArray();
+
+                chartVendas.Series = new SeriesCollection
+                {
+                    new LineSeries
+                    {
+                        Title = "Vendas",
+                        Values = valores
+                    }
+                };
+
+                chartVendas.AxisX.Add(new Axis
+                {
+                    Title = "Mês",
+                    Labels = labels
+                });
+
+                chartVendas.AxisY.Add(new Axis
+                {
+                    Title = "Valor (€)",
+                    LabelFormatter = valor => valor.ToString("C")
+                });
+
+                home.Controls.Add(chartVendas);
+            }
         }
 
         private void AjustarTxtUser()
         {
             // Largura máxima disponível antes da imagem
-            int maxRight = ftPerfil.Left - 10; // deixa um pequeno espaço de 10px
+            int maxRight = ftPerfil.Left - 25; // deixa um pequeno espaço de 10px
 
             // Medir a largura que o texto vai ocupar
             using (Graphics g = txtUser.CreateGraphics())
@@ -204,7 +258,7 @@ namespace ProjetoFinal
             switchKeepSession.Checked = ConfigManager.Configuracoes.ManterSessaoIniciada;
             switchNotifications.Checked = ConfigManager.Configuracoes.AtualizacoesAutomaticas;
             switchUpdates.Checked = ConfigManager.Configuracoes.AtualizacoesAutomaticas;
-            
+
         }
 
         private void switchNotifications_CheckedChanged(object sender, EventArgs e)
