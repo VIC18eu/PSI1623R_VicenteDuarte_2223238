@@ -20,6 +20,7 @@ namespace ProjetoFinal
             this.Funcionario = new HashSet<Funcionario>();
             this.Reserva = new HashSet<Reserva>();
             this.Stock = new HashSet<Stock>();
+            this.Venda = new HashSet<Venda>();
         }
     
         public int Id { get; set; }
@@ -36,5 +37,7 @@ namespace ProjetoFinal
         public virtual ICollection<Reserva> Reserva { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Stock> Stock { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Venda> Venda { get; set; }
     }
 }

@@ -25,7 +25,9 @@ namespace ProjetoFinal
         public string Tipo { get; set; }
         public decimal ValorTotal { get; set; }
         public string Cliente { get; set; }
+        public Nullable<int> FarmaciaId { get; set; }
     
+        public virtual Farmacia Farmacia { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VendaProduto> VendaProduto { get; set; }
     }

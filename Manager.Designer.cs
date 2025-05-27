@@ -39,6 +39,7 @@ namespace ProjetoFinal
             this.txtUser = new System.Windows.Forms.Label();
             this.sidebar = new MaterialSkin.Controls.MaterialTabControl();
             this.home = new System.Windows.Forms.TabPage();
+            this.chartVendas = new LiveCharts.WinForms.CartesianChart();
             this.reservas = new System.Windows.Forms.TabPage();
             this.stock = new System.Windows.Forms.TabPage();
             this.funcionarios = new System.Windows.Forms.TabPage();
@@ -55,7 +56,7 @@ namespace ProjetoFinal
             this.sideBarImages = new System.Windows.Forms.ImageList(this.components);
             this.fundo = new System.Windows.Forms.Panel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.chartVendas = new LiveCharts.WinForms.CartesianChart();
+            this.chartEncomendasBalcao = new LiveCharts.WinForms.CartesianChart();
             this.header.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ftPerfil)).BeginInit();
             this.sidebar.SuspendLayout();
@@ -106,7 +107,6 @@ namespace ProjetoFinal
             // 
             // txtUser
             // 
-            this.txtUser.AutoSize = true;
             this.txtUser.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtUser.Location = new System.Drawing.Point(1449, 27);
@@ -140,6 +140,7 @@ namespace ProjetoFinal
             // 
             // home
             // 
+            this.home.Controls.Add(this.chartEncomendasBalcao);
             this.home.Controls.Add(this.chartVendas);
             this.home.ImageKey = "icons8-home-48.png";
             this.home.Location = new System.Drawing.Point(4, 47);
@@ -150,6 +151,14 @@ namespace ProjetoFinal
             this.home.TabIndex = 0;
             this.home.Text = "Inicio";
             this.home.UseVisualStyleBackColor = true;
+            // 
+            // chartVendas
+            // 
+            this.chartVendas.Location = new System.Drawing.Point(44, 57);
+            this.chartVendas.Name = "chartVendas";
+            this.chartVendas.Size = new System.Drawing.Size(757, 271);
+            this.chartVendas.TabIndex = 0;
+            this.chartVendas.Text = "Gráfico de Vendas";
             // 
             // reservas
             // 
@@ -376,13 +385,13 @@ namespace ProjetoFinal
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             this.contextMenuStrip1.Click += new System.EventHandler(this.txtFarmacia_Click);
             // 
-            // chartVendas
+            // chartEncomendasBalcao
             // 
-            this.chartVendas.Location = new System.Drawing.Point(44, 41);
-            this.chartVendas.Name = "chartVendas";
-            this.chartVendas.Size = new System.Drawing.Size(757, 271);
-            this.chartVendas.TabIndex = 0;
-            this.chartVendas.Text = "Gráfico de Vendas";
+            this.chartEncomendasBalcao.Location = new System.Drawing.Point(44, 371);
+            this.chartEncomendasBalcao.Name = "chartEncomendasBalcao";
+            this.chartEncomendasBalcao.Size = new System.Drawing.Size(757, 271);
+            this.chartEncomendasBalcao.TabIndex = 1;
+            this.chartEncomendasBalcao.Text = "Gráfico de Vendas";
             // 
             // Manager
             // 
@@ -438,5 +447,6 @@ namespace ProjetoFinal
         private MaterialSkin.Controls.MaterialSwitch switchDarkMode;
         private MaterialSkin.Controls.MaterialComboBox comboFontSize;
         private LiveCharts.WinForms.CartesianChart chartVendas;
+        private LiveCharts.WinForms.CartesianChart chartEncomendasBalcao;
     }
 }

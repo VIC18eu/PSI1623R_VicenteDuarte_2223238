@@ -18,6 +18,7 @@ namespace ProjetoFinal
         public Medicamento()
         {
             this.Stock = new HashSet<Stock>();
+            this.VendaProduto = new HashSet<VendaProduto>();
         }
     
         public int Id { get; set; }
@@ -29,5 +30,7 @@ namespace ProjetoFinal
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Stock> Stock { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<VendaProduto> VendaProduto { get; set; }
     }
 }
