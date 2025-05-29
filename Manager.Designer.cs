@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace ProjetoFinal
@@ -39,7 +40,14 @@ namespace ProjetoFinal
             this.txtUser = new System.Windows.Forms.Label();
             this.sidebar = new MaterialSkin.Controls.MaterialTabControl();
             this.home = new System.Windows.Forms.TabPage();
+            this.chartPieValorMedicamentos = new LiveCharts.WinForms.PieChart();
+            this.chartVendasMedicamento = new LiveCharts.WinForms.CartesianChart();
+            this.chartEncomendasBalcao = new LiveCharts.WinForms.CartesianChart();
             this.chartVendas = new LiveCharts.WinForms.CartesianChart();
+            this.panelResumo = new System.Windows.Forms.Panel();
+            this.lblVendasHoje = new System.Windows.Forms.Label();
+            this.lblVendasMes = new System.Windows.Forms.Label();
+            this.lblTotalClientes = new System.Windows.Forms.Label();
             this.reservas = new System.Windows.Forms.TabPage();
             this.stock = new System.Windows.Forms.TabPage();
             this.funcionarios = new System.Windows.Forms.TabPage();
@@ -56,11 +64,11 @@ namespace ProjetoFinal
             this.sideBarImages = new System.Windows.Forms.ImageList(this.components);
             this.fundo = new System.Windows.Forms.Panel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.chartEncomendasBalcao = new LiveCharts.WinForms.CartesianChart();
             this.header.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ftPerfil)).BeginInit();
             this.sidebar.SuspendLayout();
             this.home.SuspendLayout();
+            this.panelResumo.SuspendLayout();
             this.settings.SuspendLayout();
             this.groupAccount.SuspendLayout();
             this.groupSystem.SuspendLayout();
@@ -77,14 +85,14 @@ namespace ProjetoFinal
             this.header.Location = new System.Drawing.Point(0, 30);
             this.header.Margin = new System.Windows.Forms.Padding(4);
             this.header.Name = "header";
-            this.header.Size = new System.Drawing.Size(1667, 87);
+            this.header.Size = new System.Drawing.Size(1942, 87);
             this.header.TabIndex = 1;
             // 
             // ftPerfil
             // 
             this.ftPerfil.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ftPerfil.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ftPerfil.Location = new System.Drawing.Point(1557, 25);
+            this.ftPerfil.Location = new System.Drawing.Point(1832, 25);
             this.ftPerfil.Name = "ftPerfil";
             this.ftPerfil.Size = new System.Drawing.Size(55, 50);
             this.ftPerfil.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -96,7 +104,7 @@ namespace ProjetoFinal
             // 
             this.txtFarmacia.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.txtFarmacia.AutoSize = true;
-            this.txtFarmacia.Location = new System.Drawing.Point(1470, 53);
+            this.txtFarmacia.Location = new System.Drawing.Point(1745, 53);
             this.txtFarmacia.Name = "txtFarmacia";
             this.txtFarmacia.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtFarmacia.Size = new System.Drawing.Size(79, 16);
@@ -135,30 +143,97 @@ namespace ProjetoFinal
             this.sidebar.Multiline = true;
             this.sidebar.Name = "sidebar";
             this.sidebar.SelectedIndex = 0;
-            this.sidebar.Size = new System.Drawing.Size(1667, 714);
+            this.sidebar.Size = new System.Drawing.Size(1942, 985);
             this.sidebar.TabIndex = 2;
             // 
             // home
             // 
+            this.home.AutoScroll = true;
+            this.home.Controls.Add(this.chartPieValorMedicamentos);
+            this.home.Controls.Add(this.chartVendasMedicamento);
             this.home.Controls.Add(this.chartEncomendasBalcao);
             this.home.Controls.Add(this.chartVendas);
+            this.home.Controls.Add(this.panelResumo);
             this.home.ImageKey = "icons8-home-48.png";
             this.home.Location = new System.Drawing.Point(4, 47);
             this.home.Margin = new System.Windows.Forms.Padding(4);
             this.home.Name = "home";
             this.home.Padding = new System.Windows.Forms.Padding(4);
-            this.home.Size = new System.Drawing.Size(1659, 663);
+            this.home.Size = new System.Drawing.Size(1934, 934);
             this.home.TabIndex = 0;
             this.home.Text = "Inicio";
             this.home.UseVisualStyleBackColor = true;
             // 
+            // chartPieValorMedicamentos
+            // 
+            this.chartPieValorMedicamentos.Location = new System.Drawing.Point(72, 1200);
+            this.chartPieValorMedicamentos.Name = "chartPieValorMedicamentos";
+            this.chartPieValorMedicamentos.Size = new System.Drawing.Size(679, 267);
+            this.chartPieValorMedicamentos.TabIndex = 4;
+            this.chartPieValorMedicamentos.Text = "% de lucro por Medicamento";
+            // 
+            // chartVendasMedicamento
+            // 
+            this.chartVendasMedicamento.Location = new System.Drawing.Point(72, 850);
+            this.chartVendasMedicamento.Name = "chartVendasMedicamento";
+            this.chartVendasMedicamento.Size = new System.Drawing.Size(700, 300);
+            this.chartVendasMedicamento.TabIndex = 3;
+            this.chartVendasMedicamento.Text = "Vendas de Medicamentos";
+            // 
+            // chartEncomendasBalcao
+            // 
+            this.chartEncomendasBalcao.Location = new System.Drawing.Point(72, 437);
+            this.chartEncomendasBalcao.Name = "chartEncomendasBalcao";
+            this.chartEncomendasBalcao.Size = new System.Drawing.Size(700, 300);
+            this.chartEncomendasBalcao.TabIndex = 1;
+            this.chartEncomendasBalcao.Text = "Balcão vs Encomendas";
+            // 
             // chartVendas
             // 
-            this.chartVendas.Location = new System.Drawing.Point(44, 57);
+            this.chartVendas.Location = new System.Drawing.Point(72, 52);
             this.chartVendas.Name = "chartVendas";
-            this.chartVendas.Size = new System.Drawing.Size(757, 271);
+            this.chartVendas.Size = new System.Drawing.Size(700, 300);
             this.chartVendas.TabIndex = 0;
             this.chartVendas.Text = "Gráfico de Vendas";
+            // 
+            // panelResumo
+            // 
+            this.panelResumo.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelResumo.Controls.Add(this.lblVendasHoje);
+            this.panelResumo.Controls.Add(this.lblVendasMes);
+            this.panelResumo.Controls.Add(this.lblTotalClientes);
+            this.panelResumo.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelResumo.Location = new System.Drawing.Point(1618, 4);
+            this.panelResumo.Name = "panelResumo";
+            this.panelResumo.Size = new System.Drawing.Size(291, 1459);
+            this.panelResumo.TabIndex = 2;
+            // 
+            // lblVendasHoje
+            // 
+            this.lblVendasHoje.Font = new System.Drawing.Font("Segoe UI", 25F, System.Drawing.FontStyle.Bold);
+            this.lblVendasHoje.Location = new System.Drawing.Point(20, 48);
+            this.lblVendasHoje.Name = "lblVendasHoje";
+            this.lblVendasHoje.Size = new System.Drawing.Size(545, 70);
+            this.lblVendasHoje.TabIndex = 0;
+            this.lblVendasHoje.Text = "Vendas Hoje: 124";
+            // 
+            // lblVendasMes
+            // 
+            this.lblVendasMes.Font = new System.Drawing.Font("Segoe UI", 25F, System.Drawing.FontStyle.Bold);
+            this.lblVendasMes.Location = new System.Drawing.Point(21, 164);
+            this.lblVendasMes.Name = "lblVendasMes";
+            this.lblVendasMes.Size = new System.Drawing.Size(529, 91);
+            this.lblVendasMes.TabIndex = 1;
+            this.lblVendasMes.Text = "Vendas Este Mês: 2 340";
+            // 
+            // lblTotalClientes
+            // 
+            this.lblTotalClientes.Font = new System.Drawing.Font("Segoe UI", 25F, System.Drawing.FontStyle.Bold);
+            this.lblTotalClientes.Location = new System.Drawing.Point(21, 280);
+            this.lblTotalClientes.Name = "lblTotalClientes";
+            this.lblTotalClientes.Size = new System.Drawing.Size(552, 74);
+            this.lblTotalClientes.TabIndex = 2;
+            this.lblTotalClientes.Text = "Clientes Ativos: 458";
             // 
             // reservas
             // 
@@ -167,7 +242,7 @@ namespace ProjetoFinal
             this.reservas.Margin = new System.Windows.Forms.Padding(4);
             this.reservas.Name = "reservas";
             this.reservas.Padding = new System.Windows.Forms.Padding(4);
-            this.reservas.Size = new System.Drawing.Size(1659, 663);
+            this.reservas.Size = new System.Drawing.Size(1934, 934);
             this.reservas.TabIndex = 1;
             this.reservas.Text = "Reservas";
             this.reservas.UseVisualStyleBackColor = true;
@@ -178,7 +253,7 @@ namespace ProjetoFinal
             this.stock.Location = new System.Drawing.Point(4, 47);
             this.stock.Margin = new System.Windows.Forms.Padding(4);
             this.stock.Name = "stock";
-            this.stock.Size = new System.Drawing.Size(1659, 663);
+            this.stock.Size = new System.Drawing.Size(1934, 934);
             this.stock.TabIndex = 2;
             this.stock.Text = "Stock";
             this.stock.UseVisualStyleBackColor = true;
@@ -189,7 +264,7 @@ namespace ProjetoFinal
             this.funcionarios.Location = new System.Drawing.Point(4, 47);
             this.funcionarios.Margin = new System.Windows.Forms.Padding(4);
             this.funcionarios.Name = "funcionarios";
-            this.funcionarios.Size = new System.Drawing.Size(1659, 663);
+            this.funcionarios.Size = new System.Drawing.Size(1934, 934);
             this.funcionarios.TabIndex = 3;
             this.funcionarios.Text = "Funcionários";
             this.funcionarios.UseVisualStyleBackColor = true;
@@ -204,7 +279,7 @@ namespace ProjetoFinal
             this.settings.ImageKey = "icons8-settings-48.png";
             this.settings.Location = new System.Drawing.Point(4, 47);
             this.settings.Name = "settings";
-            this.settings.Size = new System.Drawing.Size(1659, 663);
+            this.settings.Size = new System.Drawing.Size(1934, 934);
             this.settings.TabIndex = 4;
             this.settings.Text = "Definições";
             this.settings.UseVisualStyleBackColor = true;
@@ -218,7 +293,7 @@ namespace ProjetoFinal
             this.groupAccount.Margin = new System.Windows.Forms.Padding(0, 30, 0, 0);
             this.groupAccount.Name = "groupAccount";
             this.groupAccount.Padding = new System.Windows.Forms.Padding(10);
-            this.groupAccount.Size = new System.Drawing.Size(1659, 130);
+            this.groupAccount.Size = new System.Drawing.Size(1934, 130);
             this.groupAccount.TabIndex = 0;
             this.groupAccount.TabStop = false;
             this.groupAccount.Text = "Conta";
@@ -247,7 +322,7 @@ namespace ProjetoFinal
             this.groupSystem.Location = new System.Drawing.Point(0, 180);
             this.groupSystem.Name = "groupSystem";
             this.groupSystem.Padding = new System.Windows.Forms.Padding(10);
-            this.groupSystem.Size = new System.Drawing.Size(1659, 260);
+            this.groupSystem.Size = new System.Drawing.Size(1934, 260);
             this.groupSystem.TabIndex = 1;
             this.groupSystem.TabStop = false;
             this.groupSystem.Text = "Sistema";
@@ -316,7 +391,7 @@ namespace ProjetoFinal
             this.groupAppearance.Location = new System.Drawing.Point(0, 0);
             this.groupAppearance.Name = "groupAppearance";
             this.groupAppearance.Padding = new System.Windows.Forms.Padding(10);
-            this.groupAppearance.Size = new System.Drawing.Size(1659, 180);
+            this.groupAppearance.Size = new System.Drawing.Size(1934, 180);
             this.groupAppearance.TabIndex = 2;
             this.groupAppearance.TabStop = false;
             this.groupAppearance.Text = "Aparência";
@@ -385,19 +460,12 @@ namespace ProjetoFinal
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             this.contextMenuStrip1.Click += new System.EventHandler(this.txtFarmacia_Click);
             // 
-            // chartEncomendasBalcao
-            // 
-            this.chartEncomendasBalcao.Location = new System.Drawing.Point(44, 371);
-            this.chartEncomendasBalcao.Name = "chartEncomendasBalcao";
-            this.chartEncomendasBalcao.Size = new System.Drawing.Size(757, 271);
-            this.chartEncomendasBalcao.TabIndex = 1;
-            this.chartEncomendasBalcao.Text = "Gráfico de Vendas";
-            // 
             // Manager
             // 
+            this.Resize += new EventHandler(Form_Resize);
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1667, 831);
+            this.ClientSize = new System.Drawing.Size(1942, 1102);
             this.Controls.Add(this.sidebar);
             this.Controls.Add(this.header);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -414,6 +482,7 @@ namespace ProjetoFinal
             ((System.ComponentModel.ISupportInitialize)(this.ftPerfil)).EndInit();
             this.sidebar.ResumeLayout(false);
             this.home.ResumeLayout(false);
+            this.panelResumo.ResumeLayout(false);
             this.settings.ResumeLayout(false);
             this.groupAccount.ResumeLayout(false);
             this.groupSystem.ResumeLayout(false);
@@ -421,6 +490,7 @@ namespace ProjetoFinal
             this.ResumeLayout(false);
 
         }
+
 
         #endregion
         private System.Windows.Forms.Panel header;
@@ -448,5 +518,11 @@ namespace ProjetoFinal
         private MaterialSkin.Controls.MaterialComboBox comboFontSize;
         private LiveCharts.WinForms.CartesianChart chartVendas;
         private LiveCharts.WinForms.CartesianChart chartEncomendasBalcao;
+        private Panel panelResumo;
+        private Label lblVendasHoje;
+        private Label lblVendasMes;
+        private Label lblTotalClientes;
+        private LiveCharts.WinForms.CartesianChart chartVendasMedicamento;
+        private LiveCharts.WinForms.PieChart chartPieValorMedicamentos;
     }
 }

@@ -14,6 +14,7 @@ using LiveCharts;
 using LiveCharts.WinForms;
 using LiveCharts.Wpf;
 using System.Globalization;
+using System.Data.Entity;
 
 
 namespace ProjetoFinal
@@ -46,6 +47,12 @@ namespace ProjetoFinal
             this.header.Resize += (s, e) => AjustarTxtUser();
 
             ConstruirGraficos();
+            AjustarHome();
+
+        }
+        private void Form_Resize(object sender, EventArgs e)
+        {
+            AjustarHome();
         }
 
         private void CarregarPerfil()
@@ -112,6 +119,19 @@ namespace ProjetoFinal
             AjustarTxtUser();
         }
 
+        private void AjustarHome()
+        {
+            double width = this.Width;
+            if (width < 1400)
+            {
+                panelResumo.Dock = DockStyle.Top;
+            }
+            if (width > 1600)
+            {
+                chartEncomendasBalcao.Location = new System.Drawing.Point(300, 52);
+            }
+        }
+
         private void ConstruirGraficos()
         {
             int farmaciaId = Contas.Farmacia; // ID da farmácia atual
@@ -153,101 +173,200 @@ namespace ProjetoFinal
 
                 var encomendas = new double[mesesLabels.Length];
                 var balcao = new double[mesesLabels.Length];
+                var totalVendasMes = new double[mesesLabels.Length];
 
                 foreach (var item in vendasPorTipoMes)
                 {
-                    var mesNome = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(item.Mes);
-                    int idx = mesIndex[mesNome];
-                    if (item.Tipo == "encomenda")
-                        encomendas[idx] = item.Quantidade;
-                    else if (item.Tipo == "normal" || item.Tipo == "balcão" || item.Tipo == "balcao")
-                        balcao[idx] = item.Quantidade;
-                }
-
-                chartEncomendasBalcao.Series = new SeriesCollection
-        {
-            new LineSeries
-            {
-                Title = "Encomendas",
-                Values = new ChartValues<double>(encomendas),
-                PointGeometry = DefaultGeometries.Circle,
-                PointGeometrySize = 6
-            },
-            new LineSeries
-            {
-                Title = "Balcão",
-                Values = new ChartValues<double>(balcao),
-                PointGeometry = DefaultGeometries.Square,
-                PointGeometrySize = 6
-            }
-        };
-
-                chartEncomendasBalcao.AxisX.Clear();
-                chartEncomendasBalcao.AxisX.Add(new Axis
-                {
-                    Title = "Mês",
-                    Labels = mesesLabels
-                });
-
-                chartEncomendasBalcao.AxisY.Clear();
-                chartEncomendasBalcao.AxisY.Add(new Axis
-                {
-                    Title = "Quantidade de Vendas",
-                    LabelFormatter = value => value.ToString("N0")
-                });
-
-                if (!home.Controls.Contains(chartEncomendasBalcao))
-                    home.Controls.Add(chartEncomendasBalcao);
-
-
-                // ===== Gráfico Valor total de vendas por mês - linhas =====
-
-                var vendasPorMes = vendas
-                    .GroupBy(v => new { v.DataVenda.Year, v.DataVenda.Month })
-                    .OrderBy(g => g.Key.Year).ThenBy(g => g.Key.Month)
-                    .Select(g => new
                     {
-                        Mes = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(g.Key.Month),
-                        Total = g.Sum(v => v.ValorTotal)
-                    })
-                    .ToList();
+                        var mesNome = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(item.Mes);
+                        int idx = mesIndex[mesNome];
 
-                var valores = new ChartValues<double>(vendasPorMes.Select(v => (double)v.Total));
-                var labels = vendasPorMes.Select(v => v.Mes).ToArray();
+                        if (item.Tipo == "encomenda")
+                            encomendas[idx] = item.Quantidade;
+                        else if (item.Tipo == "normal" || item.Tipo == "balcão" || item.Tipo == "balcao")
+                            balcao[idx] = item.Quantidade;
 
-                chartVendas.Series = new SeriesCollection
-        {
-            new LineSeries
-            {
-                Title = "Vendas (€)",
-                Values = valores,
-                PointGeometry = DefaultGeometries.Circle,
-                PointGeometrySize = 8
-            }
-        };
+                        totalVendasMes[idx] = encomendas[idx] + balcao[idx];
+                    }
 
-                chartVendas.AxisX.Clear();
-                chartVendas.AxisY.Clear();
 
-                chartVendas.AxisX.Add(new Axis
+                    chartEncomendasBalcao.Series = new SeriesCollection
+                    { 
+                        new LineSeries
+                        {
+                            Title = "Encomendas",
+                            Values = new ChartValues<double>(encomendas),
+                            PointGeometry = DefaultGeometries.Circle,
+                            PointGeometrySize = 6
+                        },
+                        new LineSeries
+                        {
+                            Title = "Balcão",
+                            Values = new ChartValues<double>(balcao),
+                            PointGeometry = DefaultGeometries.Square,
+                            PointGeometrySize = 6
+                        },
+                        new LineSeries
+                        {
+                            Title = "Total",
+                            Values = new ChartValues<double>(totalVendasMes),
+                            PointGeometry = DefaultGeometries.Triangle,
+                            PointGeometrySize = 6,
+                            StrokeDashArray = new System.Windows.Media.DoubleCollection { 2 } // linha tracejada opcional
+                        }
+                    };
+
+
+                    chartEncomendasBalcao.AxisX.Clear();
+                    chartEncomendasBalcao.AxisX.Add(new Axis
+                    {
+                        Title = "Mês",
+                        Labels = mesesLabels
+                    });
+
+                    chartEncomendasBalcao.AxisY.Clear();
+                    chartEncomendasBalcao.AxisY.Add(new Axis
+                    {
+                        Title = "Quantidade de Vendas",
+                        LabelFormatter = value => value.ToString("N0")
+                    });
+
+                    if (!home.Controls.Contains(chartEncomendasBalcao))
+                        home.Controls.Add(chartEncomendasBalcao);
+
+
+                    // ===== Gráfico Valor total de vendas por mês - linhas =====
+
+                    var vendasPorMes = vendas
+                        .GroupBy(v => new { v.DataVenda.Year, v.DataVenda.Month })
+                        .OrderBy(g => g.Key.Year).ThenBy(g => g.Key.Month)
+                        .Select(g => new
+                        {
+                            Mes = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(g.Key.Month),
+                            Total = g.Sum(v => v.ValorTotal)
+                        })
+                        .ToList();
+
+                    var valores = new ChartValues<double>(vendasPorMes.Select(v => (double)v.Total));
+                    var labels = vendasPorMes.Select(v => v.Mes).ToArray();
+
+                    chartVendas.Series = new SeriesCollection
                 {
-                    Title = "Mês",
-                    Labels = labels,
-                    LabelsRotation = 15
-                });
+                    new LineSeries
+                    {
+                        Title = "Vendas (€)",
+                        Values = valores,
+                        PointGeometry = DefaultGeometries.Circle,
+                        PointGeometrySize = 8
+                    }
+                };
 
-                chartVendas.AxisY.Add(new Axis
+                    chartVendas.AxisX.Clear();
+                    chartVendas.AxisY.Clear();
+
+                    chartVendas.AxisX.Add(new Axis
+                    {
+                        Title = "Mês",
+                        Labels = labels,
+                        LabelsRotation = 15
+                    });
+
+                    chartVendas.AxisY.Add(new Axis
+                    {
+                        Title = "Valor (€)",
+                        LabelFormatter = valor => valor.ToString("C", CultureInfo.CurrentCulture)
+                    });
+
+                    chartVendas.LegendLocation = LegendLocation.Top;
+
+                    // ===== Gráfico Vendas por Medicamento - barras =====
+                    var vendasPorMedicamento = context.VendaProduto
+                        .Where(vp => vp.Venda.FarmaciaId == farmaciaId)
+                        .Include(vp => vp.Medicamento)
+                        .Include(vp => vp.Venda)
+                        .GroupBy(vp => vp.Medicamento.Nome)
+                        .Select(g => new
+                        {
+                            Nome = g.Key,
+                            Quantidade = g.Sum(vp => vp.Quantidade)
+                        })
+                        .OrderByDescending(g => g.Quantidade)
+                        .Take(10)
+                        .ToList();
+
+
+                    // Extrair dados
+                    var nomesMedicamentos = vendasPorMedicamento.Select(v => v.Nome).ToArray();
+                    var quantidadesVendidas = new ChartValues<int>(vendasPorMedicamento.Select(v => v.Quantidade));
+
+                    // Criar gráfico
+                    chartVendasMedicamento.Series = new SeriesCollection
                 {
-                    Title = "Valor (€)",
-                    LabelFormatter = valor => valor.ToString("C", CultureInfo.CurrentCulture)
-                });
+                    new ColumnSeries
+                    {
+                        Title = "Vendas por Medicamento",
+                        Values = quantidadesVendidas
+                    }
+                };
 
-                chartVendas.LegendLocation = LegendLocation.Top;
+                    chartVendasMedicamento.AxisX.Clear();
+                    chartVendasMedicamento.AxisX.Add(new Axis
+                    {
+                        Title = "Medicamento",
+                        Labels = nomesMedicamentos,
+                        LabelsRotation = 15
+                    });
 
-                if (!home.Controls.Contains(chartVendas))
-                    home.Controls.Add(chartVendas);
-            }
-        }
+                    chartVendasMedicamento.AxisY.Clear();
+                    chartVendasMedicamento.AxisY.Add(new Axis
+                    {
+                        Title = "Quantidade Vendida",
+                        LabelFormatter = v => v.ToString("N0")
+                    });
+
+                    chartVendasMedicamento.LegendLocation = LegendLocation.Top;
+
+                    if (!home.Controls.Contains(chartVendasMedicamento))
+                        home.Controls.Add(chartVendasMedicamento);
+
+                    // ===== Gráfico Pie: Percentagem do valor por medicamento =====
+                    var valorPorMedicamento = context.VendaProduto
+                        .Where(vp => vp.Venda.FarmaciaId == farmaciaId)
+                        .Include(vp => vp.Medicamento)
+                        .Include(vp => vp.Venda)
+                        .GroupBy(vp => vp.Medicamento.Nome)
+                        .Select(g => new
+                        {
+                            Nome = g.Key,
+                            ValorTotal = g.Sum(vp => vp.Quantidade * vp.PrecoUnitario)
+                        })
+                        .OrderByDescending(g => g.ValorTotal)
+                        .Take(10) // Podes ajustar para mostrar só os 10 maiores
+                        .ToList();
+
+                    // Criar gráfico Pie
+                    chartPieValorMedicamentos.Series = new SeriesCollection();
+
+                    foreach (var med in valorPorMedicamento)
+                    {
+                        chartPieValorMedicamentos.Series.Add(new PieSeries
+                        {
+                            Title = med.Nome,
+                            Values = new ChartValues<decimal> { med.ValorTotal },
+                            DataLabels = true,
+                            LabelPoint = chartPoint => $"{chartPoint.Participation:P1}" // percentagem
+                        });
+                    }
+
+                    chartPieValorMedicamentos.LegendLocation = LegendLocation.Right;
+
+                    if (!home.Controls.Contains(chartPieValorMedicamentos))
+                        home.Controls.Add(chartPieValorMedicamentos);
+
+                    if (!home.Controls.Contains(chartVendas))
+                        home.Controls.Add(chartVendas);
+                }
+            }}
 
         private void AjustarTxtUser()
         {
