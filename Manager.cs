@@ -132,6 +132,7 @@ namespace ProjetoFinal
             txtFarmacia.BackColor = Color.FromArgb(25, 118, 210);
             CarregarPerfil();
             AjustarTxtUser();
+            AjustarHome();
         }
 
         private void AjustarHome()
@@ -282,12 +283,13 @@ namespace ProjetoFinal
                 int y = margem;
                 foreach (var label in new[]
                     {
-                        CriarLabel($"Total de Vendas: {totalVendas}", y),
-                        CriarLabel($"Valor Total Vendas: {valorTotal:C}", y += 30),
-                        CriarLabel($"Vendas por Reserva: {vendasReserva:C}", y += 30),
-                        CriarLabel($"Vendas Normais: {vendasNormal:C}", y += 30)
-                    }
-                ){
+                CriarLabel($"Total de Vendas: {totalVendas}", y),
+                CriarLabel($"Valor Total Vendas: {valorTotal:C}", y += 30),
+                CriarLabel($"Vendas por Reserva: {vendasReserva:C}", y += 30),
+                CriarLabel($"Vendas Normais: {vendasNormal:C}", y += 30)
+            }
+                )
+                {
                     label.Location = new Point(margem, label.Location.Y);
                     panelResumo.Controls.Add(label);
                 }
@@ -303,21 +305,39 @@ namespace ProjetoFinal
                 panelResumo.Controls.Add(linhaVertical);
 
                 // Avisos à direita da linha
+                // Avisos à direita da linha
                 int avisoX = linhaVertical.Right + 10;
                 int avisoY = 10;
                 foreach (var aviso in avisos)
                 {
+                    var avisoPanel = new Panel()
+                    {
+                        BackColor = Color.MistyRose,
+                        BorderStyle = BorderStyle.FixedSingle,
+                        Location = new Point(avisoX, avisoY),
+                        AutoSize = true,
+                        Padding = new Padding(5),
+                        Margin = new Padding(0),
+                        Width = 275,
+                        Height = 50,
+                    };
+
                     var lbl = new Label()
                     {
                         Text = aviso,
                         AutoSize = true,
-                        ForeColor = Color.Red,
+                        ForeColor = Color.DarkRed,
                         Font = new Font("Segoe UI", 10, FontStyle.Italic),
-                        Location = new Point(avisoX, avisoY)
+                        BackColor = Color.Transparent,
+                        AutoEllipsis = true,
                     };
-                    panelResumo.Controls.Add(lbl);
-                    avisoY += 25;
+
+                    avisoPanel.Controls.Add(lbl);
+                    panelResumo.Controls.Add(avisoPanel);
+
+                    avisoY += avisoPanel.Height + 10;
                 }
+
             }
             else
             {
@@ -325,11 +345,11 @@ namespace ProjetoFinal
                 int y = 10;
                 foreach (var label in new[]
                 {
-                    CriarLabel($"Total de Vendas: {totalVendas}", y),
-                    CriarLabel($"Valor Total Vendas: {valorTotal:C}", y += 30),
-                    CriarLabel($"Vendas por Reserva: {vendasReserva:C}", y += 30),
-                    CriarLabel($"Vendas Normais: {vendasNormal:C}", y += 30)
-                })
+            CriarLabel($"Total de Vendas: {totalVendas}", y),
+            CriarLabel($"Valor Total Vendas: {valorTotal:C}", y += 30),
+            CriarLabel($"Vendas por Reserva: {vendasReserva:C}", y += 30),
+            CriarLabel($"Vendas Normais: {vendasNormal:C}", y += 30)
+        })
                 {
                     panelResumo.Controls.Add(label);
                 }
@@ -345,22 +365,41 @@ namespace ProjetoFinal
                 panelResumo.Controls.Add(linhaSeparadora);
 
                 // Avisos abaixo da linha
+                // Avisos abaixo da linha
                 int avisoY = linhaSeparadora.Bottom + 10;
                 foreach (var aviso in avisos)
                 {
+                    var avisoPanel = new Panel()
+                    {
+                        BackColor = Color.MistyRose,
+                        BorderStyle = BorderStyle.FixedSingle,
+                        Location = new Point(10, avisoY),
+                        AutoSize = true,
+                        Padding = new Padding(5),
+                        Margin = new Padding(0),
+                        Width = 275,
+                        Height = 50,
+                    };
+
                     var lbl = new Label()
                     {
                         Text = aviso,
                         AutoSize = true,
-                        ForeColor = Color.Red,
+                        ForeColor = Color.DarkRed,
                         Font = new Font("Segoe UI", 10, FontStyle.Italic),
-                        Location = new Point(10, avisoY)
+                        BackColor = Color.Transparent,
+                        AutoEllipsis = true,
                     };
-                    panelResumo.Controls.Add(lbl);
-                    avisoY += 25;
+
+                    avisoPanel.Controls.Add(lbl);
+                    panelResumo.Controls.Add(avisoPanel);
+
+                    avisoY += avisoPanel.Height + 10;
                 }
+
             }
         }
+
 
         private Label CriarLabel(string texto, int y)
         {
@@ -429,7 +468,7 @@ namespace ProjetoFinal
 
                 foreach (var item in mPoucoStock)
                 {
-                    avisos.Add($"{item.Medicamento.Nome} está com pouco stock.");
+                    avisos.Add($"Stock Baixo - {item.Medicamento.Nome}");
                 }
 
                 if (avisos.Count == 0)
@@ -778,8 +817,7 @@ namespace ProjetoFinal
 
             AjustarTxtUser();
             AplicarTemaHome();
-            AtualizarConteudoPanelResumo();
-
+            AjustarHome();
         }
 
         private void CarregarSettings()
