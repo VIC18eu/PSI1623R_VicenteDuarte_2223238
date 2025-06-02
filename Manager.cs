@@ -535,7 +535,6 @@ namespace ProjetoFinal
             }
         }
 
-
         private void ConstruirGraficos()
         {
             int farmaciaId = Contas.Farmacia; // ID da farmácia atual
@@ -828,7 +827,6 @@ namespace ProjetoFinal
             var ponto = txtFarmacia.PointToScreen(new Point(0, txtFarmacia.Height));
             menu.Show(ponto);
         }
-
 
         private void txtFarmacia_Click(object sender, EventArgs e)
         {
