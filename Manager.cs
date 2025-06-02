@@ -266,7 +266,6 @@ namespace ProjetoFinal
             // Obter dados
             int totalVendas = ObterTotalVendas();
             decimal valorTotal = ObterValorTotalVendas();
-            decimal vendasMes = ObterVendasEsteMes();
             decimal vendasReserva = ObterVendasPorReserva();
             decimal vendasNormal = ObterVendasNormais();
             List<string> avisos = ObterAvisos();
@@ -282,14 +281,13 @@ namespace ProjetoFinal
                 // Labels info
                 int y = margem;
                 foreach (var label in new[]
-                {
-            CriarLabel($"Total de Vendas: {totalVendas}", y),
-            CriarLabel($"Valor Total Vendas: {valorTotal:C}", y += 30),
-            CriarLabel($"Vendas Este Mês: {vendasMes:C}", y += 30),
-            CriarLabel($"Vendas por Reserva: {vendasReserva:C}", y += 30),
-            CriarLabel($"Vendas Normais: {vendasNormal:C}", y += 30)
-        })
-                {
+                    {
+                        CriarLabel($"Total de Vendas: {totalVendas}", y),
+                        CriarLabel($"Valor Total Vendas: {valorTotal:C}", y += 30),
+                        CriarLabel($"Vendas por Reserva: {vendasReserva:C}", y += 30),
+                        CriarLabel($"Vendas Normais: {vendasNormal:C}", y += 30)
+                    }
+                ){
                     label.Location = new Point(margem, label.Location.Y);
                     panelResumo.Controls.Add(label);
                 }
@@ -300,7 +298,7 @@ namespace ProjetoFinal
                     Width = 2,
                     Height = panelResumo.Height - 20,
                     BackColor = corSeparador,
-                    Location = new Point(220, 10)
+                    Location = new Point(300, 10)
                 };
                 panelResumo.Controls.Add(linhaVertical);
 
@@ -327,12 +325,11 @@ namespace ProjetoFinal
                 int y = 10;
                 foreach (var label in new[]
                 {
-            CriarLabel($"Total de Vendas: {totalVendas}", y),
-            CriarLabel($"Valor Total Vendas: {valorTotal:C}", y += 30),
-            CriarLabel($"Vendas Este Mês: {vendasMes:C}", y += 30),
-            CriarLabel($"Vendas por Reserva: {vendasReserva:C}", y += 30),
-            CriarLabel($"Vendas Normais: {vendasNormal:C}", y += 30)
-        })
+                    CriarLabel($"Total de Vendas: {totalVendas}", y),
+                    CriarLabel($"Valor Total Vendas: {valorTotal:C}", y += 30),
+                    CriarLabel($"Vendas por Reserva: {vendasReserva:C}", y += 30),
+                    CriarLabel($"Vendas Normais: {vendasNormal:C}", y += 30)
+                })
                 {
                     panelResumo.Controls.Add(label);
                 }
@@ -343,7 +340,7 @@ namespace ProjetoFinal
                     Width = panelResumo.Width - 20,
                     Height = 2,
                     BackColor = corSeparador,
-                    Location = new Point(10, y += 20)
+                    Location = new Point(10, y += 50)
                 };
                 panelResumo.Controls.Add(linhaSeparadora);
 
@@ -365,7 +362,6 @@ namespace ProjetoFinal
             }
         }
 
-
         private Label CriarLabel(string texto, int y)
         {
             return new Label()
@@ -376,19 +372,6 @@ namespace ProjetoFinal
                 Location = new Point(10, y),
                 Font = new Font("Segoe UI", 11, FontStyle.Bold)
             };
-        }
-
-        public decimal ObterVendasEsteMes()
-        {
-            using (var context = new Entities())
-            {
-                var hoje = DateTime.Now;
-                var inicioMes = new DateTime(hoje.Year, hoje.Month, 1);
-
-                return context.Venda
-                    .Where(v => v.DataVenda >= inicioMes)
-                    .Sum(v => (decimal?)v.ValorTotal) ?? 0m;
-            }
         }
 
         public decimal ObterVendasPorReserva()
@@ -434,27 +417,29 @@ namespace ProjetoFinal
             {
                 var avisos = new List<string>();
 
-                // Exemplo de aviso para reservas pendentes há mais de 3 dias
-                DateTime limiteData = DateTime.Now.AddDays(-3);
+                DateTime limiteData = DateTime.Now.AddDays(-7);
 
-                int reservasPendentes = context.Reserva
-                    .Count(r => r.Estado == "Pendente" && r.DataReserva <= limiteData);
-
+                int reservasPendentes = context.Reserva.Count(r => r.Estado == "Pendente" && r.DataReserva <= limiteData);
+                var mPoucoStock =  context.Stock.Where(m => m.Quantidade < 5);
+                    
                 if (reservasPendentes > 0)
                 {
-                    avisos.Add($"Aviso: Existem {reservasPendentes} reservas pendentes há mais de 3 dias.");
+                    avisos.Add($"Existem {reservasPendentes} reservas pendentes há mais de 3 dias.");
                 }
 
-                // Podes adicionar outros avisos, por exemplo sobre stock, vendas, etc
+                foreach (var item in mPoucoStock)
+                {
+                    avisos.Add($"{item.Medicamento.Nome} está com pouco stock.");
+                }
 
                 if (avisos.Count == 0)
+                {
                     avisos.Add("Sem avisos no momento.");
+                }
 
                 return avisos;
             }
         }
-
-
 
         private void ConstruirGraficos()
         {
@@ -515,7 +500,7 @@ namespace ProjetoFinal
 
 
                     chartEncomendasBalcao.Series = new SeriesCollection
-                    { 
+                    {
                         new LineSeries
                         {
                             Title = "Encomendas",
@@ -690,7 +675,8 @@ namespace ProjetoFinal
                     if (!home.Controls.Contains(chartVendas))
                         home.Controls.Add(chartVendas);
                 }
-            }}
+            }
+        }
 
         private void AjustarTxtUser()
         {
@@ -768,7 +754,6 @@ namespace ProjetoFinal
             menu.Show(ponto);
         }
 
-
         private void txtFarmacia_Click(object sender, EventArgs e)
         {
             MostrarMenuFarmacias();
@@ -793,6 +778,8 @@ namespace ProjetoFinal
 
             AjustarTxtUser();
             AplicarTemaHome();
+            AtualizarConteudoPanelResumo();
+
         }
 
         private void CarregarSettings()
