@@ -833,6 +833,9 @@ namespace ProjetoFinal
             MostrarMenuFarmacias();
         }
 
+        
+        // <-------- SETTINGS -------->
+
         private void switchDarkMode_CheckedChanged(object sender, EventArgs e)
         {
             bool ativado = switchDarkMode.Checked;
@@ -883,5 +886,11 @@ namespace ProjetoFinal
             ConfigManager.Configuracoes.UtilizadorAtual = Contas.Email;
             ConfigManager.Guardar();
         }
+
+        
+        // <-------- Tab de Vendas -------->
+
+
+
     }
 }

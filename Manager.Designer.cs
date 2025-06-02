@@ -61,6 +61,7 @@ namespace ProjetoFinal
             this.sideBarImages = new System.Windows.Forms.ImageList(this.components);
             this.fundo = new System.Windows.Forms.Panel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.vendas = new System.Windows.Forms.TabPage();
             this.header.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ftPerfil)).BeginInit();
             this.sidebar.SuspendLayout();
@@ -125,6 +126,7 @@ namespace ProjetoFinal
             // sidebar
             // 
             this.sidebar.Controls.Add(this.home);
+            this.sidebar.Controls.Add(this.vendas);
             this.sidebar.Controls.Add(this.reservas);
             this.sidebar.Controls.Add(this.stock);
             this.sidebar.Controls.Add(this.funcionarios);
@@ -209,7 +211,7 @@ namespace ProjetoFinal
             this.reservas.Margin = new System.Windows.Forms.Padding(4);
             this.reservas.Name = "reservas";
             this.reservas.Padding = new System.Windows.Forms.Padding(4);
-            this.reservas.Size = new System.Drawing.Size(1934, 934);
+            this.reservas.Size = new System.Drawing.Size(1792, 832);
             this.reservas.TabIndex = 1;
             this.reservas.Text = "Reservas";
             this.reservas.UseVisualStyleBackColor = true;
@@ -220,7 +222,7 @@ namespace ProjetoFinal
             this.stock.Location = new System.Drawing.Point(4, 47);
             this.stock.Margin = new System.Windows.Forms.Padding(4);
             this.stock.Name = "stock";
-            this.stock.Size = new System.Drawing.Size(1934, 934);
+            this.stock.Size = new System.Drawing.Size(1792, 832);
             this.stock.TabIndex = 2;
             this.stock.Text = "Stock";
             this.stock.UseVisualStyleBackColor = true;
@@ -231,7 +233,7 @@ namespace ProjetoFinal
             this.funcionarios.Location = new System.Drawing.Point(4, 47);
             this.funcionarios.Margin = new System.Windows.Forms.Padding(4);
             this.funcionarios.Name = "funcionarios";
-            this.funcionarios.Size = new System.Drawing.Size(1934, 934);
+            this.funcionarios.Size = new System.Drawing.Size(1792, 832);
             this.funcionarios.TabIndex = 3;
             this.funcionarios.Text = "Funcionários";
             this.funcionarios.UseVisualStyleBackColor = true;
@@ -246,7 +248,7 @@ namespace ProjetoFinal
             this.settings.ImageKey = "icons8-settings-48.png";
             this.settings.Location = new System.Drawing.Point(4, 47);
             this.settings.Name = "settings";
-            this.settings.Size = new System.Drawing.Size(1934, 934);
+            this.settings.Size = new System.Drawing.Size(1792, 832);
             this.settings.TabIndex = 4;
             this.settings.Text = "Definições";
             this.settings.UseVisualStyleBackColor = true;
@@ -260,7 +262,7 @@ namespace ProjetoFinal
             this.groupAccount.Margin = new System.Windows.Forms.Padding(0, 30, 0, 0);
             this.groupAccount.Name = "groupAccount";
             this.groupAccount.Padding = new System.Windows.Forms.Padding(10);
-            this.groupAccount.Size = new System.Drawing.Size(1934, 130);
+            this.groupAccount.Size = new System.Drawing.Size(1792, 130);
             this.groupAccount.TabIndex = 0;
             this.groupAccount.TabStop = false;
             this.groupAccount.Text = "Conta";
@@ -289,7 +291,7 @@ namespace ProjetoFinal
             this.groupSystem.Location = new System.Drawing.Point(0, 180);
             this.groupSystem.Name = "groupSystem";
             this.groupSystem.Padding = new System.Windows.Forms.Padding(10);
-            this.groupSystem.Size = new System.Drawing.Size(1934, 260);
+            this.groupSystem.Size = new System.Drawing.Size(1792, 260);
             this.groupSystem.TabIndex = 1;
             this.groupSystem.TabStop = false;
             this.groupSystem.Text = "Sistema";
@@ -358,7 +360,7 @@ namespace ProjetoFinal
             this.groupAppearance.Location = new System.Drawing.Point(0, 0);
             this.groupAppearance.Name = "groupAppearance";
             this.groupAppearance.Padding = new System.Windows.Forms.Padding(10);
-            this.groupAppearance.Size = new System.Drawing.Size(1934, 180);
+            this.groupAppearance.Size = new System.Drawing.Size(1792, 180);
             this.groupAppearance.TabIndex = 2;
             this.groupAppearance.TabStop = false;
             this.groupAppearance.Text = "Aparência";
@@ -427,6 +429,16 @@ namespace ProjetoFinal
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             this.contextMenuStrip1.Click += new System.EventHandler(this.txtFarmacia_Click);
             // 
+            // vendas
+            // 
+            this.vendas.Location = new System.Drawing.Point(4, 47);
+            this.vendas.Name = "vendas";
+            this.vendas.Padding = new System.Windows.Forms.Padding(3);
+            this.vendas.Size = new System.Drawing.Size(1792, 832);
+            this.vendas.TabIndex = 5;
+            this.vendas.Text = "Vendas";
+            this.vendas.UseVisualStyleBackColor = true;
+            // 
             // Manager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -487,5 +499,6 @@ namespace ProjetoFinal
         private Panel panelResumo;
         private LiveCharts.WinForms.CartesianChart chartVendasMedicamento;
         private LiveCharts.WinForms.PieChart chartPieValorMedicamentos;
+        private TabPage vendas;
     }
 }
