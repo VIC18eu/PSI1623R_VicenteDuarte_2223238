@@ -26,6 +26,14 @@ namespace ProjetoFinal
             bool modoEscuro = ConfigManager.Configuracoes.ModoEscuro;
 
             InitializeComponent();
+            CarregarHome(modoEscuro);
+
+
+            this.header.Resize += (s, e) => AjustarTxtUser();
+        }
+
+        private void CarregarHome(bool modoEscuro)
+        {
             ConstruirGraficos();
             AjustarHome();
             AplicarTemaHome();
@@ -46,12 +54,8 @@ namespace ProjetoFinal
             CarregarPerfil();
             AtualizarConteudoPanelResumo();
             AjustarTxtUser();
-
-
-            this.header.Resize += (s, e) => AjustarTxtUser();
-
-
         }
+
         private void AplicarTemaHome()
         {
             bool modoEscuro = ConfigManager.Configuracoes.ModoEscuro;
@@ -63,7 +67,6 @@ namespace ProjetoFinal
             chartVendas.ForeColor = corTexto;
             chartVendasMedicamento.ForeColor = corTexto;
         }
-
 
         private void Form_Resize(object sender, EventArgs e)
         {
@@ -241,7 +244,7 @@ namespace ProjetoFinal
                 larguraGrafico = Math.Min(larguraGrafico, 900);
 
                 panelResumo.Dock = DockStyle.Top;
-                panelResumo.Height = 200;
+                panelResumo.Height = 230;
                 panelHomeConteudo.Controls.Add(panelResumo);
 
                 panelHomeConteudo.PerformLayout();
@@ -269,7 +272,7 @@ namespace ProjetoFinal
             decimal valorTotal = ObterValorTotalVendas();
             decimal vendasReserva = ObterVendasPorReserva();
             decimal vendasNormal = ObterVendasNormais();
-            List<string> avisos = ObterAvisos();
+            List<Aviso> avisos = ObterAvisos();
 
             bool modoPequeno = panelResumo.Dock == DockStyle.Top;
             Color corSeparador = MaterialSkinManager.Instance.Theme == MaterialSkinManager.Themes.DARK ? Color.DimGray : Color.Gray;
@@ -281,14 +284,7 @@ namespace ProjetoFinal
 
                 // Labels info
                 int y = margem;
-                foreach (var label in new[]
-                    {
-                CriarLabel($"Total de Vendas: {totalVendas}", y),
-                CriarLabel($"Valor Total Vendas: {valorTotal:C}", y += 30),
-                CriarLabel($"Vendas por Reserva: {vendasReserva:C}", y += 30),
-                CriarLabel($"Vendas Normais: {vendasNormal:C}", y += 30)
-            }
-                )
+                foreach (var label in new[]{ CriarLabel($"Total de Vendas: {totalVendas}", y), CriarLabel($"Valor Total Vendas: {valorTotal:C}", y += 30), CriarLabel($"Vendas por Reserva: {vendasReserva:C}", y += 30), CriarLabel($"Vendas Normais: {vendasNormal:C}", y += 30)})
                 {
                     label.Location = new Point(margem, label.Location.Y);
                     panelResumo.Controls.Add(label);
@@ -304,40 +300,66 @@ namespace ProjetoFinal
                 };
                 panelResumo.Controls.Add(linhaVertical);
 
-                // Avisos à direita da linha
-                // Avisos à direita da linha
-                int avisoX = linhaVertical.Right + 10;
+                // Avisos abaixo da linha
                 int avisoY = 10;
-                foreach (var aviso in avisos)
+                int avisosPorLinha = 2;
+                int larguraAviso = 275;
+                int espacamento = 10;
+
+                for (int i = 0; i < avisos.Count; i++)
                 {
+                    var aviso = avisos[i];
+
+                    int coluna = i % avisosPorLinha;
+                    int linha = i / avisosPorLinha;
+                    int avisoX = linhaVertical.Right + 10 + (coluna * (larguraAviso + espacamento));
+
                     var avisoPanel = new Panel()
                     {
                         BackColor = Color.MistyRose,
                         BorderStyle = BorderStyle.FixedSingle,
-                        Location = new Point(avisoX, avisoY),
                         AutoSize = true,
                         Padding = new Padding(5),
                         Margin = new Padding(0),
-                        Width = 275,
-                        Height = 50,
+                        Width = larguraAviso,
+                        Location = new Point(avisoX, avisoY)
                     };
 
-                    var lbl = new Label()
+                    // Título
+                    var lblTitulo = new Label()
                     {
-                        Text = aviso,
+                        Text = aviso.Titulo,
                         AutoSize = true,
                         ForeColor = Color.DarkRed,
-                        Font = new Font("Segoe UI", 10, FontStyle.Italic),
-                        BackColor = Color.Transparent,
-                        AutoEllipsis = true,
+                        Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                        BackColor = Color.Transparent
                     };
 
-                    avisoPanel.Controls.Add(lbl);
+                    // Descrição
+                    var lblDescricao = new Label()
+                    {
+                        Text = aviso.Descricao,
+                        AutoSize = true,
+                        ForeColor = Color.Black,
+                        Font = new Font("Segoe UI", 9, FontStyle.Italic),
+                        BackColor = Color.Transparent,
+                        MaximumSize = new Size(larguraAviso - 10, 0)
+                    };
+
+                    avisoPanel.Controls.Add(lblTitulo);
+                    avisoPanel.Controls.Add(lblDescricao);
+
+                    lblTitulo.Location = new Point(0, 0);
+                    lblDescricao.Location = new Point(0, lblTitulo.Bottom + 2);
+
                     panelResumo.Controls.Add(avisoPanel);
 
-                    avisoY += avisoPanel.Height + 10;
+                    // Após 2 avisos (ou no último aviso), avança uma linha (aumenta o Y)
+                    if (coluna == avisosPorLinha - 1 || i == avisos.Count - 1)
+                    {
+                        avisoY += avisoPanel.Height + espacamento;
+                    }
                 }
-
             }
             else
             {
@@ -345,11 +367,11 @@ namespace ProjetoFinal
                 int y = 10;
                 foreach (var label in new[]
                 {
-            CriarLabel($"Total de Vendas: {totalVendas}", y),
-            CriarLabel($"Valor Total Vendas: {valorTotal:C}", y += 30),
-            CriarLabel($"Vendas por Reserva: {vendasReserva:C}", y += 30),
-            CriarLabel($"Vendas Normais: {vendasNormal:C}", y += 30)
-        })
+                    CriarLabel($"Total de Vendas: {totalVendas}", y),
+                    CriarLabel($"Valor Total Vendas: {valorTotal:C}", y += 30),
+                    CriarLabel($"Vendas por Reserva: {vendasReserva:C}", y += 30),
+                    CriarLabel($"Vendas Normais: {vendasNormal:C}", y += 30)
+                })
                 {
                     panelResumo.Controls.Add(label);
                 }
@@ -365,42 +387,58 @@ namespace ProjetoFinal
                 panelResumo.Controls.Add(linhaSeparadora);
 
                 // Avisos abaixo da linha
-                // Avisos abaixo da linha
-                int avisoY = linhaSeparadora.Bottom + 10;
+                int avisoX = modoPequeno ? 320 : 10;
+                int avisoY = modoPequeno ? 10 : linhaSeparadora.Bottom + 10;
+
                 foreach (var aviso in avisos)
                 {
                     var avisoPanel = new Panel()
                     {
                         BackColor = Color.MistyRose,
                         BorderStyle = BorderStyle.FixedSingle,
-                        Location = new Point(10, avisoY),
                         AutoSize = true,
                         Padding = new Padding(5),
                         Margin = new Padding(0),
                         Width = 275,
-                        Height = 50,
+                        Location = new Point(avisoX, avisoY)
                     };
 
-                    var lbl = new Label()
+                    // Label do título
+                    var lblTitulo = new Label()
                     {
-                        Text = aviso,
+                        Text = aviso.Titulo,
                         AutoSize = true,
                         ForeColor = Color.DarkRed,
-                        Font = new Font("Segoe UI", 10, FontStyle.Italic),
-                        BackColor = Color.Transparent,
-                        AutoEllipsis = true,
+                        Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                        BackColor = Color.Transparent
                     };
 
-                    avisoPanel.Controls.Add(lbl);
-                    panelResumo.Controls.Add(avisoPanel);
+                    // Label da descrição
+                    var lblDescricao = new Label()
+                    {
+                        Text = aviso.Descricao,
+                        AutoSize = true,
+                        ForeColor = Color.Black,
+                        Font = new Font("Segoe UI", 9, FontStyle.Italic),
+                        BackColor = Color.Transparent,
+                        MaximumSize = new Size(260, 0)
+                    };
 
+                    // Adiciona os dois labels ao painel
+                    avisoPanel.Controls.Add(lblTitulo);
+                    avisoPanel.Controls.Add(lblDescricao);
+
+                    // Define posição manual para evitar sobreposição
+                    lblTitulo.Location = new Point(0, 0);
+                    lblDescricao.Location = new Point(0, lblTitulo.Bottom + 2);
+
+                    panelResumo.Controls.Add(avisoPanel);
                     avisoY += avisoPanel.Height + 10;
                 }
 
             }
         }
-
-
+        
         private Label CriarLabel(string texto, int y)
         {
             return new Label()
@@ -418,7 +456,7 @@ namespace ProjetoFinal
             using (var context = new Entities())
             {
                 return context.Venda
-                    .Where(v => v.Tipo == "Encomenda")
+                    .Where(v => v.Tipo == "Encomenda" && v.FarmaciaId == Contas.Farmacia)
                     .Sum(v => (decimal?)v.ValorTotal) ?? 0m;
             }
         }
@@ -428,7 +466,7 @@ namespace ProjetoFinal
             using (var context = new Entities())
             {
                 return context.Venda
-                    .Where(v => v.Tipo == "Normal")
+                    .Where(v => v.Tipo == "Normal" && v.FarmaciaId == Contas.Farmacia)
                     .Sum(v => (decimal?)v.ValorTotal) ?? 0m;
             }
         }
@@ -437,7 +475,7 @@ namespace ProjetoFinal
         {
             using (var context = new Entities())
             {
-                return context.Venda.Count();
+                return context.Venda.Where(v => v.FarmaciaId == Contas.Farmacia).Count();
             }
         }
 
@@ -446,39 +484,57 @@ namespace ProjetoFinal
             using (var context = new Entities())
             {
                 // Somar o valor total das vendas, garantindo que não há valores nulos
-                return context.Venda.Sum(v => (decimal?)v.ValorTotal) ?? 0m;
+                return context.Venda.Where(v => v.FarmaciaId == Contas.Farmacia).Sum(v => (decimal?)v.ValorTotal) ?? 0m;
             }
         }
 
-        public List<string> ObterAvisos()
+        public List<Aviso> ObterAvisos()
         {
             using (var context = new Entities())
             {
-                var avisos = new List<string>();
-
+                var avisos = new List<Aviso>();
                 DateTime limiteData = DateTime.Now.AddDays(-7);
 
-                int reservasPendentes = context.Reserva.Count(r => r.Estado == "Pendente" && r.DataReserva <= limiteData);
-                var mPoucoStock =  context.Stock.Where(m => m.Quantidade < 5);
-                    
+                // Reservas pendentes
+                int reservasPendentes = context.Reserva.Count(r => r.Estado == "Pendente" && r.DataReserva <= limiteData && r.FarmaciaId == Contas.Farmacia);
+
                 if (reservasPendentes > 0)
                 {
-                    avisos.Add($"Existem {reservasPendentes} reservas pendentes há mais de 3 dias.");
+                    avisos.Add(new Aviso
+                    {
+                        Titulo = "Reservas Pendentes",
+                        Descricao = $"Existem {reservasPendentes} reservas pendentes há mais de 7 dias."
+                    });
                 }
+
+                // Medicamentos com pouco stock
+                var mPoucoStock = context.Stock
+                    .Where(m => m.Quantidade < 5 && m.FarmaciaId == Contas.Farmacia)
+                    .ToList();
 
                 foreach (var item in mPoucoStock)
                 {
-                    avisos.Add($"Stock Baixo - {item.Medicamento.Nome}");
+                    avisos.Add(new Aviso
+                    {
+                        Titulo = "Stock Baixo",
+                        Descricao = $"{item.Medicamento.Nome} tem apenas {item.Quantidade} unidades no stock."
+                    });
                 }
 
-                if (avisos.Count == 0)
+                // Sem avisos
+                if (!avisos.Any())
                 {
-                    avisos.Add("Sem avisos no momento.");
+                    avisos.Add(new Aviso
+                    {
+                        Titulo = "Sem Avisos",
+                        Descricao = "Nenhuma ocorrência a reportar no momento."
+                    });
                 }
 
                 return avisos;
             }
         }
+
 
         private void ConstruirGraficos()
         {
@@ -631,7 +687,7 @@ namespace ProjetoFinal
                     var vendasPorMedicamento = context.VendaProduto
                         .Where(vp => vp.Venda.FarmaciaId == farmaciaId)
                         .Include(vp => vp.Medicamento)
-                        .Include(vp => vp.Venda)
+                        .Include(vp => vp.Venda)    
                         .GroupBy(vp => vp.Medicamento.Nome)
                         .Select(g => new
                         {
@@ -758,40 +814,21 @@ namespace ProjetoFinal
             // Cria um novo ContextMenuStrip
             ContextMenuStrip menu = new ContextMenuStrip();
 
-            using (var db = new Entities())
+            // Opção de trocar de Farmácia
+            var item = new ToolStripMenuItem("Trocar Farmácia");
+            item.Click += (s, ev) =>
             {
-                string email = Contas.Email;
-
-                // Busca as farmácias do usuário
-                var farmacias = db.Farmacia
-                                  .Where(f => f.DonoEmail == email)
-                                  .ToList();
-
-                if (farmacias.Any())
-                {
-                    foreach (var farmacia in farmacias)
-                    {
-                        var item = new ToolStripMenuItem(farmacia.Nome);
-                        item.Tag = farmacia; // Guarda o objeto para uso posterior
-                        item.Click += (s, ev) =>
-                        {
-                            txtFarmacia.Text = farmacia.Nome;
-                            Contas.Farmacia = farmacia.Id;
-                            AjustarTxtUser();
-                        };
-                        menu.Items.Add(item);
-                    }
-                }
-                else
-                {
-                    menu.Items.Add(new ToolStripMenuItem("Nenhuma farmácia encontrada") { Enabled = false });
-                }
-            }
+                this.Hide();
+                Farmacias farmaciasForm = new Farmacias();
+                farmaciasForm.Show();
+            };
+            menu.Items.Add(item);
 
             // Exibe o menu abaixo do TextBox
             var ponto = txtFarmacia.PointToScreen(new Point(0, txtFarmacia.Height));
             menu.Show(ponto);
         }
+
 
         private void txtFarmacia_Click(object sender, EventArgs e)
         {

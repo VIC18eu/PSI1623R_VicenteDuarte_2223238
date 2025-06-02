@@ -87,6 +87,7 @@
     <Compile Include="AdicionarFarmacia.Designer.cs">
       <DependentUpon>AdicionarFarmacia.cs</DependentUpon>
     </Compile>
+    <Compile Include="Aviso.cs" />
     <Compile Include="Configuracoes.cs" />
     <Compile Include="Contas.cs" />
     <Compile Include="CriarConta.cs">

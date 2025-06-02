@@ -15,7 +15,7 @@ namespace ProjetoFinal
     public partial class Venda
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Venda()
+        public Venda()  
         {
             this.VendaProduto = new HashSet<VendaProduto>();
         }
