@@ -31,6 +31,18 @@ namespace ProjetoFinal
 
             this.header.Resize += (s, e) => AjustarTxtUser();
         }
+        private void CarregarTab(object sender, EventArgs e)
+        {
+            if (sidebar.SelectedTab == home)
+            {
+                CarregarHome(ConfigManager.Configuracoes.ModoEscuro);
+            }
+            if (sidebar.SelectedTab == vendas)
+            {
+                CarregarVendas();
+            }
+
+        }
 
         private void CarregarHome(bool modoEscuro)
         {
@@ -887,9 +899,51 @@ namespace ProjetoFinal
             ConfigManager.Guardar();
         }
 
-        
         // <-------- Tab de Vendas -------->
 
+        private void vendas_Click(object sender, EventArgs e)
+        {
+            CarregarVendas();
+        }
+
+        private void CarregarVendas()
+        {
+            // Limpa o painel antes de carregar os novos cards
+            panelVendas.Controls.Clear();
+
+            using (var context = new Entities())
+            {
+                var listaVendas = context.Venda.ToList();
+
+                int yOffset = 10; // Espaço vertical entre os cards
+
+                foreach (var venda in listaVendas)
+                {
+                    // Criação de um card para cada venda
+                    MaterialSkin.Controls.MaterialCard card = new MaterialSkin.Controls.MaterialCard();
+                    card.Width = panelVendas.Width - 25; // Para caber no painel
+                    card.Height = 100;
+                    card.BackColor = Color.White;
+                    card.Location = new Point(10, yOffset);
+                    card.Padding = new Padding(10);
+
+                    // Criação do conteúdo do card
+                    Label lblInfo = new Label();
+                    lblInfo.AutoSize = true;
+                    lblInfo.Font = new Font("Segoe UI", 10);
+                    lblInfo.Text = $"ID: {venda.Id}\nData: {venda.DataVenda}\nTotal: {venda.ValorTotal:C}";
+
+                    // Adiciona a label ao card
+                    card.Controls.Add(lblInfo);
+
+                    // Adiciona o card ao painel
+                    panelVendas.Controls.Add(card);
+
+                    // Atualiza a posição vertical para o próximo card
+                    yOffset += card.Height + 10;
+                }
+            }
+        }
 
 
     }
