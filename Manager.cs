@@ -907,23 +907,41 @@ namespace ProjetoFinal
             {
                 var listaVendas = context.Venda.ToList();
 
-                // Aplica filtro se existir
                 if (!string.IsNullOrWhiteSpace(filtro))
                 {
-                    filtro = filtro.ToLower();
-                    listaVendas = listaVendas.Where(v =>
-                        v.Id.ToString().Contains(filtro) ||
-                        v.DataVenda.ToString("dd/MM/yyyy HH:mm").ToLower().Contains(filtro) ||
-                        v.ValorTotal.ToString("F2").Contains(filtro) ||
-                        (v.Tipo != null && v.Tipo.ToLower().Contains(filtro))
-                    ).ToList();
+                    filtro = filtro.Trim().ToLower();
+
+                    // Mapeia termos do utilizador para os valores reais na BD
+                    if (filtro == "balcão")
+                    {
+                        filtro = "normal";
+                    }
+                    else if (filtro == "reserva")
+                    {
+                        filtro = "encomenda";
+                    }
+
+                    // Filtro por ID com "#"
+                    if (filtro.StartsWith("#") && int.TryParse(filtro.Substring(1), out int idFiltro))
+                    {
+                        listaVendas = listaVendas.Where(v => v.Id == idFiltro).ToList();
+                    }
+                    else
+                    {
+                        listaVendas = listaVendas.Where(v =>
+                            v.DataVenda.ToString("dd/MM/yyyy HH:mm").ToLower().Contains(filtro) ||
+                            v.ValorTotal.ToString("F2").Replace(",", ".").Contains(filtro.Replace(",", ".")) ||
+                            (v.Tipo != null && v.Tipo.ToLower().Contains(filtro)) ||
+                            v.Id.ToString().Contains(filtro)
+                        ).ToList();
+                    }
                 }
+
 
                 int yOffset = 10;
 
                 foreach (var venda in listaVendas)
                 {
-                    // Cria o card
                     var card = new MaterialSkin.Controls.MaterialCard
                     {
                         Width = panelVendas.Width - 30,
@@ -934,7 +952,6 @@ namespace ProjetoFinal
                         Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right
                     };
 
-                    // Título (ID da venda)
                     var lblTitulo = new Label
                     {
                         Text = $"Venda #{venda.Id}",
@@ -943,17 +960,15 @@ namespace ProjetoFinal
                         AutoSize = true
                     };
 
-                    // Valor total
                     var lblValor = new Label
                     {
                         Text = $"{venda.ValorTotal:C}",
-                        Font = new Font("Segoe UI", 11, FontStyle.Regular),
+                        Font = new Font("Segoe UI", 11),
                         AutoSize = true,
                         Anchor = AnchorStyles.Top | AnchorStyles.Right
                     };
                     lblValor.Location = new Point(card.Width - lblValor.Width - 5, 10);
 
-                    // Data
                     var lblData = new Label
                     {
                         Text = $"Data: {venda.DataVenda:dd/MM/yyyy HH:mm}",
@@ -962,16 +977,14 @@ namespace ProjetoFinal
                         AutoSize = true
                     };
 
-                    // Tipo
                     var lblTipo = new Label
                     {
-                        Text = $"Tipo: " + (venda.Tipo == "encomenda" ? "Reserva" : "Balcão"),
+                        Text = "Tipo: " + (venda.Tipo?.ToLower() == "encomenda" ? "Reserva" : "Balcão"),
                         Font = new Font("Segoe UI", 10),
                         Location = new Point(10, 65),
                         AutoSize = true
                     };
 
-                    // Botão Remover
                     var btnRemover = new Button
                     {
                         Text = "Remover",
@@ -1010,11 +1023,10 @@ namespace ProjetoFinal
                                 }
                             }
 
-                            CarregarVendas(filtro); // mantém o filtro após apagar
+                            CarregarVendas(filtro); // Reaplica o filtro após remoção
                         }
                     };
 
-                    // Adiciona os controles ao card
                     card.Controls.Add(lblTitulo);
                     card.Controls.Add(lblValor);
                     card.Controls.Add(lblData);
@@ -1025,7 +1037,7 @@ namespace ProjetoFinal
                     yOffset += card.Height + 10;
                 }
             }
-        }
+        }   
 
         private void btnPesquisarVendas_Click(object sender, EventArgs e)
         {

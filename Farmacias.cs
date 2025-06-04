@@ -55,13 +55,14 @@ namespace ProjetoFinal
                 AutoSize = false,
                 Width = 110,
                 HighEmphasis = true,
-                Margin = new Padding(0, 0, 10, 0)
+                Margin = new Padding(0, 5, 20, 0)
             };
 
             // Caixa de pesquisa
-            TextBox txtPesquisa = new TextBox
+            MaterialTextBox txtPesquisa = new MaterialTextBox
             {
-                Width = 300,
+                Width = 400,
+                Height = 50,
                 Font = new Font("Segoe UI", 14F),
                 Margin = new Padding(0)
             };
