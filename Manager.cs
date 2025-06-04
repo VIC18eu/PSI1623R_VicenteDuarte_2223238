@@ -955,9 +955,10 @@ namespace ProjetoFinal
                     {
                         Text = $"{venda.ValorTotal:C}",
                         Font = new Font("Segoe UI", 11, FontStyle.Regular),
-                        AutoSize = true
+                        AutoSize = true,
+                        Anchor = AnchorStyles.Top | AnchorStyles.Right
                     };
-                    lblValor.Location = new Point(card.Width - lblValor.Width - 15, 10);
+                    lblValor.Location = new Point(card.Width - lblValor.Width - 5, 10);
 
                     // Data
                     var lblData = new Label
@@ -971,7 +972,7 @@ namespace ProjetoFinal
                     // Tipo
                     var lblTipo = new Label
                     {
-                        Text = $"Tipo: {venda.Tipo}",
+                        Text = $"Tipo: " + (venda.Tipo == "encomenda" ? "Reserva" : "Balcão"),
                         Font = new Font("Segoe UI", 10),
                         Location = new Point(10, 65),
                         AutoSize = true
