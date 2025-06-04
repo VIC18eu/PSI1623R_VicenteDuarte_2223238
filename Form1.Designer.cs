@@ -125,7 +125,7 @@
             this.lblCriarConta.AutoSize = true;
             this.lblCriarConta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblCriarConta.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblCriarConta.Location = new System.Drawing.Point(331, 439);
+            this.lblCriarConta.Location = new System.Drawing.Point(337, 439);
             this.lblCriarConta.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCriarConta.Name = "lblCriarConta";
             this.lblCriarConta.Size = new System.Drawing.Size(307, 20);

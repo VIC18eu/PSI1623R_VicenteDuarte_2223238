@@ -50,8 +50,6 @@ namespace ProjetoFinal
             this.panelVendas = new System.Windows.Forms.Panel();
             this.headerVendas = new System.Windows.Forms.Panel();
             this.btnPesquisarVendas = new MaterialSkin.Controls.MaterialButton();
-            this.ckReserva = new MaterialSkin.Controls.MaterialCheckbox();
-            this.ckBalcao = new MaterialSkin.Controls.MaterialCheckbox();
             this.pesquisaVenda = new MaterialSkin.Controls.MaterialTextBox();
             this.reservas = new System.Windows.Forms.TabPage();
             this.stock = new System.Windows.Forms.TabPage();
@@ -70,6 +68,7 @@ namespace ProjetoFinal
             this.fundo = new System.Windows.Forms.Panel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.btnAdicionarVenda = new MaterialSkin.Controls.MaterialButton();
             this.header.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ftPerfil)).BeginInit();
             this.sidebar.SuspendLayout();
@@ -154,7 +153,6 @@ namespace ProjetoFinal
             this.sidebar.SelectedIndex = 0;
             this.sidebar.Size = new System.Drawing.Size(1800, 883);
             this.sidebar.TabIndex = 2;
-            this.sidebar.SelectedIndexChanged += CarregarTab;
             // 
             // home
             // 
@@ -241,9 +239,8 @@ namespace ProjetoFinal
             // 
             // headerVendas
             // 
+            this.headerVendas.Controls.Add(this.btnAdicionarVenda);
             this.headerVendas.Controls.Add(this.btnPesquisarVendas);
-            this.headerVendas.Controls.Add(this.ckReserva);
-            this.headerVendas.Controls.Add(this.ckBalcao);
             this.headerVendas.Controls.Add(this.pesquisaVenda);
             this.headerVendas.Dock = System.Windows.Forms.DockStyle.Top;
             this.headerVendas.Location = new System.Drawing.Point(3, 3);
@@ -253,14 +250,13 @@ namespace ProjetoFinal
             // 
             // btnPesquisarVendas
             // 
-            this.btnPesquisarVendas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPesquisarVendas.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnPesquisarVendas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPesquisarVendas.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.btnPesquisarVendas.Depth = 0;
             this.btnPesquisarVendas.HighEmphasis = true;
             this.btnPesquisarVendas.Icon = null;
-            this.btnPesquisarVendas.Location = new System.Drawing.Point(1040, 30);
+            this.btnPesquisarVendas.Location = new System.Drawing.Point(38, 29);
             this.btnPesquisarVendas.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnPesquisarVendas.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnPesquisarVendas.Name = "btnPesquisarVendas";
@@ -273,40 +269,6 @@ namespace ProjetoFinal
             this.btnPesquisarVendas.UseVisualStyleBackColor = true;
             this.btnPesquisarVendas.Click += new System.EventHandler(this.btnPesquisarVendas_Click);
             // 
-            // ckReserva
-            // 
-            this.ckReserva.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ckReserva.AutoSize = true;
-            this.ckReserva.Depth = 0;
-            this.ckReserva.Location = new System.Drawing.Point(1504, 29);
-            this.ckReserva.Margin = new System.Windows.Forms.Padding(0);
-            this.ckReserva.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.ckReserva.MouseState = MaterialSkin.MouseState.HOVER;
-            this.ckReserva.Name = "ckReserva";
-            this.ckReserva.ReadOnly = false;
-            this.ckReserva.Ripple = true;
-            this.ckReserva.Size = new System.Drawing.Size(91, 37);
-            this.ckReserva.TabIndex = 2;
-            this.ckReserva.Text = "Reserva";
-            this.ckReserva.UseVisualStyleBackColor = true;
-            // 
-            // ckBalcao
-            // 
-            this.ckBalcao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ckBalcao.AutoSize = true;
-            this.ckBalcao.Depth = 0;
-            this.ckBalcao.Location = new System.Drawing.Point(1643, 29);
-            this.ckBalcao.Margin = new System.Windows.Forms.Padding(0);
-            this.ckBalcao.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.ckBalcao.MouseState = MaterialSkin.MouseState.HOVER;
-            this.ckBalcao.Name = "ckBalcao";
-            this.ckBalcao.ReadOnly = false;
-            this.ckBalcao.Ripple = true;
-            this.ckBalcao.Size = new System.Drawing.Size(84, 37);
-            this.ckBalcao.TabIndex = 1;
-            this.ckBalcao.Text = "Balcão";
-            this.ckBalcao.UseVisualStyleBackColor = true;
-            // 
             // pesquisaVenda
             // 
             this.pesquisaVenda.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -316,7 +278,7 @@ namespace ProjetoFinal
             this.pesquisaVenda.Depth = 0;
             this.pesquisaVenda.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.pesquisaVenda.LeadingIcon = null;
-            this.pesquisaVenda.Location = new System.Drawing.Point(68, 23);
+            this.pesquisaVenda.Location = new System.Drawing.Point(193, 22);
             this.pesquisaVenda.MaxLength = 50;
             this.pesquisaVenda.MouseState = MaterialSkin.MouseState.OUT;
             this.pesquisaVenda.Multiline = false;
@@ -552,6 +514,28 @@ namespace ProjetoFinal
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             this.contextMenuStrip1.Click += new System.EventHandler(this.txtFarmacia_Click);
             // 
+            // btnAdicionarVenda
+            // 
+            this.btnAdicionarVenda.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdicionarVenda.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnAdicionarVenda.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAdicionarVenda.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnAdicionarVenda.Depth = 0;
+            this.btnAdicionarVenda.HighEmphasis = true;
+            this.btnAdicionarVenda.Icon = null;
+            this.btnAdicionarVenda.Location = new System.Drawing.Point(1640, 29);
+            this.btnAdicionarVenda.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnAdicionarVenda.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnAdicionarVenda.Name = "btnAdicionarVenda";
+            this.btnAdicionarVenda.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnAdicionarVenda.Size = new System.Drawing.Size(98, 36);
+            this.btnAdicionarVenda.TabIndex = 4;
+            this.btnAdicionarVenda.Text = "Adicionar";
+            this.btnAdicionarVenda.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnAdicionarVenda.UseAccentColor = false;
+            this.btnAdicionarVenda.UseVisualStyleBackColor = true;
+            this.btnAdicionarVenda.Click += new System.EventHandler(this.btnAdicionarVenda_Click);
+            // 
             // Manager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -619,10 +603,9 @@ namespace ProjetoFinal
         private TabPage vendas;
         private MaterialSkin.Controls.MaterialTextBox pesquisaVenda;
         private System.Windows.Forms.Panel headerVendas;
-        private MaterialSkin.Controls.MaterialCheckbox ckBalcao;
         private BindingSource bindingSource1;
-        private MaterialSkin.Controls.MaterialCheckbox ckReserva;
         private MaterialSkin.Controls.MaterialButton btnPesquisarVendas;
         private System.Windows.Forms.Panel panelVendas;
+        private MaterialSkin.Controls.MaterialButton btnAdicionarVenda;
     }
 }

@@ -26,6 +26,7 @@ namespace ProjetoFinal
             bool modoEscuro = ConfigManager.Configuracoes.ModoEscuro;
 
             InitializeComponent();
+            sidebar.SelectedIndexChanged += CarregarTab;
             CarregarHome(modoEscuro);
 
 
@@ -63,9 +64,12 @@ namespace ProjetoFinal
             txtFarmacia.ForeColor = Color.White;
             txtFarmacia.BackColor = Color.FromArgb(25, 118, 210);
 
+
             CarregarPerfil();
             AtualizarConteudoPanelResumo();
             AjustarTxtUser();
+            CarregarVendas();
+            this.FormBorderStyle = FormBorderStyle.Sizable;
         }
 
         private void AplicarTemaHome()
@@ -136,18 +140,7 @@ namespace ProjetoFinal
             {
                 this.Hide();
             }
-
-            header.BackColor = Color.FromArgb(25, 118, 210);
-
-            txtUser.Font = new Font("Arial", 12, FontStyle.Bold);
-            txtUser.ForeColor = Color.White;
-            txtUser.BackColor = Color.FromArgb(25, 118, 210);
-            txtFarmacia.Font = new Font("Arial", 9, FontStyle.Bold);
-            txtFarmacia.ForeColor = Color.White;
-            txtFarmacia.BackColor = Color.FromArgb(25, 118, 210);
-            CarregarPerfil();
-            AjustarTxtUser();
-            AjustarHome();
+            CarregarHome(ConfigManager.Configuracoes.ModoEscuro);
         }
 
         private void AjustarHome()
@@ -1038,6 +1031,13 @@ namespace ProjetoFinal
         {
             string termo = pesquisaVenda.Text;
             CarregarVendas(termo);
+        }
+
+        private void btnAdicionarVenda_Click(object sender, EventArgs e)
+        {
+            AdicionarVenda adicionarVenda = new AdicionarVenda();
+            adicionarVenda.ShowDialog();
+            CarregarHome(ConfigManager.Configuracoes.ModoEscuro);
         }
     }
 }
