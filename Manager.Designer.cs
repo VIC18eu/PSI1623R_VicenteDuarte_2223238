@@ -153,9 +153,8 @@ namespace ProjetoFinal
             this.sidebar.Name = "sidebar";
             this.sidebar.SelectedIndex = 0;
             this.sidebar.Size = new System.Drawing.Size(1800, 883);
-            this.sidebar.TabIndex = 2; 
+            this.sidebar.TabIndex = 2;
             this.sidebar.SelectedIndexChanged += CarregarTab;
-
             // 
             // home
             // 
@@ -272,6 +271,7 @@ namespace ProjetoFinal
             this.btnPesquisarVendas.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnPesquisarVendas.UseAccentColor = false;
             this.btnPesquisarVendas.UseVisualStyleBackColor = true;
+            this.btnPesquisarVendas.Click += new System.EventHandler(this.btnPesquisarVendas_Click);
             // 
             // ckReserva
             // 

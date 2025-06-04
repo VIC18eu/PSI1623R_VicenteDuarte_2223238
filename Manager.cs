@@ -906,45 +906,137 @@ namespace ProjetoFinal
             CarregarVendas();
         }
 
-        private void CarregarVendas()
+        private void CarregarVendas(string filtro = "")
         {
-            // Limpa o painel antes de carregar os novos cards
             panelVendas.Controls.Clear();
 
             using (var context = new Entities())
             {
                 var listaVendas = context.Venda.ToList();
 
-                int yOffset = 10; // Espaço vertical entre os cards
+                // Aplica filtro se existir
+                if (!string.IsNullOrWhiteSpace(filtro))
+                {
+                    filtro = filtro.ToLower();
+                    listaVendas = listaVendas.Where(v =>
+                        v.Id.ToString().Contains(filtro) ||
+                        v.DataVenda.ToString("dd/MM/yyyy HH:mm").ToLower().Contains(filtro) ||
+                        v.ValorTotal.ToString("F2").Contains(filtro) ||
+                        (v.Tipo != null && v.Tipo.ToLower().Contains(filtro))
+                    ).ToList();
+                }
+
+                int yOffset = 10;
 
                 foreach (var venda in listaVendas)
                 {
-                    // Criação de um card para cada venda
-                    MaterialSkin.Controls.MaterialCard card = new MaterialSkin.Controls.MaterialCard();
-                    card.Width = panelVendas.Width - 25; // Para caber no painel
-                    card.Height = 100;
-                    card.BackColor = Color.White;
-                    card.Location = new Point(10, yOffset);
-                    card.Padding = new Padding(10);
+                    // Cria o card
+                    var card = new MaterialSkin.Controls.MaterialCard
+                    {
+                        Width = panelVendas.Width - 30,
+                        Height = 140,
+                        BackColor = Color.White,
+                        Location = new Point(10, yOffset),
+                        Padding = new Padding(10),
+                        Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right
+                    };
 
-                    // Criação do conteúdo do card
-                    Label lblInfo = new Label();
-                    lblInfo.AutoSize = true;
-                    lblInfo.Font = new Font("Segoe UI", 10);
-                    lblInfo.Text = $"ID: {venda.Id}\nData: {venda.DataVenda}\nTotal: {venda.ValorTotal:C}";
+                    // Título (ID da venda)
+                    var lblTitulo = new Label
+                    {
+                        Text = $"Venda #{venda.Id}",
+                        Font = new Font("Segoe UI", 11, FontStyle.Bold),
+                        Location = new Point(10, 10),
+                        AutoSize = true
+                    };
 
-                    // Adiciona a label ao card
-                    card.Controls.Add(lblInfo);
+                    // Valor total
+                    var lblValor = new Label
+                    {
+                        Text = $"{venda.ValorTotal:C}",
+                        Font = new Font("Segoe UI", 11, FontStyle.Regular),
+                        AutoSize = true
+                    };
+                    lblValor.Location = new Point(card.Width - lblValor.Width - 15, 10);
 
-                    // Adiciona o card ao painel
+                    // Data
+                    var lblData = new Label
+                    {
+                        Text = $"Data: {venda.DataVenda:dd/MM/yyyy HH:mm}",
+                        Font = new Font("Segoe UI", 10),
+                        Location = new Point(10, 40),
+                        AutoSize = true
+                    };
+
+                    // Tipo
+                    var lblTipo = new Label
+                    {
+                        Text = $"Tipo: {venda.Tipo}",
+                        Font = new Font("Segoe UI", 10),
+                        Location = new Point(10, 65),
+                        AutoSize = true
+                    };
+
+                    // Botão Remover
+                    var btnRemover = new Button
+                    {
+                        Text = "Remover",
+                        BackColor = Color.FromArgb(220, 53, 69),
+                        ForeColor = Color.White,
+                        FlatStyle = FlatStyle.Flat,
+                        Size = new Size(100, 30),
+                        Location = new Point(card.Width - 120, card.Height - 40),
+                        Tag = venda.Id,
+                        Anchor = AnchorStyles.Top | AnchorStyles.Right
+                    };
+
+                    btnRemover.Click += (s, e) =>
+                    {
+                        var resultado = MessageBox.Show(
+                            "Tem a certeza que deseja remover esta venda?",
+                            "Confirmar remoção",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Warning
+                        );
+
+                        if (resultado == DialogResult.Yes)
+                        {
+                            int idVenda = (int)((Button)s).Tag;
+
+                            using (var entities = new Entities())
+                            {
+                                var produtos = entities.VendaProduto.Where(vp => vp.VendaId == idVenda).ToList();
+                                entities.VendaProduto.RemoveRange(produtos);
+
+                                var vendaRemover = entities.Venda.Find(idVenda);
+                                if (vendaRemover != null)
+                                {
+                                    entities.Venda.Remove(vendaRemover);
+                                    entities.SaveChanges();
+                                }
+                            }
+
+                            CarregarVendas(filtro); // mantém o filtro após apagar
+                        }
+                    };
+
+                    // Adiciona os controles ao card
+                    card.Controls.Add(lblTitulo);
+                    card.Controls.Add(lblValor);
+                    card.Controls.Add(lblData);
+                    card.Controls.Add(lblTipo);
+                    card.Controls.Add(btnRemover);
+
                     panelVendas.Controls.Add(card);
-
-                    // Atualiza a posição vertical para o próximo card
                     yOffset += card.Height + 10;
                 }
             }
         }
 
-
+        private void btnPesquisarVendas_Click(object sender, EventArgs e)
+        {
+            string termo = pesquisaVenda.Text;
+            CarregarVendas(termo);
+        }
     }
 }
