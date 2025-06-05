@@ -33,6 +33,7 @@
             this.txtEndereco = new MaterialSkin.Controls.MaterialTextBox();
             this.txtEmail = new MaterialSkin.Controls.MaterialTextBox();
             this.btnCriar = new MaterialSkin.Controls.MaterialButton();
+            this.txtTelefone = new MaterialSkin.Controls.MaterialTextBox();
             this.SuspendLayout();
             // 
             // txtNome
@@ -98,7 +99,7 @@
             this.btnCriar.Depth = 0;
             this.btnCriar.HighEmphasis = true;
             this.btnCriar.Icon = null;
-            this.btnCriar.Location = new System.Drawing.Point(180, 370);
+            this.btnCriar.Location = new System.Drawing.Point(180, 470);
             this.btnCriar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnCriar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnCriar.Name = "btnCriar";
@@ -111,12 +112,31 @@
             this.btnCriar.UseVisualStyleBackColor = true;
             this.btnCriar.Click += new System.EventHandler(this.btnCriar_Click);
             // 
+            // txtTelefone
+            // 
+            this.txtTelefone.AnimateReadOnly = false;
+            this.txtTelefone.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtTelefone.Depth = 0;
+            this.txtTelefone.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtTelefone.Hint = "Telefone da Farmácia";
+            this.txtTelefone.LeadingIcon = null;
+            this.txtTelefone.Location = new System.Drawing.Point(50, 358);
+            this.txtTelefone.MaxLength = 100;
+            this.txtTelefone.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtTelefone.Multiline = false;
+            this.txtTelefone.Name = "txtTelefone";
+            this.txtTelefone.Size = new System.Drawing.Size(450, 50);
+            this.txtTelefone.TabIndex = 4;
+            this.txtTelefone.Text = "";
+            this.txtTelefone.TrailingIcon = null;
+            // 
             // AdicionarFarmacia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(550, 480);
+            this.ClientSize = new System.Drawing.Size(550, 578);
+            this.Controls.Add(this.txtTelefone);
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.txtEndereco);
             this.Controls.Add(this.txtEmail);
@@ -137,6 +157,6 @@
         private MaterialSkin.Controls.MaterialTextBox txtEndereco;
         private MaterialSkin.Controls.MaterialTextBox txtEmail;
         private MaterialSkin.Controls.MaterialButton btnCriar;
-
+        private MaterialSkin.Controls.MaterialTextBox txtTelefone;
     }
 }

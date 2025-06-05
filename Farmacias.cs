@@ -137,7 +137,6 @@ namespace ProjetoFinal
             if (farmacias == null || farmacias.Count == 0)
             {
                 Theme.AplicarTema(this, Theme.TemaAtual);
-
                 return;
             }
 
@@ -146,7 +145,7 @@ namespace ProjetoFinal
                 Panel card = new Panel
                 {
                     Width = 300,
-                    Height = 160,
+                    Height = 180,
                     BackColor = Color.White,
                     BorderStyle = BorderStyle.FixedSingle,
                     Margin = new Padding(10)
@@ -161,7 +160,7 @@ namespace ProjetoFinal
                 cardLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 75F));
                 cardLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
                 card.Controls.Add(cardLayout);
-                
+
                 FlowLayoutPanel content = new FlowLayoutPanel
                 {
                     FlowDirection = FlowDirection.TopDown,
@@ -193,10 +192,18 @@ namespace ProjetoFinal
                     AutoSize = true
                 };
 
+                var lblTelefone = new MaterialLabel
+                {
+                    Text = "Telefone: " + farmacia.Telefone,
+                    FontType = MaterialSkin.MaterialSkinManager.fontType.Body2,
+                    AutoSize = true
+                };
+
                 content.Controls.Add(lblNome);
                 content.Controls.Add(spacer);
                 content.Controls.Add(lblEndereco);
                 content.Controls.Add(lblEmail);
+                content.Controls.Add(lblTelefone);
 
                 Panel btnPanel = new Panel
                 {
@@ -221,10 +228,10 @@ namespace ProjetoFinal
 
                 painelCards.Controls.Add(card);
             }
+
             Theme.AplicarTema(this, Theme.TemaAtual);
-
-
         }
+
 
         private void BtnSelecionar_Click(object sender, EventArgs e)
         {
