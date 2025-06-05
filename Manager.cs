@@ -49,8 +49,8 @@ namespace ProjetoFinal
         {
             ConstruirGraficos();
             AjustarHome();
-            AplicarTemaHome();
             Theme.AplicarTema(this, modoEscuro);
+            AplicarTemaHome();
 
             CarregarSettings();
 
@@ -657,15 +657,15 @@ namespace ProjetoFinal
                     var labels = vendasPorMes.Select(v => v.Mes).ToArray();
 
                     chartVendas.Series = new SeriesCollection
-                {
-                    new LineSeries
                     {
-                        Title = "Vendas (€)",
-                        Values = valores,
-                        PointGeometry = DefaultGeometries.Circle,
-                        PointGeometrySize = 8
-                    }
-                };
+                        new LineSeries
+                        {
+                            Title = "Vendas (€)",
+                            Values = valores,
+                            PointGeometry = DefaultGeometries.Circle,
+                            PointGeometrySize = 8
+                        }
+                    };
 
                     chartVendas.AxisX.Clear();
                     chartVendas.AxisY.Clear();
@@ -707,13 +707,13 @@ namespace ProjetoFinal
 
                     // Criar gráfico
                     chartVendasMedicamento.Series = new SeriesCollection
-                {
-                    new ColumnSeries
                     {
-                        Title = "Vendas por Medicamento",
-                        Values = quantidadesVendidas
-                    }
-                };
+                        new ColumnSeries
+                        {
+                            Title = "Vendas por Medicamento",
+                            Values = quantidadesVendidas
+                        }
+                    };
 
                     chartVendasMedicamento.AxisX.Clear();
                     chartVendasMedicamento.AxisX.Add(new Axis
@@ -930,11 +930,11 @@ namespace ProjetoFinal
                             v.DataVenda.ToString("dd/MM/yyyy HH:mm").ToLower().Contains(filtro) ||
                             v.ValorTotal.ToString("F2").Replace(",", ".").Contains(filtro.Replace(",", ".")) ||
                             (v.Tipo != null && v.Tipo.ToLower().Contains(filtro)) ||
+                            (v.Cliente != null && v.Cliente.ToLower().Contains(filtro)) || // filtro por nome do cliente
                             v.Id.ToString().Contains(filtro)
                         ).ToList();
                     }
                 }
-
 
                 int yOffset = 10;
 
@@ -943,7 +943,7 @@ namespace ProjetoFinal
                     var card = new MaterialSkin.Controls.MaterialCard
                     {
                         Width = panelVendas.Width - 30,
-                        Height = 140,
+                        Height = 170,
                         BackColor = Color.White,
                         Location = new Point(10, yOffset),
                         Padding = new Padding(10),
@@ -980,6 +980,14 @@ namespace ProjetoFinal
                         Text = "Tipo: " + (venda.Tipo?.ToLower() == "encomenda" ? "Reserva" : "Balcão"),
                         Font = new Font("Segoe UI", 10),
                         Location = new Point(10, 65),
+                        AutoSize = true
+                    };
+
+                    var lblCliente = new Label
+                    {
+                        Text = $"Cliente: {venda.Cliente ?? "Desconhecido"}",
+                        Font = new Font("Segoe UI", 10),
+                        Location = new Point(10, 90),
                         AutoSize = true
                     };
 
@@ -1029,13 +1037,14 @@ namespace ProjetoFinal
                     card.Controls.Add(lblValor);
                     card.Controls.Add(lblData);
                     card.Controls.Add(lblTipo);
+                    card.Controls.Add(lblCliente);
                     card.Controls.Add(btnRemover);
 
                     panelVendas.Controls.Add(card);
                     yOffset += card.Height + 10;
                 }
             }
-        }   
+        }
 
         private void btnPesquisarVendas_Click(object sender, EventArgs e)
         {

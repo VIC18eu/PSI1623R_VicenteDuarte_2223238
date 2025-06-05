@@ -92,14 +92,14 @@ namespace ProjetoFinal
             this.header.Location = new System.Drawing.Point(0, 30);
             this.header.Margin = new System.Windows.Forms.Padding(4);
             this.header.Name = "header";
-            this.header.Size = new System.Drawing.Size(1800, 87);
+            this.header.Size = new System.Drawing.Size(1818, 87);
             this.header.TabIndex = 1;
             // 
             // ftPerfil
             // 
             this.ftPerfil.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ftPerfil.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ftPerfil.Location = new System.Drawing.Point(1690, 25);
+            this.ftPerfil.Location = new System.Drawing.Point(1708, 25);
             this.ftPerfil.Name = "ftPerfil";
             this.ftPerfil.Size = new System.Drawing.Size(55, 50);
             this.ftPerfil.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -111,7 +111,7 @@ namespace ProjetoFinal
             // 
             this.txtFarmacia.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.txtFarmacia.AutoSize = true;
-            this.txtFarmacia.Location = new System.Drawing.Point(1603, 53);
+            this.txtFarmacia.Location = new System.Drawing.Point(1621, 53);
             this.txtFarmacia.Name = "txtFarmacia";
             this.txtFarmacia.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtFarmacia.Size = new System.Drawing.Size(79, 16);
@@ -151,7 +151,7 @@ namespace ProjetoFinal
             this.sidebar.Multiline = true;
             this.sidebar.Name = "sidebar";
             this.sidebar.SelectedIndex = 0;
-            this.sidebar.Size = new System.Drawing.Size(1800, 883);
+            this.sidebar.Size = new System.Drawing.Size(1818, 930);
             this.sidebar.TabIndex = 2;
             // 
             // home
@@ -167,7 +167,7 @@ namespace ProjetoFinal
             this.home.Margin = new System.Windows.Forms.Padding(4);
             this.home.Name = "home";
             this.home.Padding = new System.Windows.Forms.Padding(4);
-            this.home.Size = new System.Drawing.Size(1792, 832);
+            this.home.Size = new System.Drawing.Size(1810, 879);
             this.home.TabIndex = 0;
             this.home.Text = "Inicio";
             this.home.UseVisualStyleBackColor = true;
@@ -209,7 +209,7 @@ namespace ProjetoFinal
             // 
             this.panelResumo.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panelResumo.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelResumo.Location = new System.Drawing.Point(1476, 4);
+            this.panelResumo.Location = new System.Drawing.Point(1494, 4);
             this.panelResumo.Name = "panelResumo";
             this.panelResumo.Size = new System.Drawing.Size(291, 1459);
             this.panelResumo.TabIndex = 2;
@@ -540,7 +540,7 @@ namespace ProjetoFinal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1800, 1000);
+            this.ClientSize = new System.Drawing.Size(1818, 1047);
             this.Controls.Add(this.sidebar);
             this.Controls.Add(this.header);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
