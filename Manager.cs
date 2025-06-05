@@ -55,8 +55,7 @@ namespace ProjetoFinal
             CarregarSettings();
 
             header.BackColor = Color.FromArgb(25, 118, 210);
-            this.FormBorderStyle = FormBorderStyle.None;
-
+            this.FormBorderStyle = FormBorderStyle.SizableToolWindow;
             txtUser.Font = new Font("Arial", 12, FontStyle.Bold);
             txtUser.ForeColor = Color.White;
             txtUser.BackColor = Color.FromArgb(25, 118, 210);
@@ -69,7 +68,6 @@ namespace ProjetoFinal
             AtualizarConteudoPanelResumo();
             AjustarTxtUser();
             CarregarVendas();
-            this.FormBorderStyle = FormBorderStyle.Sizable;
         }
 
         private void AplicarTemaHome()

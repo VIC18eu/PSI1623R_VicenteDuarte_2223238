@@ -49,6 +49,7 @@ namespace ProjetoFinal
             this.vendas = new System.Windows.Forms.TabPage();
             this.panelVendas = new System.Windows.Forms.Panel();
             this.headerVendas = new System.Windows.Forms.Panel();
+            this.btnAdicionarVenda = new MaterialSkin.Controls.MaterialButton();
             this.btnPesquisarVendas = new MaterialSkin.Controls.MaterialButton();
             this.pesquisaVenda = new MaterialSkin.Controls.MaterialTextBox();
             this.reservas = new System.Windows.Forms.TabPage();
@@ -68,7 +69,6 @@ namespace ProjetoFinal
             this.fundo = new System.Windows.Forms.Panel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.btnAdicionarVenda = new MaterialSkin.Controls.MaterialButton();
             this.header.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ftPerfil)).BeginInit();
             this.sidebar.SuspendLayout();
@@ -247,6 +247,28 @@ namespace ProjetoFinal
             this.headerVendas.Name = "headerVendas";
             this.headerVendas.Size = new System.Drawing.Size(1786, 100);
             this.headerVendas.TabIndex = 1;
+            // 
+            // btnAdicionarVenda
+            // 
+            this.btnAdicionarVenda.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdicionarVenda.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnAdicionarVenda.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAdicionarVenda.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnAdicionarVenda.Depth = 0;
+            this.btnAdicionarVenda.HighEmphasis = true;
+            this.btnAdicionarVenda.Icon = null;
+            this.btnAdicionarVenda.Location = new System.Drawing.Point(1640, 29);
+            this.btnAdicionarVenda.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnAdicionarVenda.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnAdicionarVenda.Name = "btnAdicionarVenda";
+            this.btnAdicionarVenda.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnAdicionarVenda.Size = new System.Drawing.Size(98, 36);
+            this.btnAdicionarVenda.TabIndex = 4;
+            this.btnAdicionarVenda.Text = "Adicionar";
+            this.btnAdicionarVenda.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnAdicionarVenda.UseAccentColor = false;
+            this.btnAdicionarVenda.UseVisualStyleBackColor = true;
+            this.btnAdicionarVenda.Click += new System.EventHandler(this.btnAdicionarVenda_Click);
             // 
             // btnPesquisarVendas
             // 
@@ -514,28 +536,6 @@ namespace ProjetoFinal
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             this.contextMenuStrip1.Click += new System.EventHandler(this.txtFarmacia_Click);
             // 
-            // btnAdicionarVenda
-            // 
-            this.btnAdicionarVenda.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdicionarVenda.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnAdicionarVenda.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAdicionarVenda.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.btnAdicionarVenda.Depth = 0;
-            this.btnAdicionarVenda.HighEmphasis = true;
-            this.btnAdicionarVenda.Icon = null;
-            this.btnAdicionarVenda.Location = new System.Drawing.Point(1640, 29);
-            this.btnAdicionarVenda.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnAdicionarVenda.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnAdicionarVenda.Name = "btnAdicionarVenda";
-            this.btnAdicionarVenda.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btnAdicionarVenda.Size = new System.Drawing.Size(98, 36);
-            this.btnAdicionarVenda.TabIndex = 4;
-            this.btnAdicionarVenda.Text = "Adicionar";
-            this.btnAdicionarVenda.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.btnAdicionarVenda.UseAccentColor = false;
-            this.btnAdicionarVenda.UseVisualStyleBackColor = true;
-            this.btnAdicionarVenda.Click += new System.EventHandler(this.btnAdicionarVenda_Click);
-            // 
             // Manager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -547,6 +547,7 @@ namespace ProjetoFinal
             this.DrawerShowIconsWhenHidden = true;
             this.DrawerTabControl = this.sidebar;
             this.DrawerWidth = 250;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(1360, 554);
