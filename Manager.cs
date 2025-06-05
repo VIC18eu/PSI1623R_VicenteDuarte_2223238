@@ -903,7 +903,7 @@ namespace ProjetoFinal
 
             using (var context = new Entities())
             {
-                var listaVendas = context.Venda.ToList();
+                var listaVendas = context.Venda.Where(v => v.Farmacia.Id == Contas.Farmacia).ToList();
 
                 if (!string.IsNullOrWhiteSpace(filtro))
                 {

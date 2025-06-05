@@ -18,5 +18,21 @@ namespace ProjetoFinal
             InitializeComponent();
             Theme.AplicarTema(this, Theme.TemaAtual);
         }
+
+        private void BtnAdicionarProduto_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void BtnRemoverProduto_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void BtnGuardar_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
