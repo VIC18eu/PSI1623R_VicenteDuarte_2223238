@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -15,11 +16,55 @@ namespace ProjetoFinal
 {
     public partial class AdicionarVenda : MaterialForm
     {
+        private List<Stock> listaDeMedicamentos = new List<Stock>();
+
         public AdicionarVenda()
         {
             InitializeComponent();
             Theme.AplicarTema(this, Theme.TemaAtual);
+            CarregarMedicamentos();
         }
+
+        private void CarregarMedicamentos()
+        {
+            using (var context = new Entities())
+            {
+                listaDeMedicamentos = context.Stock
+                    .Include(s => s.Medicamento)
+                    .Where(m => m.FarmaciaId == Contas.Farmacia && m.Quantidade > 0)
+                    .ToList();
+            }
+
+            CarregarMedicamentosNoComboBox();
+        }
+
+
+        private void CarregarMedicamentosNoComboBox()
+        {
+            try
+            {
+
+                cmbMedicamento.Items.Clear();
+
+                foreach (var medicamento in listaDeMedicamentos)
+                {
+                    cmbMedicamento.Items.Add(medicamento.Medicamento.Nome);
+                }
+
+                if (cmbMedicamento.Items.Count > 0)
+                {
+                    cmbMedicamento.SelectedIndex = 0;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar os medicamentos: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Lista para armazenar os produtos da venda (globais)
+        private List<VendaProduto> produtosSelecionados = new List<VendaProduto>();
 
         private void BtnAdicionarProduto_Click(object sender, EventArgs e)
         {
@@ -35,34 +80,72 @@ namespace ProjetoFinal
                 return;
             }
 
-            // Exemplo: objeto selecionado no ComboBox com os medicamentos
-            var medicamento = (Stock)cmbMedicamento.SelectedItem;
+            Stock stockSelecionado = listaDeMedicamentos[cmbMedicamento.SelectedIndex];
 
-            // Cria o produto selecionado
-            var produto = new ProdutoSelecionado
+            if (quantidade > stockSelecionado.Quantidade)
             {
-                MedicamentoId = medicamento.MedicamentoId,
-                Nome = medicamento.Medicamento.Nome,
-                Preco = medicamento.Preco, // Supondo que tens esta propriedade
-                Quantidade = quantidade
-            };
+                MessageBox.Show("Quantidade solicitada excede o stock disponível.");
+                return;
+            }
 
-            // Adiciona à lista
-            listProdutos.Items.Add(produto);
+            // Verifica se já existe na lista
+            var produtoExistente = produtosSelecionados.FirstOrDefault(p => p.MedicamentoId == stockSelecionado.MedicamentoId);
+
+            if (produtoExistente != null)
+            {
+                // Atualiza a quantidade no produto já existente
+                int novaQuantidade = produtoExistente.Quantidade + quantidade;
+
+                if (novaQuantidade > stockSelecionado.Quantidade)
+                {
+                    MessageBox.Show("Quantidade total excede o stock disponível.");
+                    return;
+                }
+
+                produtoExistente.Quantidade = novaQuantidade;
+            }
+            else
+            {
+                // Cria um novo objeto VendaProduto e adiciona à lista
+                produtosSelecionados.Add(new VendaProduto
+                {
+                    MedicamentoId = stockSelecionado.MedicamentoId,
+                    PrecoUnitario = stockSelecionado.Preco,  // Presumo que tens essa propriedade
+                    Quantidade = quantidade
+                });
+            }
+
+            // Atualiza a listProdutos para mostrar os produtos atuais com quantidades
+            AtualizarListProdutos();
 
             // Limpa os campos
             txtQuantidade.Text = "";
             cmbMedicamento.SelectedIndex = -1;
         }
 
+        private void AtualizarListProdutos()
+        {
+            listProdutos.Items.Clear();
+
+            foreach (var produto in produtosSelecionados)
+            {
+                var stock = listaDeMedicamentos.FirstOrDefault(s => s.MedicamentoId == produto.MedicamentoId);
+                if (stock != null)
+                {
+                    listProdutos.Items.Add($"{stock.Medicamento.Nome} | Quantidade: {produto.Quantidade}");
+                }
+            }
+        }
+
+
         private void BtnRemoverProduto_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
-            // Validação: Data preenchida
+            // Validações (igual à tua versão)
             string dataTexto = txtDataVenda.Text.Trim();
             if (string.IsNullOrEmpty(dataTexto))
             {
@@ -70,7 +153,6 @@ namespace ProjetoFinal
                 return;
             }
 
-            // Validação: Formato da data e data não futura
             if (!DateTime.TryParseExact(dataTexto, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dataVenda))
             {
                 MessageBox.Show("A data deve estar no formato DD/MM/AAAA.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -83,14 +165,12 @@ namespace ProjetoFinal
                 return;
             }
 
-            // Validação: Tipo de venda
             if (cmbTipoVenda.SelectedIndex < 0)
             {
                 MessageBox.Show("Por favor, selecione o tipo de venda.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Validação: Nome do cliente
             string nomeCliente = txtCliente.Text.Trim();
             if (string.IsNullOrEmpty(nomeCliente))
             {
@@ -104,8 +184,7 @@ namespace ProjetoFinal
                 return;
             }
 
-            // Validação: Pelo menos um produto
-            if (listProdutos.Items.Count == 0)
+            if (produtosSelecionados == null || produtosSelecionados.Count == 0)
             {
                 MessageBox.Show("Adicione pelo menos um produto à venda.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -115,7 +194,6 @@ namespace ProjetoFinal
             {
                 using (var context = new Entities())
                 {
-                    // Criar nova venda
                     var novaVenda = new Venda
                     {
                         DataVenda = dataVenda,
@@ -124,32 +202,32 @@ namespace ProjetoFinal
                         VendaProduto = new List<VendaProduto>()
                     };
 
-                    // Adicionar produtos à venda
-                    foreach (ProdutoSelecionado item in listProdutos.Items)
+                    // Adiciona os produtos da lista pública
+                    foreach (var produto in produtosSelecionados)
                     {
-                        var produto = new VendaProduto
+                        // Aqui, cria novo objeto para garantir que EF controla bem as entidades
+                        var produtoVenda = new VendaProduto
                         {
-                            MedicamentoId = item.MedicamentoId,
-                            PrecoUnitario = item.Preco,
-                            Quantidade = item.Quantidade,
-                            Subtotal = item.Preco * item.Quantidade,
-                            // VendaId será preenchido automaticamente pela EF
+                            MedicamentoId = produto.MedicamentoId,
+                            PrecoUnitario = produto.PrecoUnitario,
+                            Quantidade = produto.Quantidade,
+                            Subtotal = produto.PrecoUnitario * produto.Quantidade
                         };
 
-                        novaVenda.VendaProduto.Add(produto);
+                        novaVenda.VendaProduto.Add(produtoVenda);
                     }
 
-                    // Guardar na BD
                     context.Venda.Add(novaVenda);
                     context.SaveChanges();
                 }
 
                 MessageBox.Show("Venda guardada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Limpar os campos após guardar
+                // Limpar campos e listas
                 txtDataVenda.Text = "";
                 cmbTipoVenda.SelectedIndex = -1;
                 txtCliente.Text = "";
+                produtosSelecionados.Clear();
                 listProdutos.Items.Clear();
             }
             catch (Exception ex)
@@ -158,21 +236,9 @@ namespace ProjetoFinal
             }
         }
 
-    }
-    public class ProdutoSelecionado
-    {
-        public int MedicamentoId { get; set; }
-        public string Nome { get; set; }
-        public decimal Preco { get; set; }
-        public int Quantidade { get; set; }
 
-        public decimal Subtotal => Preco * Quantidade;
-
-        public override string ToString()
-        {
-            return $"{Nome} - {Quantidade} x {Preco:C} = {Subtotal:C}";
-        }
     }
+
 
 
 }

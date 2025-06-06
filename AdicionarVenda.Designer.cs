@@ -205,7 +205,7 @@
             this.txtQuantidade.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtQuantidade.Hint = "Qtd";
             this.txtQuantidade.LeadingIcon = null;
-            this.txtQuantidade.Location = new System.Drawing.Point(289, 385);
+            this.txtQuantidade.Location = new System.Drawing.Point(289, 383);
             this.txtQuantidade.MaxLength = 5;
             this.txtQuantidade.MouseState = MaterialSkin.MouseState.OUT;
             this.txtQuantidade.Multiline = false;
@@ -230,7 +230,7 @@
             this.btnAdicionarProduto.Depth = 0;
             this.btnAdicionarProduto.HighEmphasis = true;
             this.btnAdicionarProduto.Icon = null;
-            this.btnAdicionarProduto.Location = new System.Drawing.Point(396, 396);
+            this.btnAdicionarProduto.Location = new System.Drawing.Point(396, 390);
             this.btnAdicionarProduto.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnAdicionarProduto.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnAdicionarProduto.Name = "btnAdicionarProduto";
