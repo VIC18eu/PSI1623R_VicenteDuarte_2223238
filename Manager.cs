@@ -947,7 +947,9 @@ namespace ProjetoFinal
                         BackColor = Color.White,
                         Location = new Point(10, yOffset),
                         Padding = new Padding(10),
-                        Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right
+                        Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right,
+                        Tag = venda.Id,
+                        Cursor = Cursors.Hand
                     };
 
                     var lblTitulo = new Label
@@ -1000,7 +1002,8 @@ namespace ProjetoFinal
                         Size = new Size(100, 30),
                         Location = new Point(card.Width - 120, card.Height - 40),
                         Tag = venda.Id,
-                        Anchor = AnchorStyles.Top | AnchorStyles.Right
+                        Anchor = AnchorStyles.Top | AnchorStyles.Right,
+                        Cursor = Cursors.Hand
                     };
 
                     btnRemover.Click += (s, e) =>

@@ -21,19 +21,9 @@
         }
 
         #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        // Labels
-        private MaterialSkin.Controls.MaterialLabel lblData;
         private MaterialSkin.Controls.MaterialLabel lblTipo;
         private MaterialSkin.Controls.MaterialLabel lblCliente;
         private MaterialSkin.Controls.MaterialLabel lblProdutos;
-
-        // TextBoxes
-        private MaterialSkin.Controls.MaterialTextBox txtDataVenda;
         private MaterialSkin.Controls.MaterialTextBox txtCliente;
         private MaterialSkin.Controls.MaterialTextBox txtQuantidade; // NOVO
 
@@ -53,11 +43,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdicionarVenda));
-            this.lblData = new MaterialSkin.Controls.MaterialLabel();
             this.lblTipo = new MaterialSkin.Controls.MaterialLabel();
             this.lblCliente = new MaterialSkin.Controls.MaterialLabel();
             this.lblProdutos = new MaterialSkin.Controls.MaterialLabel();
-            this.txtDataVenda = new MaterialSkin.Controls.MaterialTextBox();
             this.cmbTipoVenda = new MaterialSkin.Controls.MaterialComboBox();
             this.txtCliente = new MaterialSkin.Controls.MaterialTextBox();
             this.cmbMedicamento = new MaterialSkin.Controls.MaterialComboBox();
@@ -68,24 +56,12 @@
             this.btnGuardar = new MaterialSkin.Controls.MaterialButton();
             this.SuspendLayout();
             // 
-            // lblData
-            // 
-            this.lblData.AutoSize = true;
-            this.lblData.Depth = 0;
-            this.lblData.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblData.Location = new System.Drawing.Point(30, 119);
-            this.lblData.MouseState = MaterialSkin.MouseState.HOVER;
-            this.lblData.Name = "lblData";
-            this.lblData.Size = new System.Drawing.Size(110, 19);
-            this.lblData.TabIndex = 0;
-            this.lblData.Text = "Data da Venda:";
-            // 
             // lblTipo
             // 
             this.lblTipo.AutoSize = true;
             this.lblTipo.Depth = 0;
             this.lblTipo.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblTipo.Location = new System.Drawing.Point(322, 119);
+            this.lblTipo.Location = new System.Drawing.Point(30, 127);
             this.lblTipo.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblTipo.Name = "lblTipo";
             this.lblTipo.Size = new System.Drawing.Size(107, 19);
@@ -116,24 +92,6 @@
             this.lblProdutos.TabIndex = 6;
             this.lblProdutos.Text = "Produtos Comprados:";
             // 
-            // txtDataVenda
-            // 
-            this.txtDataVenda.AnimateReadOnly = false;
-            this.txtDataVenda.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDataVenda.Depth = 0;
-            this.txtDataVenda.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtDataVenda.Hint = "DD/MM/AAAA";
-            this.txtDataVenda.LeadingIcon = null;
-            this.txtDataVenda.Location = new System.Drawing.Point(28, 150);
-            this.txtDataVenda.MaxLength = 10;
-            this.txtDataVenda.MouseState = MaterialSkin.MouseState.OUT;
-            this.txtDataVenda.Multiline = false;
-            this.txtDataVenda.Name = "txtDataVenda";
-            this.txtDataVenda.Size = new System.Drawing.Size(250, 50);
-            this.txtDataVenda.TabIndex = 1;
-            this.txtDataVenda.Text = "";
-            this.txtDataVenda.TrailingIcon = null;
-            // 
             // cmbTipoVenda
             // 
             this.cmbTipoVenda.AutoResize = false;
@@ -150,7 +108,7 @@
             this.cmbTipoVenda.Items.AddRange(new object[] {
             "Normal",
             "Encomenda"});
-            this.cmbTipoVenda.Location = new System.Drawing.Point(313, 151);
+            this.cmbTipoVenda.Location = new System.Drawing.Point(28, 156);
             this.cmbTipoVenda.MaxDropDownItems = 4;
             this.cmbTipoVenda.MouseState = MaterialSkin.MouseState.OUT;
             this.cmbTipoVenda.Name = "cmbTipoVenda";
@@ -286,8 +244,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 725);
             this.Controls.Add(this.btnRemoverProduto);
-            this.Controls.Add(this.lblData);
-            this.Controls.Add(this.txtDataVenda);
             this.Controls.Add(this.lblTipo);
             this.Controls.Add(this.cmbTipoVenda);
             this.Controls.Add(this.lblCliente);

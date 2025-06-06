@@ -145,26 +145,6 @@ namespace ProjetoFinal
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
-            // Validações (igual à tua versão)
-            string dataTexto = txtDataVenda.Text.Trim();
-            if (string.IsNullOrEmpty(dataTexto))
-            {
-                MessageBox.Show("Por favor, introduza a data da venda.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (!DateTime.TryParseExact(dataTexto, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dataVenda))
-            {
-                MessageBox.Show("A data deve estar no formato DD/MM/AAAA.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (dataVenda.Date > DateTime.Today)
-            {
-                MessageBox.Show("A data da venda não pode ser no futuro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
             if (cmbTipoVenda.SelectedIndex < 0)
             {
                 MessageBox.Show("Por favor, selecione o tipo de venda.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -196,16 +176,17 @@ namespace ProjetoFinal
                 {
                     var novaVenda = new Venda
                     {
-                        DataVenda = dataVenda,
+                        DataVenda = DateTime.Now,
                         Tipo = cmbTipoVenda.SelectedItem.ToString(),
                         Cliente = nomeCliente,
-                        VendaProduto = new List<VendaProduto>()
+                        VendaProduto = new List<VendaProduto>(),
+                        FarmaciaId = Contas.Farmacia,
+                        ValorTotal = produtosSelecionados.Sum(p => p.PrecoUnitario * p.Quantidade)
                     };
 
-                    // Adiciona os produtos da lista pública
+                    // Adiciona os produtos à venda
                     foreach (var produto in produtosSelecionados)
                     {
-                        // Aqui, cria novo objeto para garantir que EF controla bem as entidades
                         var produtoVenda = new VendaProduto
                         {
                             MedicamentoId = produto.MedicamentoId,
@@ -221,14 +202,15 @@ namespace ProjetoFinal
                     context.SaveChanges();
                 }
 
+
                 MessageBox.Show("Venda guardada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Limpar campos e listas
-                txtDataVenda.Text = "";
                 cmbTipoVenda.SelectedIndex = -1;
                 txtCliente.Text = "";
                 produtosSelecionados.Clear();
                 listProdutos.Items.Clear();
+
+                this.Close();
             }
             catch (Exception ex)
             {
