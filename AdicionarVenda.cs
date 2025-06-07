@@ -140,8 +140,29 @@ namespace ProjetoFinal
 
         private void BtnRemoverProduto_Click(object sender, EventArgs e)
         {
+            if (listProdutos.SelectedIndex == -1)
+            {
+                MessageBox.Show("Selecione um produto para remover.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            // Obter o nome do medicamento a partir do item selecionado
+            string itemSelecionado = listProdutos.SelectedItem.ToString();
+            string nomeMedicamento = itemSelecionado.Split('|')[0].Trim(); // antes do "|"
+
+            // Encontrar o stock correspondente
+            var stock = listaDeMedicamentos.FirstOrDefault(s => s.Medicamento.Nome == nomeMedicamento);
+
+            if (stock != null)
+            {
+                // Remover da lista de produtos selecionados
+                produtosSelecionados.RemoveAll(p => p.MedicamentoId == stock.MedicamentoId);
+
+                // Atualizar lista visual
+                AtualizarListProdutos();
+            }
         }
+
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {

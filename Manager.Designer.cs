@@ -222,7 +222,7 @@ namespace ProjetoFinal
             this.vendas.Location = new System.Drawing.Point(4, 47);
             this.vendas.Name = "vendas";
             this.vendas.Padding = new System.Windows.Forms.Padding(3);
-            this.vendas.Size = new System.Drawing.Size(1846, 934);
+            this.vendas.Size = new System.Drawing.Size(1864, 934);
             this.vendas.TabIndex = 5;
             this.vendas.Text = "Vendas";
             this.vendas.UseVisualStyleBackColor = true;
@@ -234,7 +234,7 @@ namespace ProjetoFinal
             this.panelVendas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelVendas.Location = new System.Drawing.Point(3, 103);
             this.panelVendas.Name = "panelVendas";
-            this.panelVendas.Size = new System.Drawing.Size(1840, 828);
+            this.panelVendas.Size = new System.Drawing.Size(1858, 828);
             this.panelVendas.TabIndex = 2;
             // 
             // headerVendas
@@ -245,7 +245,7 @@ namespace ProjetoFinal
             this.headerVendas.Dock = System.Windows.Forms.DockStyle.Top;
             this.headerVendas.Location = new System.Drawing.Point(3, 3);
             this.headerVendas.Name = "headerVendas";
-            this.headerVendas.Size = new System.Drawing.Size(1840, 100);
+            this.headerVendas.Size = new System.Drawing.Size(1858, 100);
             this.headerVendas.TabIndex = 1;
             // 
             // btnAdicionarVenda
@@ -257,7 +257,7 @@ namespace ProjetoFinal
             this.btnAdicionarVenda.Depth = 0;
             this.btnAdicionarVenda.HighEmphasis = true;
             this.btnAdicionarVenda.Icon = null;
-            this.btnAdicionarVenda.Location = new System.Drawing.Point(1694, 29);
+            this.btnAdicionarVenda.Location = new System.Drawing.Point(1712, 29);
             this.btnAdicionarVenda.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnAdicionarVenda.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnAdicionarVenda.Name = "btnAdicionarVenda";
@@ -305,7 +305,7 @@ namespace ProjetoFinal
             this.pesquisaVenda.MouseState = MaterialSkin.MouseState.OUT;
             this.pesquisaVenda.Multiline = false;
             this.pesquisaVenda.Name = "pesquisaVenda";
-            this.pesquisaVenda.Size = new System.Drawing.Size(956, 50);
+            this.pesquisaVenda.Size = new System.Drawing.Size(974, 50);
             this.pesquisaVenda.TabIndex = 0;
             this.pesquisaVenda.Text = "";
             this.pesquisaVenda.TrailingIcon = null;
@@ -317,7 +317,7 @@ namespace ProjetoFinal
             this.reservas.Margin = new System.Windows.Forms.Padding(4);
             this.reservas.Name = "reservas";
             this.reservas.Padding = new System.Windows.Forms.Padding(4);
-            this.reservas.Size = new System.Drawing.Size(1846, 934);
+            this.reservas.Size = new System.Drawing.Size(1864, 934);
             this.reservas.TabIndex = 1;
             this.reservas.Text = "Reservas";
             this.reservas.UseVisualStyleBackColor = true;
@@ -328,7 +328,7 @@ namespace ProjetoFinal
             this.stock.Location = new System.Drawing.Point(4, 47);
             this.stock.Margin = new System.Windows.Forms.Padding(4);
             this.stock.Name = "stock";
-            this.stock.Size = new System.Drawing.Size(1846, 934);
+            this.stock.Size = new System.Drawing.Size(1864, 934);
             this.stock.TabIndex = 2;
             this.stock.Text = "Stock";
             this.stock.UseVisualStyleBackColor = true;
@@ -339,7 +339,7 @@ namespace ProjetoFinal
             this.funcionarios.Location = new System.Drawing.Point(4, 47);
             this.funcionarios.Margin = new System.Windows.Forms.Padding(4);
             this.funcionarios.Name = "funcionarios";
-            this.funcionarios.Size = new System.Drawing.Size(1846, 934);
+            this.funcionarios.Size = new System.Drawing.Size(1864, 934);
             this.funcionarios.TabIndex = 3;
             this.funcionarios.Text = "Funcionários";
             this.funcionarios.UseVisualStyleBackColor = true;
@@ -354,7 +354,7 @@ namespace ProjetoFinal
             this.settings.ImageKey = "icons8-settings-48.png";
             this.settings.Location = new System.Drawing.Point(4, 47);
             this.settings.Name = "settings";
-            this.settings.Size = new System.Drawing.Size(1846, 934);
+            this.settings.Size = new System.Drawing.Size(1864, 934);
             this.settings.TabIndex = 4;
             this.settings.Text = "Definições";
             this.settings.UseVisualStyleBackColor = true;
@@ -368,7 +368,7 @@ namespace ProjetoFinal
             this.groupAccount.Margin = new System.Windows.Forms.Padding(0, 30, 0, 0);
             this.groupAccount.Name = "groupAccount";
             this.groupAccount.Padding = new System.Windows.Forms.Padding(10);
-            this.groupAccount.Size = new System.Drawing.Size(1846, 130);
+            this.groupAccount.Size = new System.Drawing.Size(1864, 130);
             this.groupAccount.TabIndex = 0;
             this.groupAccount.TabStop = false;
             this.groupAccount.Text = "Conta";
@@ -397,7 +397,7 @@ namespace ProjetoFinal
             this.groupSystem.Location = new System.Drawing.Point(0, 180);
             this.groupSystem.Name = "groupSystem";
             this.groupSystem.Padding = new System.Windows.Forms.Padding(10);
-            this.groupSystem.Size = new System.Drawing.Size(1846, 260);
+            this.groupSystem.Size = new System.Drawing.Size(1864, 260);
             this.groupSystem.TabIndex = 1;
             this.groupSystem.TabStop = false;
             this.groupSystem.Text = "Sistema";
@@ -466,7 +466,7 @@ namespace ProjetoFinal
             this.groupAppearance.Location = new System.Drawing.Point(0, 0);
             this.groupAppearance.Name = "groupAppearance";
             this.groupAppearance.Padding = new System.Windows.Forms.Padding(10);
-            this.groupAppearance.Size = new System.Drawing.Size(1846, 180);
+            this.groupAppearance.Size = new System.Drawing.Size(1864, 180);
             this.groupAppearance.TabIndex = 2;
             this.groupAppearance.TabStop = false;
             this.groupAppearance.Text = "Aparência";

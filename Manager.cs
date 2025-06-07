@@ -48,8 +48,8 @@ namespace ProjetoFinal
         private void CarregarHome(bool modoEscuro)
         {
             ConstruirGraficos();
-            AjustarHome();
             Theme.AplicarTema(this, modoEscuro);
+            AjustarHome();
             AplicarTemaHome();
 
             CarregarSettings();
