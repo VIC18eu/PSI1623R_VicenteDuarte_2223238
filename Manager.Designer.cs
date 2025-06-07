@@ -53,8 +53,23 @@ namespace ProjetoFinal
             this.btnPesquisarVendas = new MaterialSkin.Controls.MaterialButton();
             this.pesquisaVenda = new MaterialSkin.Controls.MaterialTextBox();
             this.reservas = new System.Windows.Forms.TabPage();
+            this.panelReservas = new System.Windows.Forms.Panel();
+            this.headerReservas = new System.Windows.Forms.Panel();
+            this.btnAdicionarReserva = new MaterialSkin.Controls.MaterialButton();
+            this.btnPesquisarReservas = new MaterialSkin.Controls.MaterialButton();
+            this.pesquisaReserva = new MaterialSkin.Controls.MaterialTextBox();
             this.stock = new System.Windows.Forms.TabPage();
+            this.panelStock = new System.Windows.Forms.Panel();
+            this.headerStock = new System.Windows.Forms.Panel();
+            this.btnAdicionarStock = new MaterialSkin.Controls.MaterialButton();
+            this.btnPesquisarStock = new MaterialSkin.Controls.MaterialButton();
+            this.pesquisaStock = new MaterialSkin.Controls.MaterialTextBox();
             this.funcionarios = new System.Windows.Forms.TabPage();
+            this.panelFuncionarios = new System.Windows.Forms.Panel();
+            this.headerFuncionarios = new System.Windows.Forms.Panel();
+            this.btnAdicionarFuncionario = new MaterialSkin.Controls.MaterialButton();
+            this.btnPesquisarFuncionarios = new MaterialSkin.Controls.MaterialButton();
+            this.pesquisaFuncionario = new MaterialSkin.Controls.MaterialTextBox();
             this.settings = new System.Windows.Forms.TabPage();
             this.groupAccount = new System.Windows.Forms.GroupBox();
             this.switchKeepSession = new MaterialSkin.Controls.MaterialSwitch();
@@ -69,41 +84,24 @@ namespace ProjetoFinal
             this.fundo = new System.Windows.Forms.Panel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-
-            // Reservas
-            this.headerReservas = new System.Windows.Forms.Panel();
-            this.panelReservas = new System.Windows.Forms.Panel();
-            this.btnAdicionarReserva = new MaterialSkin.Controls.MaterialButton();
-            this.btnPesquisarReservas = new MaterialSkin.Controls.MaterialButton();
-            this.pesquisaReserva = new MaterialSkin.Controls.MaterialTextBox();
-
-            // Stock
-            this.headerStock = new System.Windows.Forms.Panel();
-            this.panelStock = new System.Windows.Forms.Panel();
-            this.btnAdicionarStock = new MaterialSkin.Controls.MaterialButton();
-            this.btnPesquisarStock = new MaterialSkin.Controls.MaterialButton();
-            this.pesquisaStock = new MaterialSkin.Controls.MaterialTextBox();
-
-            // Funcionários
-            this.headerFuncionarios = new System.Windows.Forms.Panel();
-            this.panelFuncionarios = new System.Windows.Forms.Panel();
-            this.btnAdicionarFuncionario = new MaterialSkin.Controls.MaterialButton();
-            this.btnPesquisarFuncionarios = new MaterialSkin.Controls.MaterialButton();
-            this.pesquisaFuncionario = new MaterialSkin.Controls.MaterialTextBox();
-
             this.header.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ftPerfil)).BeginInit();
             this.sidebar.SuspendLayout();
             this.home.SuspendLayout();
             this.vendas.SuspendLayout();
             this.headerVendas.SuspendLayout();
+            this.reservas.SuspendLayout();
+            this.headerReservas.SuspendLayout();
+            this.stock.SuspendLayout();
+            this.headerStock.SuspendLayout();
+            this.funcionarios.SuspendLayout();
+            this.headerFuncionarios.SuspendLayout();
             this.settings.SuspendLayout();
             this.groupAccount.SuspendLayout();
             this.groupSystem.SuspendLayout();
             this.groupAppearance.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
-
             // 
             // header
             // 
@@ -115,14 +113,14 @@ namespace ProjetoFinal
             this.header.Location = new System.Drawing.Point(0, 30);
             this.header.Margin = new System.Windows.Forms.Padding(4);
             this.header.Name = "header";
-            this.header.Size = new System.Drawing.Size(1890, 87);
+            this.header.Size = new System.Drawing.Size(1908, 87);
             this.header.TabIndex = 1;
             // 
             // ftPerfil
             // 
             this.ftPerfil.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ftPerfil.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ftPerfil.Location = new System.Drawing.Point(1780, 25);
+            this.ftPerfil.Location = new System.Drawing.Point(1798, 25);
             this.ftPerfil.Name = "ftPerfil";
             this.ftPerfil.Size = new System.Drawing.Size(55, 50);
             this.ftPerfil.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -134,7 +132,7 @@ namespace ProjetoFinal
             // 
             this.txtFarmacia.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.txtFarmacia.AutoSize = true;
-            this.txtFarmacia.Location = new System.Drawing.Point(1693, 53);
+            this.txtFarmacia.Location = new System.Drawing.Point(1711, 53);
             this.txtFarmacia.Name = "txtFarmacia";
             this.txtFarmacia.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtFarmacia.Size = new System.Drawing.Size(79, 16);
@@ -174,7 +172,7 @@ namespace ProjetoFinal
             this.sidebar.Multiline = true;
             this.sidebar.Name = "sidebar";
             this.sidebar.SelectedIndex = 0;
-            this.sidebar.Size = new System.Drawing.Size(1890, 985);
+            this.sidebar.Size = new System.Drawing.Size(1908, 985);
             this.sidebar.TabIndex = 2;
             // 
             // home
@@ -245,7 +243,7 @@ namespace ProjetoFinal
             this.vendas.Location = new System.Drawing.Point(4, 47);
             this.vendas.Name = "vendas";
             this.vendas.Padding = new System.Windows.Forms.Padding(3);
-            this.vendas.Size = new System.Drawing.Size(1882, 934);
+            this.vendas.Size = new System.Drawing.Size(1900, 934);
             this.vendas.TabIndex = 5;
             this.vendas.Text = "Vendas";
             this.vendas.UseVisualStyleBackColor = true;
@@ -257,7 +255,7 @@ namespace ProjetoFinal
             this.panelVendas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelVendas.Location = new System.Drawing.Point(3, 103);
             this.panelVendas.Name = "panelVendas";
-            this.panelVendas.Size = new System.Drawing.Size(1876, 828);
+            this.panelVendas.Size = new System.Drawing.Size(1894, 828);
             this.panelVendas.TabIndex = 2;
             // 
             // headerVendas
@@ -268,7 +266,7 @@ namespace ProjetoFinal
             this.headerVendas.Dock = System.Windows.Forms.DockStyle.Top;
             this.headerVendas.Location = new System.Drawing.Point(3, 3);
             this.headerVendas.Name = "headerVendas";
-            this.headerVendas.Size = new System.Drawing.Size(1876, 100);
+            this.headerVendas.Size = new System.Drawing.Size(1894, 100);
             this.headerVendas.TabIndex = 1;
             // 
             // btnAdicionarVenda
@@ -280,7 +278,7 @@ namespace ProjetoFinal
             this.btnAdicionarVenda.Depth = 0;
             this.btnAdicionarVenda.HighEmphasis = true;
             this.btnAdicionarVenda.Icon = null;
-            this.btnAdicionarVenda.Location = new System.Drawing.Point(1730, 29);
+            this.btnAdicionarVenda.Location = new System.Drawing.Point(1748, 29);
             this.btnAdicionarVenda.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnAdicionarVenda.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnAdicionarVenda.Name = "btnAdicionarVenda";
@@ -328,228 +326,290 @@ namespace ProjetoFinal
             this.pesquisaVenda.MouseState = MaterialSkin.MouseState.OUT;
             this.pesquisaVenda.Multiline = false;
             this.pesquisaVenda.Name = "pesquisaVenda";
-            this.pesquisaVenda.Size = new System.Drawing.Size(992, 50);
+            this.pesquisaVenda.Size = new System.Drawing.Size(1010, 50);
             this.pesquisaVenda.TabIndex = 0;
             this.pesquisaVenda.Text = "";
             this.pesquisaVenda.TrailingIcon = null;
-            // --- Reservas ---
+            // 
+            // reservas
+            // 
             this.reservas.Controls.Add(this.panelReservas);
             this.reservas.Controls.Add(this.headerReservas);
             this.reservas.ImageKey = "icons8-calendar-48.png";
-            this.reservas.Location = new Point(4, 47);
-            this.reservas.Margin = new Padding(4);
+            this.reservas.Location = new System.Drawing.Point(4, 47);
+            this.reservas.Margin = new System.Windows.Forms.Padding(4);
             this.reservas.Name = "reservas";
-            this.reservas.Padding = new Padding(4);
-            this.reservas.Size = new Size(1882, 934);
+            this.reservas.Padding = new System.Windows.Forms.Padding(4);
+            this.reservas.Size = new System.Drawing.Size(1900, 934);
             this.reservas.TabIndex = 1;
             this.reservas.Text = "Reservas";
             this.reservas.UseVisualStyleBackColor = true;
-
-            // painel reservas
+            // 
+            // panelReservas
+            // 
             this.panelReservas.AutoScroll = true;
-            this.panelReservas.Dock = DockStyle.Fill;
-            this.panelReservas.Location = new Point(3, 103);
+            this.panelReservas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelReservas.Location = new System.Drawing.Point(4, 104);
             this.panelReservas.Name = "panelReservas";
-            this.panelReservas.Size = new Size(1876, 828);
+            this.panelReservas.Size = new System.Drawing.Size(1892, 826);
             this.panelReservas.TabIndex = 2;
-
-            // header reservas com botões e pesquisa
+            // 
+            // headerReservas
+            // 
             this.headerReservas.Controls.Add(this.btnAdicionarReserva);
             this.headerReservas.Controls.Add(this.btnPesquisarReservas);
             this.headerReservas.Controls.Add(this.pesquisaReserva);
-            this.headerReservas.Dock = DockStyle.Top;
-            this.headerReservas.Location = new Point(3, 3);
+            this.headerReservas.Dock = System.Windows.Forms.DockStyle.Top;
+            this.headerReservas.Location = new System.Drawing.Point(4, 4);
             this.headerReservas.Name = "headerReservas";
-            this.headerReservas.Size = new Size(1876, 100);
+            this.headerReservas.Size = new System.Drawing.Size(1892, 100);
             this.headerReservas.TabIndex = 1;
-
+            // 
             // btnAdicionarReserva
-            this.btnAdicionarReserva.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this.btnAdicionarReserva.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            this.btnAdicionarReserva.Cursor = Cursors.Hand;
+            // 
+            this.btnAdicionarReserva.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdicionarReserva.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnAdicionarReserva.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAdicionarReserva.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.btnAdicionarReserva.Depth = 0;
             this.btnAdicionarReserva.HighEmphasis = true;
-            this.btnAdicionarReserva.Location = new Point(1730, 29);
-            this.btnAdicionarReserva.Margin = new Padding(4, 6, 4, 6);
+            this.btnAdicionarReserva.Icon = null;
+            this.btnAdicionarReserva.Location = new System.Drawing.Point(3422, 29);
+            this.btnAdicionarReserva.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnAdicionarReserva.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnAdicionarReserva.Name = "btnAdicionarReserva";
-            this.btnAdicionarReserva.Size = new Size(98, 36);
+            this.btnAdicionarReserva.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnAdicionarReserva.Size = new System.Drawing.Size(98, 36);
             this.btnAdicionarReserva.TabIndex = 4;
             this.btnAdicionarReserva.Text = "Adicionar";
             this.btnAdicionarReserva.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnAdicionarReserva.UseAccentColor = false;
             this.btnAdicionarReserva.UseVisualStyleBackColor = true;
-
+            // 
             // btnPesquisarReservas
-            this.btnPesquisarReservas.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            this.btnPesquisarReservas.Cursor = Cursors.Hand;
+            // 
+            this.btnPesquisarReservas.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnPesquisarReservas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPesquisarReservas.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.btnPesquisarReservas.Depth = 0;
             this.btnPesquisarReservas.HighEmphasis = true;
-            this.btnPesquisarReservas.Location = new Point(38, 29);
-            this.btnPesquisarReservas.Margin = new Padding(4, 6, 4, 6);
+            this.btnPesquisarReservas.Icon = null;
+            this.btnPesquisarReservas.Location = new System.Drawing.Point(38, 29);
+            this.btnPesquisarReservas.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnPesquisarReservas.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnPesquisarReservas.Name = "btnPesquisarReservas";
-            this.btnPesquisarReservas.Size = new Size(100, 36);
+            this.btnPesquisarReservas.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnPesquisarReservas.Size = new System.Drawing.Size(100, 36);
             this.btnPesquisarReservas.TabIndex = 3;
             this.btnPesquisarReservas.Text = "Pesquisar";
             this.btnPesquisarReservas.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnPesquisarReservas.UseAccentColor = false;
             this.btnPesquisarReservas.UseVisualStyleBackColor = true;
-
+            // 
             // pesquisaReserva
-            this.pesquisaReserva.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            this.pesquisaReserva.BorderStyle = BorderStyle.None;
+            // 
+            this.pesquisaReserva.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pesquisaReserva.AnimateReadOnly = false;
+            this.pesquisaReserva.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.pesquisaReserva.Depth = 0;
-            this.pesquisaReserva.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            this.pesquisaReserva.Location = new Point(193, 22);
+            this.pesquisaReserva.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.pesquisaReserva.LeadingIcon = null;
+            this.pesquisaReserva.Location = new System.Drawing.Point(193, 22);
             this.pesquisaReserva.MaxLength = 50;
+            this.pesquisaReserva.MouseState = MaterialSkin.MouseState.OUT;
             this.pesquisaReserva.Multiline = false;
             this.pesquisaReserva.Name = "pesquisaReserva";
-            this.pesquisaReserva.Size = new Size(992, 50);
+            this.pesquisaReserva.Size = new System.Drawing.Size(1010, 50);
             this.pesquisaReserva.TabIndex = 0;
             this.pesquisaReserva.Text = "";
-
-            // --- Stock ---
+            this.pesquisaReserva.TrailingIcon = null;
+            // 
+            // stock
+            // 
             this.stock.Controls.Add(this.panelStock);
             this.stock.Controls.Add(this.headerStock);
             this.stock.ImageKey = "icons8-box-48.png";
-            this.stock.Location = new Point(4, 47);
-            this.stock.Margin = new Padding(4);
+            this.stock.Location = new System.Drawing.Point(4, 47);
+            this.stock.Margin = new System.Windows.Forms.Padding(4);
             this.stock.Name = "stock";
-            this.stock.Size = new Size(1882, 934);
+            this.stock.Size = new System.Drawing.Size(1900, 934);
             this.stock.TabIndex = 2;
             this.stock.Text = "Stock";
             this.stock.UseVisualStyleBackColor = true;
-
+            // 
+            // panelStock
+            // 
             this.panelStock.AutoScroll = true;
-            this.panelStock.Dock = DockStyle.Fill;
-            this.panelStock.Location = new Point(3, 103);
+            this.panelStock.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelStock.Location = new System.Drawing.Point(0, 100);
             this.panelStock.Name = "panelStock";
-            this.panelStock.Size = new Size(1876, 828);
+            this.panelStock.Size = new System.Drawing.Size(1900, 834);
             this.panelStock.TabIndex = 2;
-
+            // 
+            // headerStock
+            // 
             this.headerStock.Controls.Add(this.btnAdicionarStock);
             this.headerStock.Controls.Add(this.btnPesquisarStock);
             this.headerStock.Controls.Add(this.pesquisaStock);
-            this.headerStock.Dock = DockStyle.Top;
-            this.headerStock.Location = new Point(3, 3);
+            this.headerStock.Dock = System.Windows.Forms.DockStyle.Top;
+            this.headerStock.Location = new System.Drawing.Point(0, 0);
             this.headerStock.Name = "headerStock";
-            this.headerStock.Size = new Size(1876, 100);
+            this.headerStock.Size = new System.Drawing.Size(1900, 100);
             this.headerStock.TabIndex = 1;
-
-            this.btnAdicionarStock.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this.btnAdicionarStock.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            this.btnAdicionarStock.Cursor = Cursors.Hand;
+            // 
+            // btnAdicionarStock
+            // 
+            this.btnAdicionarStock.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdicionarStock.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnAdicionarStock.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAdicionarStock.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.btnAdicionarStock.Depth = 0;
             this.btnAdicionarStock.HighEmphasis = true;
-            this.btnAdicionarStock.Location = new Point(1730, 29);
-            this.btnAdicionarStock.Margin = new Padding(4, 6, 4, 6);
+            this.btnAdicionarStock.Icon = null;
+            this.btnAdicionarStock.Location = new System.Drawing.Point(3430, 29);
+            this.btnAdicionarStock.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnAdicionarStock.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnAdicionarStock.Name = "btnAdicionarStock";
-            this.btnAdicionarStock.Size = new Size(98, 36);
+            this.btnAdicionarStock.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnAdicionarStock.Size = new System.Drawing.Size(98, 36);
             this.btnAdicionarStock.TabIndex = 4;
             this.btnAdicionarStock.Text = "Adicionar";
             this.btnAdicionarStock.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnAdicionarStock.UseAccentColor = false;
             this.btnAdicionarStock.UseVisualStyleBackColor = true;
-
-            this.btnPesquisarStock.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            this.btnPesquisarStock.Cursor = Cursors.Hand;
+            // 
+            // btnPesquisarStock
+            // 
+            this.btnPesquisarStock.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnPesquisarStock.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPesquisarStock.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.btnPesquisarStock.Depth = 0;
             this.btnPesquisarStock.HighEmphasis = true;
-            this.btnPesquisarStock.Location = new Point(38, 29);
-            this.btnPesquisarStock.Margin = new Padding(4, 6, 4, 6);
+            this.btnPesquisarStock.Icon = null;
+            this.btnPesquisarStock.Location = new System.Drawing.Point(38, 29);
+            this.btnPesquisarStock.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnPesquisarStock.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnPesquisarStock.Name = "btnPesquisarStock";
-            this.btnPesquisarStock.Size = new Size(100, 36);
+            this.btnPesquisarStock.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnPesquisarStock.Size = new System.Drawing.Size(100, 36);
             this.btnPesquisarStock.TabIndex = 3;
             this.btnPesquisarStock.Text = "Pesquisar";
             this.btnPesquisarStock.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnPesquisarStock.UseAccentColor = false;
             this.btnPesquisarStock.UseVisualStyleBackColor = true;
-
-            this.pesquisaStock.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            this.pesquisaStock.BorderStyle = BorderStyle.None;
+            // 
+            // pesquisaStock
+            // 
+            this.pesquisaStock.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pesquisaStock.AnimateReadOnly = false;
+            this.pesquisaStock.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.pesquisaStock.Depth = 0;
-            this.pesquisaStock.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            this.pesquisaStock.Location = new Point(193, 22);
+            this.pesquisaStock.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.pesquisaStock.LeadingIcon = null;
+            this.pesquisaStock.Location = new System.Drawing.Point(193, 22);
             this.pesquisaStock.MaxLength = 50;
+            this.pesquisaStock.MouseState = MaterialSkin.MouseState.OUT;
             this.pesquisaStock.Multiline = false;
             this.pesquisaStock.Name = "pesquisaStock";
-            this.pesquisaStock.Size = new Size(992, 50);
+            this.pesquisaStock.Size = new System.Drawing.Size(1010, 50);
             this.pesquisaStock.TabIndex = 0;
             this.pesquisaStock.Text = "";
-
-            // --- Funcionários ---
+            this.pesquisaStock.TrailingIcon = null;
+            // 
+            // funcionarios
+            // 
             this.funcionarios.Controls.Add(this.panelFuncionarios);
             this.funcionarios.Controls.Add(this.headerFuncionarios);
             this.funcionarios.ImageKey = "icons8-contacts-48.png";
-            this.funcionarios.Location = new Point(4, 47);
-            this.funcionarios.Margin = new Padding(4);
+            this.funcionarios.Location = new System.Drawing.Point(4, 47);
+            this.funcionarios.Margin = new System.Windows.Forms.Padding(4);
             this.funcionarios.Name = "funcionarios";
-            this.funcionarios.Size = new Size(1864, 934);
+            this.funcionarios.Size = new System.Drawing.Size(1900, 934);
             this.funcionarios.TabIndex = 3;
             this.funcionarios.Text = "Funcionários";
             this.funcionarios.UseVisualStyleBackColor = true;
-
+            // 
+            // panelFuncionarios
+            // 
             this.panelFuncionarios.AutoScroll = true;
-            this.panelFuncionarios.Dock = DockStyle.Fill;
-            this.panelFuncionarios.Location = new Point(3, 103);
+            this.panelFuncionarios.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelFuncionarios.Location = new System.Drawing.Point(0, 100);
             this.panelFuncionarios.Name = "panelFuncionarios";
-            this.panelFuncionarios.Size = new Size(1876, 828);
+            this.panelFuncionarios.Size = new System.Drawing.Size(1900, 834);
             this.panelFuncionarios.TabIndex = 2;
-
+            // 
+            // headerFuncionarios
+            // 
             this.headerFuncionarios.Controls.Add(this.btnAdicionarFuncionario);
             this.headerFuncionarios.Controls.Add(this.btnPesquisarFuncionarios);
             this.headerFuncionarios.Controls.Add(this.pesquisaFuncionario);
-            this.headerFuncionarios.Dock = DockStyle.Top;
-            this.headerFuncionarios.Location = new Point(3, 3);
+            this.headerFuncionarios.Dock = System.Windows.Forms.DockStyle.Top;
+            this.headerFuncionarios.Location = new System.Drawing.Point(0, 0);
             this.headerFuncionarios.Name = "headerFuncionarios";
-            this.headerFuncionarios.Size = new Size(1876, 100);
+            this.headerFuncionarios.Size = new System.Drawing.Size(1900, 100);
             this.headerFuncionarios.TabIndex = 1;
-
-            this.btnAdicionarFuncionario.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this.btnAdicionarFuncionario.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            this.btnAdicionarFuncionario.Cursor = Cursors.Hand;
+            // 
+            // btnAdicionarFuncionario
+            // 
+            this.btnAdicionarFuncionario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdicionarFuncionario.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnAdicionarFuncionario.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAdicionarFuncionario.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.btnAdicionarFuncionario.Depth = 0;
             this.btnAdicionarFuncionario.HighEmphasis = true;
-            this.btnAdicionarFuncionario.Location = new Point(1730, 29);
-            this.btnAdicionarFuncionario.Margin = new Padding(4, 6, 4, 6);
+            this.btnAdicionarFuncionario.Icon = null;
+            this.btnAdicionarFuncionario.Location = new System.Drawing.Point(3430, 29);
+            this.btnAdicionarFuncionario.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnAdicionarFuncionario.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnAdicionarFuncionario.Name = "btnAdicionarFuncionario";
-            this.btnAdicionarFuncionario.Size = new Size(98, 36);
+            this.btnAdicionarFuncionario.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnAdicionarFuncionario.Size = new System.Drawing.Size(98, 36);
             this.btnAdicionarFuncionario.TabIndex = 4;
             this.btnAdicionarFuncionario.Text = "Adicionar";
             this.btnAdicionarFuncionario.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnAdicionarFuncionario.UseAccentColor = false;
             this.btnAdicionarFuncionario.UseVisualStyleBackColor = true;
-
-            this.btnPesquisarFuncionarios.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            this.btnPesquisarFuncionarios.Cursor = Cursors.Hand;
+            // 
+            // btnPesquisarFuncionarios
+            // 
+            this.btnPesquisarFuncionarios.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnPesquisarFuncionarios.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPesquisarFuncionarios.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.btnPesquisarFuncionarios.Depth = 0;
             this.btnPesquisarFuncionarios.HighEmphasis = true;
-            this.btnPesquisarFuncionarios.Location = new Point(38, 29);
-            this.btnPesquisarFuncionarios.Margin = new Padding(4, 6, 4, 6);
+            this.btnPesquisarFuncionarios.Icon = null;
+            this.btnPesquisarFuncionarios.Location = new System.Drawing.Point(38, 29);
+            this.btnPesquisarFuncionarios.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnPesquisarFuncionarios.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnPesquisarFuncionarios.Name = "btnPesquisarFuncionarios";
-            this.btnPesquisarFuncionarios.Size = new Size(100, 36);
+            this.btnPesquisarFuncionarios.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnPesquisarFuncionarios.Size = new System.Drawing.Size(100, 36);
             this.btnPesquisarFuncionarios.TabIndex = 3;
             this.btnPesquisarFuncionarios.Text = "Pesquisar";
             this.btnPesquisarFuncionarios.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnPesquisarFuncionarios.UseAccentColor = false;
             this.btnPesquisarFuncionarios.UseVisualStyleBackColor = true;
-
-            this.pesquisaFuncionario.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            this.pesquisaFuncionario.BorderStyle = BorderStyle.None;
+            // 
+            // pesquisaFuncionario
+            // 
+            this.pesquisaFuncionario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pesquisaFuncionario.AnimateReadOnly = false;
+            this.pesquisaFuncionario.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.pesquisaFuncionario.Depth = 0;
-            this.pesquisaFuncionario.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            this.pesquisaFuncionario.Location = new Point(193, 22);
+            this.pesquisaFuncionario.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.pesquisaFuncionario.LeadingIcon = null;
+            this.pesquisaFuncionario.Location = new System.Drawing.Point(193, 22);
             this.pesquisaFuncionario.MaxLength = 50;
+            this.pesquisaFuncionario.MouseState = MaterialSkin.MouseState.OUT;
             this.pesquisaFuncionario.Multiline = false;
             this.pesquisaFuncionario.Name = "pesquisaFuncionario";
-            this.pesquisaFuncionario.Size = new Size(992, 50);
+            this.pesquisaFuncionario.Size = new System.Drawing.Size(1010, 50);
             this.pesquisaFuncionario.TabIndex = 0;
             this.pesquisaFuncionario.Text = "";
+            this.pesquisaFuncionario.TrailingIcon = null;
             // 
             // settings
             // 
@@ -561,7 +621,7 @@ namespace ProjetoFinal
             this.settings.ImageKey = "icons8-settings-48.png";
             this.settings.Location = new System.Drawing.Point(4, 47);
             this.settings.Name = "settings";
-            this.settings.Size = new System.Drawing.Size(1864, 934);
+            this.settings.Size = new System.Drawing.Size(1900, 934);
             this.settings.TabIndex = 4;
             this.settings.Text = "Definições";
             this.settings.UseVisualStyleBackColor = true;
@@ -575,7 +635,7 @@ namespace ProjetoFinal
             this.groupAccount.Margin = new System.Windows.Forms.Padding(0, 30, 0, 0);
             this.groupAccount.Name = "groupAccount";
             this.groupAccount.Padding = new System.Windows.Forms.Padding(10);
-            this.groupAccount.Size = new System.Drawing.Size(1864, 130);
+            this.groupAccount.Size = new System.Drawing.Size(1900, 130);
             this.groupAccount.TabIndex = 0;
             this.groupAccount.TabStop = false;
             this.groupAccount.Text = "Conta";
@@ -604,7 +664,7 @@ namespace ProjetoFinal
             this.groupSystem.Location = new System.Drawing.Point(0, 180);
             this.groupSystem.Name = "groupSystem";
             this.groupSystem.Padding = new System.Windows.Forms.Padding(10);
-            this.groupSystem.Size = new System.Drawing.Size(1864, 260);
+            this.groupSystem.Size = new System.Drawing.Size(1900, 260);
             this.groupSystem.TabIndex = 1;
             this.groupSystem.TabStop = false;
             this.groupSystem.Text = "Sistema";
@@ -673,7 +733,7 @@ namespace ProjetoFinal
             this.groupAppearance.Location = new System.Drawing.Point(0, 0);
             this.groupAppearance.Name = "groupAppearance";
             this.groupAppearance.Padding = new System.Windows.Forms.Padding(10);
-            this.groupAppearance.Size = new System.Drawing.Size(1864, 180);
+            this.groupAppearance.Size = new System.Drawing.Size(1900, 180);
             this.groupAppearance.TabIndex = 2;
             this.groupAppearance.TabStop = false;
             this.groupAppearance.Text = "Aparência";
@@ -747,7 +807,7 @@ namespace ProjetoFinal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1890, 1102);
+            this.ClientSize = new System.Drawing.Size(1908, 1102);
             this.Controls.Add(this.sidebar);
             this.Controls.Add(this.header);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -769,6 +829,15 @@ namespace ProjetoFinal
             this.vendas.ResumeLayout(false);
             this.headerVendas.ResumeLayout(false);
             this.headerVendas.PerformLayout();
+            this.reservas.ResumeLayout(false);
+            this.headerReservas.ResumeLayout(false);
+            this.headerReservas.PerformLayout();
+            this.stock.ResumeLayout(false);
+            this.headerStock.ResumeLayout(false);
+            this.headerStock.PerformLayout();
+            this.funcionarios.ResumeLayout(false);
+            this.headerFuncionarios.ResumeLayout(false);
+            this.headerFuncionarios.PerformLayout();
             this.settings.ResumeLayout(false);
             this.groupAccount.ResumeLayout(false);
             this.groupSystem.ResumeLayout(false);

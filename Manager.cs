@@ -42,7 +42,10 @@ namespace ProjetoFinal
             {
                 CarregarVendas();
             }
-
+            if (sidebar.SelectedTab == reservas)
+            {
+                CarregarReservas();
+            }
         }
 
         private void CarregarHome(bool modoEscuro)
@@ -68,6 +71,7 @@ namespace ProjetoFinal
             AtualizarConteudoPanelResumo();
             AjustarTxtUser();
             CarregarVendas();
+            CarregarReservas();
         }
 
         private void AplicarTemaHome()
@@ -1076,6 +1080,103 @@ namespace ProjetoFinal
         }
 
         // <-------- Tab de Reservas -------->
+
+        private void SetRoundedRegion(Control control, int radius)
+        {
+            var path = new System.Drawing.Drawing2D.GraphicsPath();
+            path.AddArc(0, 0, radius, radius, 180, 90);
+            path.AddArc(control.Width - radius, 0, radius, radius, 270, 90);
+            path.AddArc(control.Width - radius, control.Height - radius, radius, radius, 0, 90);
+            path.AddArc(0, control.Height - radius, radius, radius, 90, 90);
+            path.CloseAllFigures();
+            control.Region = new Region(path);
+        }
+
+        private void CarregarReservas()
+        {
+            panelReservas.Controls.Clear();
+
+            bool modoEscuro = ConfigManager.Configuracoes.ModoEscuro;
+
+            Color corFundoCard = modoEscuro ? Color.FromArgb(60, 60, 60) : Color.White;
+            Color corTextoPrincipal = modoEscuro ? Color.White : Color.FromArgb(30, 30, 30);
+            Color corTextoSecundario = modoEscuro ? Color.LightGray : Color.Gray;
+            Color corSombra = modoEscuro ? Color.FromArgb(60, 0, 0, 0) : Color.FromArgb(60, 0, 0, 0);
+
+            int larguraCard = 320;
+            int alturaCard = 320;
+            int espacamento = 20;
+            int raioCantos = 15;
+
+            int cardsPorLinha = Math.Max(1, (panelReservas.Width - espacamento) / (larguraCard + espacamento));
+
+            using (var context = new Entities())
+            {
+                var reservas = context.Reserva.OrderBy(r => r.DataReserva).ToList();
+
+                for (int i = 0; i < reservas.Count; i++)
+                {
+                    var reserva = reservas[i];
+
+                    // Painel card principal
+                    var card = new MaterialCard
+                    {
+                        Width = larguraCard,
+                        Height = alturaCard,
+                        BackColor = corFundoCard,
+                        Location = new Point(
+                            espacamento + (i % cardsPorLinha) * (larguraCard + espacamento),
+                            espacamento + (i / cardsPorLinha) * (alturaCard + espacamento)
+                        ),
+                        Padding = new Padding(10),
+                        Cursor = Cursors.Hand
+                    };
+                    SetRoundedRegion(card, raioCantos);
+
+                    // Nome cliente
+                    Label lblNome = new Label
+                    {
+                        Text = reserva.NomeCliente,
+                        Font = new Font("Segoe UI Semibold", 12, FontStyle.Bold),
+                        ForeColor = corTextoPrincipal,
+                        Location = new Point(5, 10),
+                        AutoSize = true
+                    };
+                    card.Controls.Add(lblNome);
+
+                    // Data reserva
+                    Label lblData = new Label
+                    {
+                        Text = reserva.DataReserva?.ToString("dd/MM/yyyy HH:mm") ?? "Sem data",
+                        Font = new Font("Segoe UI", 9, FontStyle.Regular),
+                        ForeColor = corTextoSecundario,
+                        Location = new Point(5, 40),
+                        AutoSize = true
+                    };
+                    card.Controls.Add(lblData);
+
+                    // Estado reserva
+                    Label lblEstado = new Label
+                    {
+                        Text = "Estado: " + (reserva.Estado ?? "Desconhecido"),
+                        Font = new Font("Segoe UI", 9, FontStyle.Italic),
+                        ForeColor = corTextoSecundario,
+                        Location = new Point(5, 65),
+                        AutoSize = true
+                    };
+                    card.Controls.Add(lblEstado);
+
+                    panelReservas.Controls.Add(card);
+
+                    card.Click += (s, e) =>
+                    {
+                        MessageBox.Show($"Reserva:\nCliente: {reserva.NomeCliente}\nData: {reserva.DataReserva}\nEstado: {reserva.Estado}");
+                    };
+                }
+            }
+        }
+
+
 
         private void btnAdicionarReserva_Click(object sender, EventArgs e)
         {
