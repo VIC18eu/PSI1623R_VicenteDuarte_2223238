@@ -1074,5 +1074,43 @@ namespace ProjetoFinal
             adicionarVenda.ShowDialog();
             CarregarHome(ConfigManager.Configuracoes.ModoEscuro);
         }
+
+        // <-------- Tab de Reservas -------->
+
+        private void btnAdicionarReserva_Click(object sender, EventArgs e)
+        {
+            // Ação ao clicar em "Adicionar" nas reservas
+        }
+
+        private void btnPesquisarReservas_Click(object sender, EventArgs e)
+        {
+            // Ação ao clicar em "Pesquisar" nas reservas
+        }
+
+        // <-------- Tab de Stock -------->
+
+        private void btnAdicionarStock_Click(object sender, EventArgs e)
+        {
+            // Ação ao clicar em "Adicionar" no stock
+        }
+
+        private void btnPesquisarStock_Click(object sender, EventArgs e)
+        {
+            // Ação ao clicar em "Pesquisar" no stock
+        }
+
+        // <-------- Tab de Funcionários -------->
+
+        private void btnAdicionarFuncionario_Click(object sender, EventArgs e)
+        {
+            // Ação ao clicar em "Adicionar" nos funcionários
+        }
+
+        private void btnPesquisarFuncionarios_Click(object sender, EventArgs e)
+        {
+            // Ação ao clicar em "Pesquisar" nos funcionários
+        }
+
+
     }
 }
