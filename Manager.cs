@@ -903,7 +903,11 @@ namespace ProjetoFinal
 
             using (var context = new Entities())
             {
-                var listaVendas = context.Venda.Where(v => v.Farmacia.Id == Contas.Farmacia).ToList();
+                var listaVendas = context.Venda
+                    .Where(v => v.Farmacia.Id == Contas.Farmacia)
+                    .OrderByDescending(v => v.DataVenda)
+                    .ToList();
+
 
                 if (!string.IsNullOrWhiteSpace(filtro))
                 {
@@ -1035,6 +1039,15 @@ namespace ProjetoFinal
                             CarregarVendas(filtro); // Reaplica o filtro após remoção
                         }
                     };
+
+                    card.Click += (s, e) =>
+                    {
+                        int idVenda = (int)((MaterialSkin.Controls.MaterialCard)s).Tag;
+                        var detalhesForm = new DetalhesVenda(idVenda);
+                        detalhesForm.ShowDialog();
+                        CarregarHome(ConfigManager.Configuracoes.ModoEscuro);
+                    };
+
 
                     card.Controls.Add(lblTitulo);
                     card.Controls.Add(lblValor);
