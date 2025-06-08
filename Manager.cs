@@ -1181,13 +1181,9 @@ namespace ProjetoFinal
             }
         }
 
-        private void btnPesquisarReservas_Click(object sender, EventArgs e)
-        {
-            // Ação ao clicar em "Pesquisar" nas reservas
-        }
-
         private void btnAdicionarReserva_Click(object sender, EventArgs e)
         {
+
         }
 
         // <-------- Tab de Stock -------->

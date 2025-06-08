@@ -113,14 +113,14 @@ namespace ProjetoFinal
             this.header.Location = new System.Drawing.Point(0, 30);
             this.header.Margin = new System.Windows.Forms.Padding(4);
             this.header.Name = "header";
-            this.header.Size = new System.Drawing.Size(1926, 87);
+            this.header.Size = new System.Drawing.Size(1942, 87);
             this.header.TabIndex = 1;
             // 
             // ftPerfil
             // 
             this.ftPerfil.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ftPerfil.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ftPerfil.Location = new System.Drawing.Point(1816, 25);
+            this.ftPerfil.Location = new System.Drawing.Point(1832, 25);
             this.ftPerfil.Name = "ftPerfil";
             this.ftPerfil.Size = new System.Drawing.Size(55, 50);
             this.ftPerfil.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -132,7 +132,7 @@ namespace ProjetoFinal
             // 
             this.txtFarmacia.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.txtFarmacia.AutoSize = true;
-            this.txtFarmacia.Location = new System.Drawing.Point(1729, 53);
+            this.txtFarmacia.Location = new System.Drawing.Point(1745, 53);
             this.txtFarmacia.Name = "txtFarmacia";
             this.txtFarmacia.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtFarmacia.Size = new System.Drawing.Size(79, 16);
@@ -172,7 +172,7 @@ namespace ProjetoFinal
             this.sidebar.Multiline = true;
             this.sidebar.Name = "sidebar";
             this.sidebar.SelectedIndex = 0;
-            this.sidebar.Size = new System.Drawing.Size(1926, 985);
+            this.sidebar.Size = new System.Drawing.Size(1942, 985);
             this.sidebar.TabIndex = 2;
             // 
             // home
@@ -243,7 +243,7 @@ namespace ProjetoFinal
             this.vendas.Location = new System.Drawing.Point(4, 47);
             this.vendas.Name = "vendas";
             this.vendas.Padding = new System.Windows.Forms.Padding(3);
-            this.vendas.Size = new System.Drawing.Size(1918, 934);
+            this.vendas.Size = new System.Drawing.Size(1934, 934);
             this.vendas.TabIndex = 5;
             this.vendas.Text = "Vendas";
             this.vendas.UseVisualStyleBackColor = true;
@@ -255,7 +255,7 @@ namespace ProjetoFinal
             this.panelVendas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelVendas.Location = new System.Drawing.Point(3, 103);
             this.panelVendas.Name = "panelVendas";
-            this.panelVendas.Size = new System.Drawing.Size(1912, 828);
+            this.panelVendas.Size = new System.Drawing.Size(1928, 828);
             this.panelVendas.TabIndex = 2;
             // 
             // headerVendas
@@ -266,7 +266,7 @@ namespace ProjetoFinal
             this.headerVendas.Dock = System.Windows.Forms.DockStyle.Top;
             this.headerVendas.Location = new System.Drawing.Point(3, 3);
             this.headerVendas.Name = "headerVendas";
-            this.headerVendas.Size = new System.Drawing.Size(1912, 100);
+            this.headerVendas.Size = new System.Drawing.Size(1928, 100);
             this.headerVendas.TabIndex = 1;
             // 
             // btnAdicionarVenda
@@ -278,7 +278,7 @@ namespace ProjetoFinal
             this.btnAdicionarVenda.Depth = 0;
             this.btnAdicionarVenda.HighEmphasis = true;
             this.btnAdicionarVenda.Icon = null;
-            this.btnAdicionarVenda.Location = new System.Drawing.Point(1766, 29);
+            this.btnAdicionarVenda.Location = new System.Drawing.Point(1782, 29);
             this.btnAdicionarVenda.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnAdicionarVenda.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnAdicionarVenda.Name = "btnAdicionarVenda";
@@ -326,7 +326,7 @@ namespace ProjetoFinal
             this.pesquisaVenda.MouseState = MaterialSkin.MouseState.OUT;
             this.pesquisaVenda.Multiline = false;
             this.pesquisaVenda.Name = "pesquisaVenda";
-            this.pesquisaVenda.Size = new System.Drawing.Size(1028, 50);
+            this.pesquisaVenda.Size = new System.Drawing.Size(1044, 50);
             this.pesquisaVenda.TabIndex = 0;
             this.pesquisaVenda.Text = "";
             this.pesquisaVenda.TrailingIcon = null;
@@ -340,7 +340,7 @@ namespace ProjetoFinal
             this.reservas.Margin = new System.Windows.Forms.Padding(4);
             this.reservas.Name = "reservas";
             this.reservas.Padding = new System.Windows.Forms.Padding(4);
-            this.reservas.Size = new System.Drawing.Size(1918, 934);
+            this.reservas.Size = new System.Drawing.Size(1934, 934);
             this.reservas.TabIndex = 1;
             this.reservas.Text = "Reservas";
             this.reservas.UseVisualStyleBackColor = true;
@@ -351,7 +351,7 @@ namespace ProjetoFinal
             this.panelReservas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelReservas.Location = new System.Drawing.Point(4, 104);
             this.panelReservas.Name = "panelReservas";
-            this.panelReservas.Size = new System.Drawing.Size(1910, 826);
+            this.panelReservas.Size = new System.Drawing.Size(1926, 826);
             this.panelReservas.TabIndex = 2;
             // 
             // headerReservas
@@ -362,7 +362,7 @@ namespace ProjetoFinal
             this.headerReservas.Dock = System.Windows.Forms.DockStyle.Top;
             this.headerReservas.Location = new System.Drawing.Point(4, 4);
             this.headerReservas.Name = "headerReservas";
-            this.headerReservas.Size = new System.Drawing.Size(1910, 100);
+            this.headerReservas.Size = new System.Drawing.Size(1926, 100);
             this.headerReservas.TabIndex = 1;
             // 
             // btnAdicionarReserva
@@ -374,7 +374,7 @@ namespace ProjetoFinal
             this.btnAdicionarReserva.Depth = 0;
             this.btnAdicionarReserva.HighEmphasis = true;
             this.btnAdicionarReserva.Icon = null;
-            this.btnAdicionarReserva.Location = new System.Drawing.Point(1766, 29);
+            this.btnAdicionarReserva.Location = new System.Drawing.Point(1782, 29);
             this.btnAdicionarReserva.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnAdicionarReserva.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnAdicionarReserva.Name = "btnAdicionarReserva";
@@ -421,7 +421,7 @@ namespace ProjetoFinal
             this.pesquisaReserva.MouseState = MaterialSkin.MouseState.OUT;
             this.pesquisaReserva.Multiline = false;
             this.pesquisaReserva.Name = "pesquisaReserva";
-            this.pesquisaReserva.Size = new System.Drawing.Size(1028, 50);
+            this.pesquisaReserva.Size = new System.Drawing.Size(1044, 50);
             this.pesquisaReserva.TabIndex = 0;
             this.pesquisaReserva.Text = "";
             this.pesquisaReserva.TrailingIcon = null;
@@ -808,7 +808,7 @@ namespace ProjetoFinal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1926, 1102);
+            this.ClientSize = new System.Drawing.Size(1942, 1102);
             this.Controls.Add(this.sidebar);
             this.Controls.Add(this.header);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
