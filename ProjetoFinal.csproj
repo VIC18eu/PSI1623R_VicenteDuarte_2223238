@@ -102,6 +102,12 @@
     <Compile Include="CriarConta.Designer.cs">
       <DependentUpon>CriarConta.cs</DependentUpon>
     </Compile>
+    <Compile Include="DetalheReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetalheReserva.Designer.cs">
+      <DependentUpon>DetalheReserva.cs</DependentUpon>
+    </Compile>
     <Compile Include="DetalhesVenda.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -193,6 +199,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CriarConta.resx">
       <DependentUpon>CriarConta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetalheReserva.resx">
+      <DependentUpon>DetalheReserva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DetalhesVenda.resx">
       <DependentUpon>DetalhesVenda.cs</DependentUpon>

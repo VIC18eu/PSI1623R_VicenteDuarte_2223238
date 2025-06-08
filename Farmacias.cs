@@ -142,12 +142,11 @@ namespace ProjetoFinal
 
             foreach (var farmacia in farmacias)
             {
-                Panel card = new Panel
+                MaterialCard card = new MaterialCard
                 {
                     Width = 300,
                     Height = 180,
                     BackColor = Color.White,
-                    BorderStyle = BorderStyle.FixedSingle,
                     Margin = new Padding(10)
                 };
 

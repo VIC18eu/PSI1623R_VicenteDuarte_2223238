@@ -88,7 +88,7 @@ namespace ProjetoFinal
 
         private void Form_Resize(object sender, EventArgs e)
         {
-            AjustarHome();
+            CarregarHome(ConfigManager.Configuracoes.ModoEscuro);
         }
 
         private void CarregarPerfil()
@@ -1103,8 +1103,8 @@ namespace ProjetoFinal
             Color corTextoSecundario = modoEscuro ? Color.LightGray : Color.Gray;
             Color corSombra = modoEscuro ? Color.FromArgb(60, 0, 0, 0) : Color.FromArgb(60, 0, 0, 0);
 
-            int larguraCard = 320;
-            int alturaCard = 320;
+            int larguraCard = 250;
+            int alturaCard = 230;
             int espacamento = 20;
             int raioCantos = 15;
 
@@ -1129,7 +1129,8 @@ namespace ProjetoFinal
                             espacamento + (i / cardsPorLinha) * (alturaCard + espacamento)
                         ),
                         Padding = new Padding(10),
-                        Cursor = Cursors.Hand
+                        Cursor = Cursors.Hand,
+                        Tag = reserva.Id
                     };
                     SetRoundedRegion(card, raioCantos);
 
@@ -1170,22 +1171,23 @@ namespace ProjetoFinal
 
                     card.Click += (s, e) =>
                     {
-                        MessageBox.Show($"Reserva:\nCliente: {reserva.NomeCliente}\nData: {reserva.DataReserva}\nEstado: {reserva.Estado}");
+                        DetalhesReserva detalhesReserva = new DetalhesReserva((int)card.Tag);
+                        detalhesReserva.ShowDialog();
+                        CarregarHome(ConfigManager.Configuracoes.ModoEscuro);
+                        
                     };
+
                 }
             }
-        }
-
-
-
-        private void btnAdicionarReserva_Click(object sender, EventArgs e)
-        {
-            // Ação ao clicar em "Adicionar" nas reservas
         }
 
         private void btnPesquisarReservas_Click(object sender, EventArgs e)
         {
             // Ação ao clicar em "Pesquisar" nas reservas
+        }
+
+        private void btnAdicionarReserva_Click(object sender, EventArgs e)
+        {
         }
 
         // <-------- Tab de Stock -------->
@@ -1211,7 +1213,6 @@ namespace ProjetoFinal
         {
             // Ação ao clicar em "Pesquisar" nos funcionários
         }
-
 
     }
 }
