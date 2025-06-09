@@ -89,7 +89,7 @@ namespace ProjetoFinal
             this.lblTotal.AutoSize = true;
             this.lblTotal.Depth = 0;
             this.lblTotal.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblTotal.Location = new System.Drawing.Point(416, 264);
+            this.lblTotal.Location = new System.Drawing.Point(404, 264);
             this.lblTotal.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(95, 19);

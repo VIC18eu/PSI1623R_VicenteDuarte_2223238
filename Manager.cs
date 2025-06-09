@@ -1183,7 +1183,9 @@ namespace ProjetoFinal
 
         private void btnAdicionarReserva_Click(object sender, EventArgs e)
         {
-
+            AdicionarReserva adicionarReserva = new AdicionarReserva();
+            adicionarReserva.ShowDialog();
+            CarregarHome(ConfigManager.Configuracoes.ModoEscuro);
         }
 
         // <-------- Tab de Stock -------->
