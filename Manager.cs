@@ -31,6 +31,7 @@ namespace ProjetoFinal
 
 
             this.header.Resize += (s, e) => AjustarTxtUser();
+            this.FormBorderStyle = FormBorderStyle.SizableToolWindow;
         }
         private void CarregarTab(object sender, EventArgs e)
         {
@@ -321,10 +322,9 @@ namespace ProjetoFinal
                     int linha = i / avisosPorLinha;
                     int avisoX = linhaVertical.Right + 10 + (coluna * (larguraAviso + espacamento));
 
-                    var avisoPanel = new Panel()
+                    var avisoPanel = new MaterialCard()
                     {
                         BackColor = Color.MistyRose,
-                        BorderStyle = BorderStyle.FixedSingle,
                         AutoSize = true,
                         Padding = new Padding(5),
                         Margin = new Padding(0),
@@ -399,10 +399,9 @@ namespace ProjetoFinal
 
                 foreach (var aviso in avisos)
                 {
-                    var avisoPanel = new Panel()
+                    var avisoPanel = new MaterialCard()
                     {
                         BackColor = Color.MistyRose,
-                        BorderStyle = BorderStyle.FixedSingle,
                         AutoSize = true,
                         Padding = new Padding(5),
                         Margin = new Padding(0),
@@ -500,22 +499,25 @@ namespace ProjetoFinal
             using (var context = new Entities())
             {
                 var avisos = new List<Aviso>();
-                DateTime limiteData = DateTime.Now.AddDays(-7);
+                DateTime hoje = DateTime.Today;
+                DateTime limiteData = hoje.AddDays(3);
 
-                // Reservas pendentes
-                int reservasPendentes = context.Reserva.Count(r => r.Estado == "Pendente" && r.DataReserva <= limiteData && r.FarmaciaId == Contas.Farmacia);
+                // Reservas pendentes com data de recolha nos próximos 3 dias
+                int reservasPendentes = context.Reserva
+                    .Count(r => r.Estado == "Pendente" && r.DataReserva >= hoje && r.DataReserva <= limiteData && r.FarmaciaId == Contas.Farmacia);
 
                 if (reservasPendentes > 0)
                 {
                     avisos.Add(new Aviso
                     {
                         Titulo = "Reservas Pendentes",
-                        Descricao = $"Existem {reservasPendentes} reservas pendentes há mais de 7 dias."
+                        Descricao = $"Existem {reservasPendentes} reservas pendentes com recolha marcada para os próximos dias."
                     });
                 }
 
                 // Medicamentos com pouco stock
                 var mPoucoStock = context.Stock
+                    .Include(s => s.Medicamento)
                     .Where(m => m.Quantidade < 5 && m.FarmaciaId == Contas.Farmacia)
                     .ToList();
 
@@ -541,6 +543,7 @@ namespace ProjetoFinal
                 return avisos;
             }
         }
+
 
         private void ConstruirGraficos()
         {
