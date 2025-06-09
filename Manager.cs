@@ -754,20 +754,55 @@ namespace ProjetoFinal
                             ValorTotal = g.Sum(vp => vp.Quantidade * vp.PrecoUnitario)
                         })
                         .OrderByDescending(g => g.ValorTotal)
-                        .Take(10) // Podes ajustar para mostrar só os 10 maiores
                         .ToList();
 
-                    // Criar gráfico Pie
-                    chartPieValorMedicamentos.Series = new SeriesCollection();
+                    // Calcular valor total
+                    var valorTotalGlobal = valorPorMedicamento.Sum(v => v.ValorTotal);
+
+                    // Separar os principais medicamentos e agrupar os restantes
+                    var topMedicamentos = new List<(string Nome, decimal Valor)>();
+                    decimal acumulado = 0;
+                    decimal limitePercentagem = 0.90m;
 
                     foreach (var med in valorPorMedicamento)
+                    {
+                        if (acumulado / valorTotalGlobal < limitePercentagem && topMedicamentos.Count < 7)
+                        {
+                            topMedicamentos.Add((med.Nome, med.ValorTotal));
+                            acumulado += med.ValorTotal;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+
+                    // Agrupar os restantes como "Outros"
+                    decimal outrosValor = valorTotalGlobal - acumulado;
+
+                    chartPieValorMedicamentos.Series = new SeriesCollection();
+
+                    // Adicionar principais medicamentos
+                    foreach (var med in topMedicamentos)
                     {
                         chartPieValorMedicamentos.Series.Add(new PieSeries
                         {
                             Title = med.Nome,
-                            Values = new ChartValues<decimal> { med.ValorTotal },
+                            Values = new ChartValues<decimal> { med.Valor },
                             DataLabels = true,
-                            LabelPoint = chartPoint => $"{chartPoint.Participation:P1}" // percentagem
+                            LabelPoint = chartPoint => $"{chartPoint.Participation:P1}"
+                        });
+                    }
+
+                    // Adicionar fatia "Outros", se aplicável
+                    if (outrosValor > 0)
+                    {
+                        chartPieValorMedicamentos.Series.Add(new PieSeries
+                        {
+                            Title = "Outros",
+                            Values = new ChartValues<decimal> { outrosValor },
+                            DataLabels = true,
+                            LabelPoint = chartPoint => $"{chartPoint.Participation:P1}"
                         });
                     }
 
@@ -776,8 +811,6 @@ namespace ProjetoFinal
                     if (!home.Controls.Contains(chartPieValorMedicamentos))
                         home.Controls.Add(chartPieValorMedicamentos);
 
-                    if (!home.Controls.Contains(chartVendas))
-                        home.Controls.Add(chartVendas);
                 }
             }
         }
@@ -1084,17 +1117,6 @@ namespace ProjetoFinal
 
         // <-------- Tab de Reservas -------->
 
-        private void SetRoundedRegion(Control control, int radius)
-        {
-            var path = new System.Drawing.Drawing2D.GraphicsPath();
-            path.AddArc(0, 0, radius, radius, 180, 90);
-            path.AddArc(control.Width - radius, 0, radius, radius, 270, 90);
-            path.AddArc(control.Width - radius, control.Height - radius, radius, radius, 0, 90);
-            path.AddArc(0, control.Height - radius, radius, radius, 90, 90);
-            path.CloseAllFigures();
-            control.Region = new Region(path);
-        }
-
         private void CarregarReservas()
         {
             panelReservas.Controls.Clear();
@@ -1106,10 +1128,9 @@ namespace ProjetoFinal
             Color corTextoSecundario = modoEscuro ? Color.LightGray : Color.Gray;
             Color corSombra = modoEscuro ? Color.FromArgb(60, 0, 0, 0) : Color.FromArgb(60, 0, 0, 0);
 
-            int larguraCard = 250;
-            int alturaCard = 230;
+            int larguraCard = 170;
+            int alturaCard = 170;
             int espacamento = 20;
-            int raioCantos = 15;
 
             int cardsPorLinha = Math.Max(1, (panelReservas.Width - espacamento) / (larguraCard + espacamento));
 
@@ -1135,7 +1156,6 @@ namespace ProjetoFinal
                         Cursor = Cursors.Hand,
                         Tag = reserva.Id
                     };
-                    SetRoundedRegion(card, raioCantos);
 
                     // Nome cliente
                     Label lblNome = new Label
@@ -1162,11 +1182,11 @@ namespace ProjetoFinal
                     // Estado reserva
                     Label lblEstado = new Label
                     {
-                        Text = "Estado: " + (reserva.Estado ?? "Desconhecido"),
+                        Text = "Estado: " + (reserva.Estado),
                         Font = new Font("Segoe UI", 9, FontStyle.Italic),
-                        ForeColor = corTextoSecundario,
+                        ForeColor = reserva.Estado == "Cancelado" ? Color.Red : reserva.Estado == "Confirmado"? Color.DarkSeaGreen : Color.DarkOrange,
                         Location = new Point(5, 65),
-                        AutoSize = true
+                        AutoSize = true,
                     };
                     card.Controls.Add(lblEstado);
 
