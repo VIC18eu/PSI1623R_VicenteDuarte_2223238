@@ -47,6 +47,10 @@ namespace ProjetoFinal
             {
                 CarregarReservas();
             }
+            if (sidebar.SelectedTab == stock)
+            {
+                CarregarStock();
+            }
         }
 
         private void CarregarHome(bool modoEscuro)
@@ -1212,6 +1216,165 @@ namespace ProjetoFinal
         }
 
         // <-------- Tab de Stock -------->
+
+        private void CarregarStock(string filtro = "")
+        {
+            panelStock.Controls.Clear();
+
+            using (var context = new Entities())
+            {
+                var listaStock = context.Stock
+                    .Where(s => s.FarmaciaId == Contas.Farmacia)
+                    .OrderByDescending(s => s.Id)
+                    .ToList();
+
+                if (!string.IsNullOrWhiteSpace(filtro))
+                {
+                    filtro = filtro.Trim().ToLower();
+
+                    if (filtro.StartsWith("#") && int.TryParse(filtro.Substring(1), out int idFiltro))
+                    {
+                        listaStock = listaStock.Where(s => s.Id == idFiltro).ToList();
+                    }
+                    else
+                    {
+                        listaStock = listaStock.Where(s =>
+                            s.Quantidade.ToString().Contains(filtro) ||
+                            s.Preco.ToString("F2").Replace(",", ".").Contains(filtro.Replace(",", ".")) ||
+                            s.Medicamento.Nome.ToLower().Contains(filtro)
+                        ).ToList();
+                    }
+                }
+
+                int yOffset = 10;
+
+                foreach (var stock in listaStock)
+                {
+                    var card = new MaterialSkin.Controls.MaterialCard
+                    {
+                        Width = panelStock.Width - 30,
+                        Height = 160,
+                        BackColor = Color.White,
+                        Location = new Point(10, yOffset),
+                        Padding = new Padding(10),
+                        Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right,
+                        Tag = stock.Id,
+                        Cursor = Cursors.Default
+                    };
+
+                    var lblTitulo = new Label
+                    {
+                        Text = stock.Medicamento?.Nome ?? "Medicamento Desconhecido",
+                        Font = new Font("Segoe UI", 11, FontStyle.Bold),
+                        Location = new Point(10, 10),
+                        AutoSize = true
+                    };
+
+                    var lblQuantidade = new Label
+                    {
+                        Text = $"Quantidade: {stock.Quantidade}",
+                        Font = new Font("Segoe UI", 10),
+                        Location = new Point(10, 40),
+                        AutoSize = true
+                    };
+
+                    var lblPreco = new Label
+                    {
+                        Text = $"Preço: {stock.Preco:C}",
+                        Font = new Font("Segoe UI", 10),
+                        Location = new Point(10, 65),
+                        AutoSize = true
+                    };
+
+                    var btnAdicionar = new Button
+                    {
+                        Text = "Adicionar Quantidade",
+                        BackColor = Color.FromArgb(40, 167, 69),
+                        ForeColor = Color.White,
+                        FlatStyle = FlatStyle.Flat,
+                        Size = new Size(150, 30),
+                        Location = new Point(10, 100),
+                        Tag = stock.Id,
+                        Cursor = Cursors.Hand
+                    };
+
+                    btnAdicionar.Click += (s, e) =>
+                    {
+                        int idStock = (int)((Button)s).Tag;
+
+                        string input = "1";
+
+                        if (int.TryParse(input, out int quantidadeAdicionar) && quantidadeAdicionar > 0)
+                        {
+                            using (var entities = new Entities())
+                            {
+                                var stockSelecionado = entities.Stock.Find(idStock);
+                                if (stockSelecionado != null)
+                                {
+                                    stockSelecionado.Quantidade += quantidadeAdicionar;
+                                    entities.SaveChanges();
+                                }
+                            }
+
+                            CarregarStock(filtro);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Insira uma quantidade válida.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    };
+
+                    var btnRemover = new Button
+                    {
+                        Text = "Remover",
+                        BackColor = Color.FromArgb(220, 53, 69),
+                        ForeColor = Color.White,
+                        FlatStyle = FlatStyle.Flat,
+                        Size = new Size(100, 30),
+                        Location = new Point(card.Width - 120, card.Height - 40),
+                        Tag = stock.Id,
+                        Anchor = AnchorStyles.Top | AnchorStyles.Right,
+                        Cursor = Cursors.Hand
+                    };
+
+                    btnRemover.Click += (s, e) =>
+                    {
+                        var resultado = MessageBox.Show(
+                            "Tem a certeza que deseja remover este item de stock?",
+                            "Confirmar remoção",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Warning
+                        );
+
+                        if (resultado == DialogResult.Yes)
+                        {
+                            int idStock = (int)((Button)s).Tag;
+
+                            using (var entities = new Entities())
+                            {
+                                var stockRemover = entities.Stock.Find(idStock);
+                                if (stockRemover != null)
+                                {
+                                    entities.Stock.Remove(stockRemover);
+                                    entities.SaveChanges();
+                                }
+                            }
+
+                            CarregarStock(filtro);
+                        }
+                    };
+
+                    card.Controls.Add(lblTitulo);
+                    card.Controls.Add(lblQuantidade);
+                    card.Controls.Add(lblPreco);
+                    card.Controls.Add(btnAdicionar);
+                    card.Controls.Add(btnRemover);
+
+                    panelStock.Controls.Add(card);
+                    yOffset += card.Height + 10;
+                }
+            }
+        }
 
         private void btnAdicionarStock_Click(object sender, EventArgs e)
         {
