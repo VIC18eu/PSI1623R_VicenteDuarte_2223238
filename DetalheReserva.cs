@@ -19,9 +19,9 @@ namespace ProjetoFinal
         {
             reservaId = id;
             InitializeComponent();
-            CarregarDetalhesreserva();
 
             Theme.AplicarTema(this, ConfigManager.Configuracoes.ModoEscuro);
+            CarregarDetalhesreserva();
         }
 
         private void CarregarDetalhesreserva()
@@ -35,8 +35,10 @@ namespace ProjetoFinal
                 if (reserva != null)
                 {
                     lblId.Text = $"ID: {reserva.Id}";
+                    lblId.Font = new System.Drawing.Font("Roboto", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
                     lblCliente.Text = $"Cliente: {reserva.NomeCliente}";
                     lblEstado.Text = $"Estado: {reserva.Estado}";
+                    lblEstado.ForeColor = reserva.Estado == "Cancelado" ? Color.Red : reserva.Estado == "Confirmado" ? Color.DarkSeaGreen : Color.DarkOrange;
                     lblData.Text = $"{reserva.DataReserva}";
                     lblTotal.Text = $"Total: {reserva.ReservaProduto.Sum(r => r.Quantidade * r.Stock.Preco):C}";
 

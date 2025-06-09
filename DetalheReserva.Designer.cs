@@ -28,22 +28,22 @@ namespace ProjetoFinal
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private MaterialSkin.Controls.MaterialLabel lblId;
-        private MaterialSkin.Controls.MaterialLabel lblCliente;
-        private MaterialSkin.Controls.MaterialLabel lblData;
-        private MaterialSkin.Controls.MaterialLabel lblTotal;
+        private Label lblId;
+        private Label lblCliente;
+        private Label lblData;
+        private Label lblTotal;
         private System.Windows.Forms.ListBox listBoxProdutos;
         private MaterialSkin.Controls.MaterialButton btnCancelar;
         private MaterialSkin.Controls.MaterialButton btnConfirmar;
 
         private void InitializeComponent()
         {
-            this.lblId = new MaterialSkin.Controls.MaterialLabel();
-            this.lblCliente = new MaterialSkin.Controls.MaterialLabel();
-            this.lblData = new MaterialSkin.Controls.MaterialLabel();
-            this.lblTotal = new MaterialSkin.Controls.MaterialLabel();
+            this.lblId = new System.Windows.Forms.Label();
+            this.lblCliente = new System.Windows.Forms.Label();
+            this.lblData = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
             this.listBoxProdutos = new System.Windows.Forms.ListBox();
-            this.lblEstado = new MaterialSkin.Controls.MaterialLabel();
+            this.lblEstado = new System.Windows.Forms.Label();
             this.btnCancelar = new MaterialSkin.Controls.MaterialButton();
             this.btnConfirmar = new MaterialSkin.Controls.MaterialButton();
             this.SuspendLayout();
@@ -51,48 +51,40 @@ namespace ProjetoFinal
             // lblId
             // 
             this.lblId.AutoSize = true;
-            this.lblId.Depth = 0;
-            this.lblId.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.lblId.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.lblId.Location = new System.Drawing.Point(23, 103);
-            this.lblId.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(73, 19);
+            this.lblId.Size = new System.Drawing.Size(75, 18);
             this.lblId.TabIndex = 0;
             this.lblId.Text = "ID: (vazio)";
             // 
             // lblCliente
             // 
             this.lblCliente.AutoSize = true;
-            this.lblCliente.Depth = 0;
-            this.lblCliente.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblCliente.Location = new System.Drawing.Point(22, 167);
-            this.lblCliente.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.lblCliente.Location = new System.Drawing.Point(22, 153);
             this.lblCliente.Name = "lblCliente";
-            this.lblCliente.Size = new System.Drawing.Size(106, 19);
+            this.lblCliente.Size = new System.Drawing.Size(106, 18);
             this.lblCliente.TabIndex = 1;
             this.lblCliente.Text = "Cliente: (vazio)";
             // 
             // lblData
             // 
             this.lblData.AutoSize = true;
-            this.lblData.Depth = 0;
-            this.lblData.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblData.Location = new System.Drawing.Point(322, 103);
-            this.lblData.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblData.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.lblData.Location = new System.Drawing.Point(331, 113);
             this.lblData.Name = "lblData";
-            this.lblData.Size = new System.Drawing.Size(92, 19);
+            this.lblData.Size = new System.Drawing.Size(92, 18);
             this.lblData.TabIndex = 3;
             this.lblData.Text = "Data: (vazio)";
             // 
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Depth = 0;
-            this.lblTotal.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblTotal.Location = new System.Drawing.Point(404, 264);
-            this.lblTotal.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.lblTotal.Location = new System.Drawing.Point(396, 264);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(95, 19);
+            this.lblTotal.Size = new System.Drawing.Size(94, 18);
             this.lblTotal.TabIndex = 4;
             this.lblTotal.Text = "Total: (vazio)";
             // 
@@ -109,12 +101,10 @@ namespace ProjetoFinal
             // lblEstado
             // 
             this.lblEstado.AutoSize = true;
-            this.lblEstado.Depth = 0;
-            this.lblEstado.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblEstado.Location = new System.Drawing.Point(22, 234);
-            this.lblEstado.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.lblEstado.Location = new System.Drawing.Point(22, 191);
             this.lblEstado.Name = "lblEstado";
-            this.lblEstado.Size = new System.Drawing.Size(107, 19);
+            this.lblEstado.Size = new System.Drawing.Size(108, 18);
             this.lblEstado.TabIndex = 6;
             this.lblEstado.Text = "Estado: (vazio)";
             // 
@@ -191,6 +181,6 @@ namespace ProjetoFinal
 
         #endregion
 
-        private MaterialSkin.Controls.MaterialLabel lblEstado;
+        private Label lblEstado;
     }
 }
