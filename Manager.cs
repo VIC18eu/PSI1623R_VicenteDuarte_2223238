@@ -27,16 +27,16 @@ namespace ProjetoFinal
 
             InitializeComponent();
             sidebar.SelectedIndexChanged += CarregarTab;
-            CarregarHome(modoEscuro);
+            AjustarTela(modoEscuro);
 
-
-            this.header.Resize += (s, e) => CarregarHome(modoEscuro);
         }
         private void CarregarTab(object sender, EventArgs e)
         {
+            this.FormBorderStyle = FormBorderStyle.SizableToolWindow;
+
             if (sidebar.SelectedTab == home)
             {
-                CarregarHome(ConfigManager.Configuracoes.ModoEscuro);
+                CarregarHome();
             }
             if (sidebar.SelectedTab == vendas)
             {
@@ -52,14 +52,11 @@ namespace ProjetoFinal
             }
         }
 
-        private void CarregarHome(bool modoEscuro)
+        private void AjustarTela(bool modoEscuro)
         {
-            ConstruirGraficos();
-            Theme.AplicarTema(this, modoEscuro);
-            AjustarHome();
-            AplicarTemaHome();
 
-            CarregarSettings();
+            Theme.AplicarTema(this, modoEscuro);
+            this.FormBorderStyle = FormBorderStyle.SizableToolWindow;
 
             header.BackColor = Color.FromArgb(25, 118, 210);
             txtUser.Font = new Font("Arial", 12, FontStyle.Bold);
@@ -69,14 +66,38 @@ namespace ProjetoFinal
             txtFarmacia.ForeColor = Color.White;
             txtFarmacia.BackColor = Color.FromArgb(25, 118, 210);
 
-
             CarregarPerfil();
-            AtualizarConteudoPanelResumo();
             AjustarTxtUser();
-            CarregarVendas();
-            CarregarReservas();
-            CarregarStock();
-            this.FormBorderStyle = FormBorderStyle.SizableToolWindow;
+            if (sidebar.SelectedTab == home)
+            {
+                CarregarHome();
+            }
+            if (sidebar.SelectedTab == vendas)
+            {
+                CarregarVendas();
+            }
+            if (sidebar.SelectedTab == reservas)
+            {
+                CarregarReservas();
+            }
+            if (sidebar.SelectedTab == stock)
+            {
+                CarregarStock();
+            }
+            if (sidebar.SelectedTab == settings)
+            {
+                CarregarSettings();
+            }
+
+        }
+
+        private void CarregarHome()
+        {
+            ConstruirGraficos();
+            AjustarHome();
+            AplicarTemaHome();
+
+            AtualizarConteudoPanelResumo();
         }
 
         private void AplicarTemaHome()
@@ -93,7 +114,7 @@ namespace ProjetoFinal
 
         private void Form_Resize(object sender, EventArgs e)
         {
-            CarregarHome(ConfigManager.Configuracoes.ModoEscuro);
+            AjustarTela(ConfigManager.Configuracoes.ModoEscuro);
         }
 
         private void CarregarPerfil()
@@ -147,7 +168,7 @@ namespace ProjetoFinal
             {
                 this.Hide();
             }
-            CarregarHome(ConfigManager.Configuracoes.ModoEscuro);
+            AjustarTela(ConfigManager.Configuracoes.ModoEscuro);
         }
 
         private void AjustarHome()
@@ -296,7 +317,7 @@ namespace ProjetoFinal
 
                 // Labels info
                 int y = margem;
-                foreach (var label in new[]{ CriarLabel($"Total de Vendas: {totalVendas}", y), CriarLabel($"Valor Total Vendas: {valorTotal:C}", y += 30), CriarLabel($"Vendas por Reserva: {vendasReserva:C}", y += 30), CriarLabel($"Vendas Normais: {vendasNormal:C}", y += 30)})
+                foreach (var label in new[] { CriarLabel($"Total de Vendas: {totalVendas}", y), CriarLabel($"Valor Total Vendas: {valorTotal:C}", y += 30), CriarLabel($"Vendas por Reserva: {vendasReserva:C}", y += 30), CriarLabel($"Vendas Normais: {vendasNormal:C}", y += 30) })
                 {
                     label.Location = new Point(margem, label.Location.Y);
                     panelResumo.Controls.Add(label);
@@ -448,7 +469,7 @@ namespace ProjetoFinal
 
             }
         }
-        
+
         private Label CriarLabel(string texto, int y)
         {
             return new Label()
@@ -700,7 +721,7 @@ namespace ProjetoFinal
                     var vendasPorMedicamento = context.VendaProduto
                         .Where(vp => vp.Venda.FarmaciaId == farmaciaId)
                         .Include(vp => vp.Medicamento)
-                        .Include(vp => vp.Venda)    
+                        .Include(vp => vp.Venda)
                         .GroupBy(vp => vp.Medicamento.Nome)
                         .Select(g => new
                         {
@@ -823,35 +844,22 @@ namespace ProjetoFinal
         {
             int maxRight = ftPerfil.Left - 10;
 
-            // Desativar AutoSize para poder controlar manualmente
             txtUser.AutoSize = false;
-            txtFarmacia.AutoSize = false;
-
-            // Definir altura fixa (opcionalmente adapta à fonte + margem)
-            txtUser.Height = txtUser.Font.Height + 6;
-            txtFarmacia.Height = txtFarmacia.Font.Height + 6;
-
-            // Medir o texto de forma mais fiel a Labels
-            Size userSize = TextRenderer.MeasureText(txtUser.Text.Trim(), txtUser.Font);
-            Size farmSize = TextRenderer.MeasureText(txtFarmacia.Text.Trim(), txtFarmacia.Font);
-
-            int margem = 10; // margem para evitar corte da última palavra
-
-            int widthUser = userSize.Width + margem;
-            int widthFarm = farmSize.Width + margem;
-
-            txtUser.Width = widthUser;
-            txtFarmacia.Width = widthFarm;
-
-            // Alinha à direita respeitando o espaço antes da imagem
-            txtUser.Left = maxRight - widthUser;
-            txtFarmacia.Left = maxRight - widthFarm;
-
-            // Garantir que o texto fica corretamente alinhado e visível
+            Size userTextSize = TextRenderer.MeasureText(txtUser.Text.Trim(), txtUser.Font);
+            int userWidth = userTextSize.Width + 10;
+            txtUser.Width = userWidth;
+            txtUser.Height = userTextSize.Height;
+            txtUser.Left = maxRight - userWidth;
             txtUser.TextAlign = ContentAlignment.MiddleLeft;
-            txtFarmacia.TextAlign = ContentAlignment.MiddleLeft;
-
             txtUser.Padding = Padding.Empty;
+
+            txtFarmacia.AutoSize = false;
+            Size farmTextSize = TextRenderer.MeasureText(txtFarmacia.Text.Trim(), txtFarmacia.Font);
+            int farmWidth = farmTextSize.Width + 10;
+            txtFarmacia.Width = farmWidth;
+            txtFarmacia.Height = farmTextSize.Height + 6;
+            txtFarmacia.Left = maxRight - farmWidth;
+            txtFarmacia.TextAlign = ContentAlignment.MiddleLeft;
             txtFarmacia.Padding = Padding.Empty;
         }
 
@@ -880,7 +888,7 @@ namespace ProjetoFinal
             MostrarMenuFarmacias();
         }
 
-        
+
         // <-------- SETTINGS -------->
 
         private void switchDarkMode_CheckedChanged(object sender, EventArgs e)
@@ -1089,7 +1097,7 @@ namespace ProjetoFinal
                         int idVenda = (int)((MaterialSkin.Controls.MaterialCard)s).Tag;
                         var detalhesForm = new DetalhesVenda(idVenda);
                         detalhesForm.ShowDialog();
-                        CarregarHome(ConfigManager.Configuracoes.ModoEscuro);
+                        AjustarTela(ConfigManager.Configuracoes.ModoEscuro);
                     };
 
 
@@ -1116,7 +1124,7 @@ namespace ProjetoFinal
         {
             AdicionarVenda adicionarVenda = new AdicionarVenda();
             adicionarVenda.ShowDialog();
-            CarregarHome(ConfigManager.Configuracoes.ModoEscuro);
+            AjustarTela(ConfigManager.Configuracoes.ModoEscuro);
         }
 
         // <-------- Tab de Reservas -------->
@@ -1188,7 +1196,7 @@ namespace ProjetoFinal
                     {
                         Text = "Estado: " + (reserva.Estado),
                         Font = new Font("Segoe UI", 9, FontStyle.Italic),
-                        ForeColor = reserva.Estado == "Cancelado" ? Color.Red : reserva.Estado == "Confirmado"? Color.DarkSeaGreen : Color.DarkOrange,
+                        ForeColor = reserva.Estado == "Cancelado" ? Color.Red : reserva.Estado == "Confirmado" ? Color.DarkSeaGreen : Color.DarkOrange,
                         Location = new Point(5, 65),
                         AutoSize = true,
                     };
@@ -1200,8 +1208,8 @@ namespace ProjetoFinal
                     {
                         DetalhesReserva detalhesReserva = new DetalhesReserva((int)card.Tag);
                         detalhesReserva.ShowDialog();
-                        CarregarHome(ConfigManager.Configuracoes.ModoEscuro);
-                        
+                        AjustarTela(ConfigManager.Configuracoes.ModoEscuro);
+
                     };
 
                 }
@@ -1212,7 +1220,7 @@ namespace ProjetoFinal
         {
             AdicionarReserva adicionarReserva = new AdicionarReserva();
             adicionarReserva.ShowDialog();
-            CarregarHome(ConfigManager.Configuracoes.ModoEscuro);
+            AjustarTela(ConfigManager.Configuracoes.ModoEscuro);
         }
 
         // <-------- Tab de Stock -------->
