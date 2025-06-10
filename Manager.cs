@@ -27,37 +27,23 @@ namespace ProjetoFinal
 
             InitializeComponent();
             sidebar.SelectedIndexChanged += CarregarTab;
+            this.Shown += Manager_Shown;
             AjustarTela(modoEscuro);
-
         }
         private void CarregarTab(object sender, EventArgs e)
         {
-            this.FormBorderStyle = FormBorderStyle.SizableToolWindow;
+            AjustarTela(ConfigManager.Configuracoes.ModoEscuro);
+        }
 
-            if (sidebar.SelectedTab == home)
-            {
-                CarregarHome();
-            }
-            if (sidebar.SelectedTab == vendas)
-            {
-                CarregarVendas();
-            }
-            if (sidebar.SelectedTab == reservas)
-            {
-                CarregarReservas();
-            }
-            if (sidebar.SelectedTab == stock)
-            {
-                CarregarStock();
-            }
+        private void Manager_Shown(object sender, EventArgs e)
+        {
+            CarregarPerfil();
         }
 
         private void AjustarTela(bool modoEscuro)
         {
 
             Theme.AplicarTema(this, modoEscuro);
-            this.FormBorderStyle = FormBorderStyle.SizableToolWindow;
-
             header.BackColor = Color.FromArgb(25, 118, 210);
             txtUser.Font = new Font("Arial", 12, FontStyle.Bold);
             txtUser.ForeColor = Color.White;
@@ -67,7 +53,6 @@ namespace ProjetoFinal
             txtFarmacia.BackColor = Color.FromArgb(25, 118, 210);
 
             CarregarPerfil();
-            AjustarTxtUser();
             if (sidebar.SelectedTab == home)
             {
                 CarregarHome();
@@ -89,6 +74,7 @@ namespace ProjetoFinal
                 CarregarSettings();
             }
 
+            this.FormBorderStyle = FormBorderStyle.SizableToolWindow;
         }
 
         private void CarregarHome()
@@ -96,8 +82,6 @@ namespace ProjetoFinal
             ConstruirGraficos();
             AjustarHome();
             AplicarTemaHome();
-
-            AtualizarConteudoPanelResumo();
         }
 
         private void AplicarTemaHome()
@@ -153,6 +137,7 @@ namespace ProjetoFinal
                         ftPerfil.Image = Properties.Resources.pfpDefault;
                         ftPerfil.SizeMode = PictureBoxSizeMode.Zoom;
                     }
+                    AjustarTxtUser();
                 }
             }
         }
@@ -859,9 +844,11 @@ namespace ProjetoFinal
             txtFarmacia.Width = farmWidth;
             txtFarmacia.Height = farmTextSize.Height + 6;
             txtFarmacia.Left = maxRight - farmWidth;
+            txtFarmacia.Top = txtUser.Bottom + 2;
             txtFarmacia.TextAlign = ContentAlignment.MiddleLeft;
             txtFarmacia.Padding = Padding.Empty;
         }
+
 
         private void MostrarMenuFarmacias()
         {
@@ -898,19 +885,7 @@ namespace ProjetoFinal
 
             ConfigManager.Configuracoes.ModoEscuro = ativado;
             ConfigManager.Guardar();
-            header.BackColor = Color.FromArgb(25, 118, 210);
-
-            txtUser.Font = new Font("Arial", 12, FontStyle.Bold);
-            txtUser.ForeColor = Color.White;
-            txtUser.BackColor = Color.FromArgb(25, 118, 210);
-            txtFarmacia.Font = new Font("Arial", 9, FontStyle.Bold);
-            txtFarmacia.ForeColor = Color.White;
-            txtFarmacia.BackColor = Color.FromArgb(25, 118, 210);
-            CarregarPerfil();
-
-            AjustarTxtUser();
-            AplicarTemaHome();
-            AjustarHome();
+            AjustarTela(ativado);
         }
 
         private void CarregarSettings()
