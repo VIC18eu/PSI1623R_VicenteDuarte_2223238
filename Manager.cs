@@ -1216,7 +1216,6 @@ namespace ProjetoFinal
         }
 
         // <-------- Tab de Stock -------->
-
         private void CarregarStock(string filtro = "")
         {
             panelStock.Controls.Clear();
@@ -1286,25 +1285,35 @@ namespace ProjetoFinal
                         AutoSize = true
                     };
 
-                    var btnAdicionar = new Button
+                    int removeButtonX = card.Width - 120;
+                    int removeButtonY = card.Height - 40;
+
+                    var txtQuantidadeAdicionar = new MaterialSkin.Controls.MaterialTextBox2
                     {
-                        Text = "Adicionar Quantidade",
-                        BackColor = Color.FromArgb(40, 167, 69),
-                        ForeColor = Color.White,
-                        FlatStyle = FlatStyle.Flat,
-                        Size = new Size(150, 30),
-                        Location = new Point(10, 100),
+                        Location = new Point(removeButtonX - 45, removeButtonY - 65),
+                        Size = new Size(80, 30),
+                        Hint = "Qtd.",
+                        MaxLength = 5,
+                        TabIndex = 0,
+                        Anchor = AnchorStyles.Top | AnchorStyles.Right
+                    };
+
+                    var btnAdicionar = new MaterialSkin.Controls.MaterialButton
+                    {
+                        Text = "+",
+                        Location = new Point(removeButtonX + 60, removeButtonY - 60),
+                        Size = new Size(50, 30),
                         Tag = stock.Id,
-                        Cursor = Cursors.Hand
+                        UseAccentColor = true,
+                        TabIndex = 1,
+                        Anchor = AnchorStyles.Top | AnchorStyles.Right
                     };
 
                     btnAdicionar.Click += (s, e) =>
                     {
-                        int idStock = (int)((Button)s).Tag;
+                        int idStock = (int)((MaterialSkin.Controls.MaterialButton)s).Tag;
 
-                        string input = "1";
-
-                        if (int.TryParse(input, out int quantidadeAdicionar) && quantidadeAdicionar > 0)
+                        if (int.TryParse(txtQuantidadeAdicionar.Text, out int quantidadeAdicionar) && quantidadeAdicionar > 0)
                         {
                             using (var entities = new Entities())
                             {
@@ -1331,10 +1340,11 @@ namespace ProjetoFinal
                         ForeColor = Color.White,
                         FlatStyle = FlatStyle.Flat,
                         Size = new Size(100, 30),
-                        Location = new Point(card.Width - 120, card.Height - 40),
+                        Location = new Point(removeButtonX, removeButtonY),
                         Tag = stock.Id,
                         Anchor = AnchorStyles.Top | AnchorStyles.Right,
-                        Cursor = Cursors.Hand
+                        Cursor = Cursors.Hand,
+                        TabIndex = 2
                     };
 
                     btnRemover.Click += (s, e) =>
@@ -1367,6 +1377,7 @@ namespace ProjetoFinal
                     card.Controls.Add(lblTitulo);
                     card.Controls.Add(lblQuantidade);
                     card.Controls.Add(lblPreco);
+                    card.Controls.Add(txtQuantidadeAdicionar);
                     card.Controls.Add(btnAdicionar);
                     card.Controls.Add(btnRemover);
 
