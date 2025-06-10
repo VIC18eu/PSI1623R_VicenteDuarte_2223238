@@ -1224,9 +1224,8 @@ namespace ProjetoFinal
             {
                 var listaStock = context.Stock
                     .Where(s => s.FarmaciaId == Contas.Farmacia)
-                    .OrderByDescending(s => s.Id)
+                    .OrderBy(s => s.Medicamento.Nome)
                     .ToList();
-
                 if (!string.IsNullOrWhiteSpace(filtro))
                 {
                     filtro = filtro.Trim().ToLower();
