@@ -1226,6 +1226,7 @@ namespace ProjetoFinal
                     .Where(s => s.FarmaciaId == Contas.Farmacia)
                     .OrderBy(s => s.Medicamento.Nome)
                     .ToList();
+
                 if (!string.IsNullOrWhiteSpace(filtro))
                 {
                     filtro = filtro.Trim().ToLower();

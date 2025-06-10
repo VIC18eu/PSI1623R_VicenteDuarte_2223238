@@ -141,6 +141,9 @@ namespace ProjetoFinal
             Contas.Email = string.Empty;
             Contas.Farmacia = -1;
 
+            ConfigManager.Configuracoes.ManterSessaoIniciada = false;
+            ConfigManager.Configuracoes.UtilizadorAtual = string.Empty;
+
             Form1 login = new Form1();
             login.Show();
             this.Close();
