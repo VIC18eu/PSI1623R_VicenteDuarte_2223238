@@ -19,6 +19,7 @@ namespace ProjetoFinal
         {
             InitializeComponent();
             Theme.AplicarTema(this, Theme.TemaAtual);
+            lblCriarConta.Location = new Point((this.ClientSize.Width - lblCriarConta.Width) / 2, lblCriarConta.Location.Y);
         }
 
         private void lblCriarConta_Click(object sender, EventArgs e)

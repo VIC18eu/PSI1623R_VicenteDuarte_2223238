@@ -144,6 +144,8 @@ namespace ProjetoFinal
             ConfigManager.Configuracoes.ManterSessaoIniciada = false;
             ConfigManager.Configuracoes.UtilizadorAtual = string.Empty;
 
+            ConfigManager.Guardar();
+
             Form1 login = new Form1();
             login.Show();
             this.Close();

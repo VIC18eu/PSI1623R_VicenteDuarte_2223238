@@ -30,8 +30,7 @@ namespace ProjetoFinal
             CarregarHome(modoEscuro);
 
 
-            this.header.Resize += (s, e) => AjustarTxtUser();
-            this.FormBorderStyle = FormBorderStyle.SizableToolWindow;
+            this.header.Resize += (s, e) => CarregarHome(modoEscuro);
         }
         private void CarregarTab(object sender, EventArgs e)
         {
@@ -63,7 +62,6 @@ namespace ProjetoFinal
             CarregarSettings();
 
             header.BackColor = Color.FromArgb(25, 118, 210);
-            this.FormBorderStyle = FormBorderStyle.SizableToolWindow;
             txtUser.Font = new Font("Arial", 12, FontStyle.Bold);
             txtUser.ForeColor = Color.White;
             txtUser.BackColor = Color.FromArgb(25, 118, 210);
@@ -77,6 +75,8 @@ namespace ProjetoFinal
             AjustarTxtUser();
             CarregarVendas();
             CarregarReservas();
+            CarregarStock();
+            this.FormBorderStyle = FormBorderStyle.SizableToolWindow;
         }
 
         private void AplicarTemaHome()
@@ -341,17 +341,17 @@ namespace ProjetoFinal
                     {
                         Text = aviso.Titulo,
                         AutoSize = true,
-                        ForeColor = Color.DarkRed,
+                        ForeColor = ConfigManager.Configuracoes.ModoEscuro ? Color.Red : Color.DarkRed,
                         Font = new Font("Segoe UI", 10, FontStyle.Bold),
                         BackColor = Color.Transparent
                     };
 
                     // Descrição
-                    var lblDescricao = new Label()
+                    var lblDescricao = new MaterialLabel()
                     {
                         Text = aviso.Descricao,
                         AutoSize = true,
-                        ForeColor = Color.Black,
+                        ForeColor = ConfigManager.Configuracoes.ModoEscuro ? Color.White : Color.Black,
                         Font = new Font("Segoe UI", 9, FontStyle.Italic),
                         BackColor = Color.Transparent,
                         MaximumSize = new Size(larguraAviso - 10, 0)
@@ -418,7 +418,7 @@ namespace ProjetoFinal
                     {
                         Text = aviso.Titulo,
                         AutoSize = true,
-                        ForeColor = Color.DarkRed,
+                        ForeColor = ConfigManager.Configuracoes.ModoEscuro ? Color.Red : Color.DarkRed,
                         Font = new Font("Segoe UI", 10, FontStyle.Bold),
                         BackColor = Color.Transparent
                     };
@@ -428,7 +428,7 @@ namespace ProjetoFinal
                     {
                         Text = aviso.Descricao,
                         AutoSize = true,
-                        ForeColor = Color.Black,
+                        ForeColor = ConfigManager.Configuracoes.ModoEscuro ? Color.White : Color.Black,
                         Font = new Font("Segoe UI", 9, FontStyle.Italic),
                         BackColor = Color.Transparent,
                         MaximumSize = new Size(260, 0)
