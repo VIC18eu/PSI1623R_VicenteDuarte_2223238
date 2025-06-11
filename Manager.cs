@@ -24,28 +24,29 @@ namespace ProjetoFinal
     {
         public Manager()
         {
-            bool modoEscuro = ConfigManager.Configuracoes.ModoEscuro;
-
             InitializeComponent();
-            sidebar.SelectedIndexChanged += CarregarTab;
             this.Shown += Manager_Shown;
-            AjustarTela(modoEscuro);
+            sidebar.SelectedIndexChanged += CarregarTab;
+            Theme.AplicarTema(this, ConfigManager.Configuracoes.ModoEscuro);
+            AjustarTela();
         }
         private void CarregarTab(object sender, EventArgs e)
         {
-            AjustarTela(ConfigManager.Configuracoes.ModoEscuro);
+            Theme.AplicarTema(this, ConfigManager.Configuracoes.ModoEscuro);
+            AjustarTela();
         }
 
         private void Manager_Shown(object sender, EventArgs e)
         {
-            this.FormBorderStyle = FormBorderStyle.SizableToolWindow;
             CarregarPerfil();
         }
-
-        private void AjustarTela(bool modoEscuro)
+        private void Form_Resize(object sender, EventArgs e)
         {
+            AjustarTela();
+        }
 
-            Theme.AplicarTema(this, modoEscuro);
+        private void AjustarTela()
+        {
             header.BackColor = Color.FromArgb(25, 118, 210);
             txtUser.Font = new Font("Arial", 12, FontStyle.Bold);
             txtUser.ForeColor = Color.White;
@@ -75,7 +76,6 @@ namespace ProjetoFinal
             {
                 CarregarSettings();
             }
-
             this.FormBorderStyle = FormBorderStyle.SizableToolWindow;
         }
 
@@ -98,10 +98,6 @@ namespace ProjetoFinal
             chartVendasMedicamento.ForeColor = corTexto;
         }
 
-        private void Form_Resize(object sender, EventArgs e)
-        {
-            AjustarTela(ConfigManager.Configuracoes.ModoEscuro);
-        }
 
         private void CarregarPerfil()
         {
@@ -155,7 +151,7 @@ namespace ProjetoFinal
             {
                 this.Hide();
             }
-            AjustarTela(ConfigManager.Configuracoes.ModoEscuro);
+            AjustarTela();
         }
 
         private void AjustarHome()
@@ -849,7 +845,7 @@ namespace ProjetoFinal
             Size farmTextSize = TextRenderer.MeasureText(txtFarmacia.Text.Trim(), txtFarmacia.Font);
             int farmWidth = farmTextSize.Width + 10;
             txtFarmacia.Width = farmWidth;
-            txtFarmacia.Height = farmTextSize.Height + 6;
+            txtFarmacia.Height = farmTextSize.Height;
             txtFarmacia.Left = maxRight - farmWidth;
             txtFarmacia.Top = txtUser.Bottom + 2;
             txtFarmacia.TextAlign = ContentAlignment.MiddleLeft;
@@ -892,7 +888,7 @@ namespace ProjetoFinal
 
             ConfigManager.Configuracoes.ModoEscuro = ativado;
             ConfigManager.Guardar();
-            AjustarTela(ativado);
+            AjustarTela();
         }
 
         private void CarregarSettings()
@@ -1079,7 +1075,7 @@ namespace ProjetoFinal
                         int idVenda = (int)((MaterialSkin.Controls.MaterialCard)s).Tag;
                         var detalhesForm = new DetalhesVenda(idVenda);
                         detalhesForm.ShowDialog();
-                        AjustarTela(ConfigManager.Configuracoes.ModoEscuro);
+                        AjustarTela();
                     };
 
 
@@ -1106,7 +1102,7 @@ namespace ProjetoFinal
         {
             AdicionarVenda adicionarVenda = new AdicionarVenda();
             adicionarVenda.ShowDialog();
-            AjustarTela(ConfigManager.Configuracoes.ModoEscuro);
+            AjustarTela();
         }
 
         // <-------- Tab de Reservas -------->
@@ -1190,7 +1186,7 @@ namespace ProjetoFinal
                     {
                         DetalhesReserva detalhesReserva = new DetalhesReserva((int)card.Tag);
                         detalhesReserva.ShowDialog();
-                        AjustarTela(ConfigManager.Configuracoes.ModoEscuro);
+                        AjustarTela();
 
                     };
 
@@ -1202,7 +1198,7 @@ namespace ProjetoFinal
         {
             AdicionarReserva adicionarReserva = new AdicionarReserva();
             adicionarReserva.ShowDialog();
-            AjustarTela(ConfigManager.Configuracoes.ModoEscuro);
+            AjustarTela();
         }
 
         // <-------- Tab de Stock -------->

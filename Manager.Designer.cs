@@ -189,7 +189,7 @@ namespace ProjetoFinal
             this.home.Margin = new System.Windows.Forms.Padding(4);
             this.home.Name = "home";
             this.home.Padding = new System.Windows.Forms.Padding(4);
-            this.home.Size = new System.Drawing.Size(1918, 934);
+            this.home.Size = new System.Drawing.Size(1934, 934);
             this.home.TabIndex = 0;
             this.home.Text = "Inicio";
             this.home.UseVisualStyleBackColor = true;
@@ -231,7 +231,7 @@ namespace ProjetoFinal
             // 
             this.panelResumo.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panelResumo.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelResumo.Location = new System.Drawing.Point(1602, 4);
+            this.panelResumo.Location = new System.Drawing.Point(1618, 4);
             this.panelResumo.Name = "panelResumo";
             this.panelResumo.Size = new System.Drawing.Size(291, 1459);
             this.panelResumo.TabIndex = 2;
@@ -435,7 +435,7 @@ namespace ProjetoFinal
             this.stock.Location = new System.Drawing.Point(4, 47);
             this.stock.Margin = new System.Windows.Forms.Padding(4);
             this.stock.Name = "stock";
-            this.stock.Size = new System.Drawing.Size(1918, 934);
+            this.stock.Size = new System.Drawing.Size(1934, 934);
             this.stock.TabIndex = 2;
             this.stock.Text = "Stock";
             this.stock.UseVisualStyleBackColor = true;
@@ -446,7 +446,7 @@ namespace ProjetoFinal
             this.panelStock.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelStock.Location = new System.Drawing.Point(0, 100);
             this.panelStock.Name = "panelStock";
-            this.panelStock.Size = new System.Drawing.Size(1918, 834);
+            this.panelStock.Size = new System.Drawing.Size(1934, 834);
             this.panelStock.TabIndex = 2;
             // 
             // headerStock
@@ -457,7 +457,7 @@ namespace ProjetoFinal
             this.headerStock.Dock = System.Windows.Forms.DockStyle.Top;
             this.headerStock.Location = new System.Drawing.Point(0, 0);
             this.headerStock.Name = "headerStock";
-            this.headerStock.Size = new System.Drawing.Size(1918, 100);
+            this.headerStock.Size = new System.Drawing.Size(1934, 100);
             this.headerStock.TabIndex = 1;
             // 
             // btnAdicionarStock
@@ -469,7 +469,7 @@ namespace ProjetoFinal
             this.btnAdicionarStock.Depth = 0;
             this.btnAdicionarStock.HighEmphasis = true;
             this.btnAdicionarStock.Icon = null;
-            this.btnAdicionarStock.Location = new System.Drawing.Point(3448, 29);
+            this.btnAdicionarStock.Location = new System.Drawing.Point(3464, 29);
             this.btnAdicionarStock.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnAdicionarStock.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnAdicionarStock.Name = "btnAdicionarStock";
@@ -515,7 +515,7 @@ namespace ProjetoFinal
             this.pesquisaStock.MouseState = MaterialSkin.MouseState.OUT;
             this.pesquisaStock.Multiline = false;
             this.pesquisaStock.Name = "pesquisaStock";
-            this.pesquisaStock.Size = new System.Drawing.Size(1028, 50);
+            this.pesquisaStock.Size = new System.Drawing.Size(1044, 50);
             this.pesquisaStock.TabIndex = 0;
             this.pesquisaStock.Text = "";
             this.pesquisaStock.TrailingIcon = null;
@@ -528,7 +528,7 @@ namespace ProjetoFinal
             this.funcionarios.Location = new System.Drawing.Point(4, 47);
             this.funcionarios.Margin = new System.Windows.Forms.Padding(4);
             this.funcionarios.Name = "funcionarios";
-            this.funcionarios.Size = new System.Drawing.Size(1918, 934);
+            this.funcionarios.Size = new System.Drawing.Size(1934, 934);
             this.funcionarios.TabIndex = 3;
             this.funcionarios.Text = "Funcionários";
             this.funcionarios.UseVisualStyleBackColor = true;
@@ -539,7 +539,7 @@ namespace ProjetoFinal
             this.panelFuncionarios.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelFuncionarios.Location = new System.Drawing.Point(0, 100);
             this.panelFuncionarios.Name = "panelFuncionarios";
-            this.panelFuncionarios.Size = new System.Drawing.Size(1918, 834);
+            this.panelFuncionarios.Size = new System.Drawing.Size(1934, 834);
             this.panelFuncionarios.TabIndex = 2;
             // 
             // headerFuncionarios
@@ -550,7 +550,7 @@ namespace ProjetoFinal
             this.headerFuncionarios.Dock = System.Windows.Forms.DockStyle.Top;
             this.headerFuncionarios.Location = new System.Drawing.Point(0, 0);
             this.headerFuncionarios.Name = "headerFuncionarios";
-            this.headerFuncionarios.Size = new System.Drawing.Size(1918, 100);
+            this.headerFuncionarios.Size = new System.Drawing.Size(1934, 100);
             this.headerFuncionarios.TabIndex = 1;
             // 
             // btnAdicionarFuncionario
@@ -562,7 +562,7 @@ namespace ProjetoFinal
             this.btnAdicionarFuncionario.Depth = 0;
             this.btnAdicionarFuncionario.HighEmphasis = true;
             this.btnAdicionarFuncionario.Icon = null;
-            this.btnAdicionarFuncionario.Location = new System.Drawing.Point(3448, 29);
+            this.btnAdicionarFuncionario.Location = new System.Drawing.Point(3464, 29);
             this.btnAdicionarFuncionario.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnAdicionarFuncionario.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnAdicionarFuncionario.Name = "btnAdicionarFuncionario";
@@ -608,7 +608,7 @@ namespace ProjetoFinal
             this.pesquisaFuncionario.MouseState = MaterialSkin.MouseState.OUT;
             this.pesquisaFuncionario.Multiline = false;
             this.pesquisaFuncionario.Name = "pesquisaFuncionario";
-            this.pesquisaFuncionario.Size = new System.Drawing.Size(1028, 50);
+            this.pesquisaFuncionario.Size = new System.Drawing.Size(1044, 50);
             this.pesquisaFuncionario.TabIndex = 0;
             this.pesquisaFuncionario.Text = "";
             this.pesquisaFuncionario.TrailingIcon = null;
@@ -623,7 +623,7 @@ namespace ProjetoFinal
             this.settings.ImageKey = "icons8-settings-48.png";
             this.settings.Location = new System.Drawing.Point(4, 47);
             this.settings.Name = "settings";
-            this.settings.Size = new System.Drawing.Size(1918, 934);
+            this.settings.Size = new System.Drawing.Size(1934, 934);
             this.settings.TabIndex = 4;
             this.settings.Text = "Definições";
             this.settings.UseVisualStyleBackColor = true;
@@ -637,7 +637,7 @@ namespace ProjetoFinal
             this.groupAccount.Margin = new System.Windows.Forms.Padding(0, 30, 0, 0);
             this.groupAccount.Name = "groupAccount";
             this.groupAccount.Padding = new System.Windows.Forms.Padding(10);
-            this.groupAccount.Size = new System.Drawing.Size(1918, 130);
+            this.groupAccount.Size = new System.Drawing.Size(1934, 130);
             this.groupAccount.TabIndex = 0;
             this.groupAccount.TabStop = false;
             this.groupAccount.Text = "Conta";
@@ -666,7 +666,7 @@ namespace ProjetoFinal
             this.groupSystem.Location = new System.Drawing.Point(0, 180);
             this.groupSystem.Name = "groupSystem";
             this.groupSystem.Padding = new System.Windows.Forms.Padding(10);
-            this.groupSystem.Size = new System.Drawing.Size(1918, 260);
+            this.groupSystem.Size = new System.Drawing.Size(1934, 260);
             this.groupSystem.TabIndex = 1;
             this.groupSystem.TabStop = false;
             this.groupSystem.Text = "Sistema";
@@ -735,7 +735,7 @@ namespace ProjetoFinal
             this.groupAppearance.Location = new System.Drawing.Point(0, 0);
             this.groupAppearance.Name = "groupAppearance";
             this.groupAppearance.Padding = new System.Windows.Forms.Padding(10);
-            this.groupAppearance.Size = new System.Drawing.Size(1918, 180);
+            this.groupAppearance.Size = new System.Drawing.Size(1934, 180);
             this.groupAppearance.TabIndex = 2;
             this.groupAppearance.TabStop = false;
             this.groupAppearance.Text = "Aparência";
@@ -816,12 +816,13 @@ namespace ProjetoFinal
             this.DrawerShowIconsWhenHidden = true;
             this.DrawerTabControl = this.sidebar;
             this.DrawerWidth = 250;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(1360, 554);
             this.Name = "Manager";
             this.Padding = new System.Windows.Forms.Padding(0, 30, 0, 0);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Resize += new System.EventHandler(this.Form_Resize);
             this.header.ResumeLayout(false);
             this.header.PerformLayout();
