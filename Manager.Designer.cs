@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using LiveCharts.WinForms;
 
 namespace ProjetoFinal
 {

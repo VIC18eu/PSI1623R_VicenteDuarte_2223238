@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LiveCharts;
+using LiveCharts.Defaults;
 using LiveCharts.Wpf;
 using System.Globalization;
 using System.Data.Entity;
@@ -37,6 +38,7 @@ namespace ProjetoFinal
 
         private void Manager_Shown(object sender, EventArgs e)
         {
+            this.FormBorderStyle = FormBorderStyle.SizableToolWindow;
             CarregarPerfil();
         }
 
@@ -559,6 +561,8 @@ namespace ProjetoFinal
         {
             int farmaciaId = Contas.Farmacia; // ID da farmácia atual
 
+            System.Windows.Media.Brush corLegendas =  ConfigManager.Configuracoes.ModoEscuro ? System.Windows.Media.Brushes.WhiteSmoke : System.Windows.Media.Brushes.Black;
+
             using (var context = new Entities())
             {
                 var hoje = DateTime.Today;
@@ -701,6 +705,7 @@ namespace ProjetoFinal
                     });
 
                     chartVendas.LegendLocation = LegendLocation.Top;
+                    chartVendas.DefaultLegend.Foreground = corLegendas;
 
                     // ===== Gráfico Vendas por Medicamento - barras =====
                     var vendasPorMedicamento = context.VendaProduto
@@ -748,6 +753,7 @@ namespace ProjetoFinal
                     });
 
                     chartVendasMedicamento.LegendLocation = LegendLocation.Top;
+                    chartVendasMedicamento.DefaultLegend.Foreground = corLegendas;
 
                     if (!home.Controls.Contains(chartVendasMedicamento))
                         home.Controls.Add(chartVendasMedicamento);
@@ -817,6 +823,7 @@ namespace ProjetoFinal
                     }
 
                     chartPieValorMedicamentos.LegendLocation = LegendLocation.Right;
+                    chartPieValorMedicamentos.DefaultLegend.Foreground = corLegendas;
 
                     if (!home.Controls.Contains(chartPieValorMedicamentos))
                         home.Controls.Add(chartPieValorMedicamentos);
