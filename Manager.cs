@@ -73,6 +73,10 @@ namespace ProjetoFinal
                 CarregarStock();
                 CarregarMedicamentos();
             }
+            if (sidebar.SelectedTab == funcionarios)
+            {
+                CarregarFuncionarios();
+            }
             if (sidebar.SelectedTab == settings)
             {
                 CarregarSettings();
@@ -1488,6 +1492,153 @@ namespace ProjetoFinal
         }
 
         // <-------- Tab de Funcionários -------->
+
+        private void CarregarFuncionarios(string filtro = "")
+        {
+            panelFuncionarios.Controls.Clear();
+
+            bool modoEscuro = ConfigManager.Configuracoes.ModoEscuro;
+
+            Color corFundoCard = modoEscuro ? Color.FromArgb(60, 60, 60) : Color.White;
+            Color corTextoPrincipal = modoEscuro ? Color.White : Color.FromArgb(30, 30, 30);
+            Color corTextoSecundario = modoEscuro ? Color.LightGray : Color.Gray;
+
+            int larguraCard = 260;
+            int alturaCard = 240;
+            int espacamento = 20;
+
+            int cardsPorLinha = Math.Max(1, (panelFuncionarios.Width - espacamento) / (larguraCard + espacamento));
+
+            using (var context = new Entities())
+            {
+                var funcionarios = context.Funcionario
+                    .Include(f => f.Utilizador)
+                    .ToList();
+
+                if (!string.IsNullOrWhiteSpace(filtro))
+                {
+                    filtro = filtro.Trim().ToLower();
+                    funcionarios = funcionarios.Where(f =>
+                        f.EmailUtilizador.ToLower().Contains(filtro) ||
+                        (f.Utilizador?.Nome?.ToLower().Contains(filtro) ?? false) ||
+                        (f.Categoria?.ToLower().Contains(filtro) ?? false)
+                    ).ToList();
+                }
+
+                for (int i = 0; i < funcionarios.Count; i++)
+                {
+                    var funcionario = funcionarios[i];
+
+                    var card = new MaterialCard
+                    {
+                        Width = larguraCard,
+                        Height = alturaCard,
+                        BackColor = corFundoCard,
+                        Location = new Point(
+                            espacamento + (i % cardsPorLinha) * (larguraCard + espacamento),
+                            espacamento + (i / cardsPorLinha) * (alturaCard + espacamento)
+                        ),
+                        Padding = new Padding(10),
+                        Tag = funcionario.EmailUtilizador
+                    };
+
+                    // Imagem do funcionário
+                    PictureBox pictureBox = new PictureBox
+                    {
+                        Size = new Size(60, 60),
+                        Location = new Point(5, 5),
+                        SizeMode = PictureBoxSizeMode.Zoom,
+                        Image = funcionario.Utilizador?.Imagem != null
+                            ? Image.FromStream(new MemoryStream(Convert.FromBase64String(funcionario.Utilizador.Imagem)))
+                            : Properties.Resources.pfpDefault
+                    };
+                    card.Controls.Add(pictureBox);
+
+                    // Nome
+                    Label lblNome = new Label
+                    {
+                        Text = funcionario.Utilizador?.Nome ?? funcionario.EmailUtilizador,
+                        Font = new Font("Segoe UI Semibold", 11, FontStyle.Bold),
+                        ForeColor = corTextoPrincipal,
+                        Location = new Point(75, 10),
+                        AutoSize = true
+                    };
+                    card.Controls.Add(lblNome);
+
+                    // Email
+                    Label lblEmail = new Label
+                    {
+                        Text = funcionario.EmailUtilizador,
+                        Font = new Font("Segoe UI", 9),
+                        ForeColor = corTextoSecundario,
+                        Location = new Point(75, 35),
+                        AutoSize = true,
+                        AutoEllipsis = true
+                    };
+                    card.Controls.Add(lblEmail);
+
+                    // Categoria
+                    Label lblCategoria = new Label
+                    {
+                        Text = "Categoria: " + (funcionario.Categoria ?? "Sem categoria"),
+                        Font = new Font("Segoe UI", 9, FontStyle.Italic),
+                        ForeColor = corTextoSecundario,
+                        Location = new Point(5, 70),
+                        AutoSize = true,
+                        AutoEllipsis = true
+                    };
+                    card.Controls.Add(lblCategoria);
+
+                    // Botão "Alterar Categoria"
+                    MaterialButton btnEditar = new MaterialButton
+                    {
+                        Text = "🖉 Categoria",
+                        Size = new Size(180, 30),
+                        Location = new Point(10, 185),
+                        HighEmphasis = true,
+                        Tag = funcionario,
+                        Cursor = Cursors.Hand
+                    };
+                    btnEditar.Click += (s, e) =>
+                    {
+                        
+                    };
+                    card.Controls.Add(btnEditar);
+
+                    MaterialButton btnRemover = new MaterialButton
+                    {
+                        Text = "Remover",
+                        Size = new Size(180, 30),
+                        Location = new Point(155, 185),
+                        HighEmphasis = false,
+                        Tag = funcionario,
+                        Cursor = Cursors.Hand
+                    };
+                    btnRemover.Click += (s, e) =>
+                    {
+                        var f = (Funcionario)((MaterialButton)s).Tag;
+                        var confirm = MessageBox.Show($"Deseja remover {f.EmailUtilizador}?", "Confirmar Remoção", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                        if (confirm == DialogResult.Yes)
+                        {
+                            using (var ctx = new Entities())
+                            {
+                                var func = ctx.Funcionario.Find(f.EmailUtilizador, f.FarmaciaId);
+                                if (func != null)
+                                {
+                                    ctx.Funcionario.Remove(func);
+                                    ctx.SaveChanges();
+                                    CarregarFuncionarios(filtro);
+                                }
+                            }
+                        }
+                    };
+                    card.Controls.Add(btnRemover);
+
+                    panelFuncionarios.Controls.Add(card);
+                }
+            }
+        }
+
 
         private void btnAdicionarFuncionario_Click(object sender, EventArgs e)
         {
