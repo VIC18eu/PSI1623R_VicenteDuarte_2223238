@@ -1601,8 +1601,27 @@ namespace ProjetoFinal
                     };
                     btnEditar.Click += (s, e) =>
                     {
-                        
+                        var f = (Funcionario)((MaterialButton)s).Tag;
+
+                        using (var form = new EditarCategoriaForm(f.EmailUtilizador, f.FarmaciaId, f.Categoria))
+                        {
+                            if (form.ShowDialog() == DialogResult.OK)
+                            {
+                                using (var ctx = new Entities())
+                                {
+                                    var funcionarioAtualizar = ctx.Funcionario.Find(f.EmailUtilizador, f.FarmaciaId);
+                                    if (funcionarioAtualizar != null)
+                                    {
+                                        funcionarioAtualizar.Categoria = form.NovaCategoria;
+                                        ctx.SaveChanges();
+                                    }
+                                }
+
+                            }
+                            AjustarTela();
+                        }
                     };
+
                     card.Controls.Add(btnEditar);
 
                     MaterialButton btnRemover = new MaterialButton

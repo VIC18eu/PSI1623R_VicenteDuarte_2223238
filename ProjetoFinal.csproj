@@ -120,6 +120,12 @@
     <Compile Include="DetalhesVenda.Designer.cs">
       <DependentUpon>DetalhesVenda.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditarCategoriaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditarCategoriaForm.Designer.cs">
+      <DependentUpon>EditarCategoriaForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Farmacia.cs">
       <DependentUpon>MyHealthModel.tt</DependentUpon>
     </Compile>
@@ -220,6 +226,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DetalhesVenda.resx">
       <DependentUpon>DetalhesVenda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditarCategoriaForm.resx">
+      <DependentUpon>EditarCategoriaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Farmacias.resx">
       <DependentUpon>Farmacias.cs</DependentUpon>
