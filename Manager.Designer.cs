@@ -85,6 +85,8 @@ namespace ProjetoFinal
             this.fundo = new System.Windows.Forms.Panel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.cmbMedicamentos = new MaterialSkin.Controls.MaterialComboBox();
+            this.btnAdicionarMedicamento = new MaterialSkin.Controls.MaterialButton();
             this.header.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ftPerfil)).BeginInit();
             this.sidebar.SuspendLayout();
@@ -451,6 +453,8 @@ namespace ProjetoFinal
             // 
             // headerStock
             // 
+            this.headerStock.Controls.Add(this.btnAdicionarMedicamento);
+            this.headerStock.Controls.Add(this.cmbMedicamentos);
             this.headerStock.Controls.Add(this.btnAdicionarStock);
             this.headerStock.Controls.Add(this.btnPesquisarStock);
             this.headerStock.Controls.Add(this.pesquisaStock);
@@ -805,6 +809,50 @@ namespace ProjetoFinal
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             this.contextMenuStrip1.Click += new System.EventHandler(this.txtFarmacia_Click);
             // 
+            // cmbMedicamentos
+            // 
+            this.cmbMedicamentos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbMedicamentos.AutoResize = false;
+            this.cmbMedicamentos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cmbMedicamentos.Depth = 0;
+            this.cmbMedicamentos.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cmbMedicamentos.DropDownHeight = 174;
+            this.cmbMedicamentos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMedicamentos.DropDownWidth = 121;
+            this.cmbMedicamentos.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.cmbMedicamentos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cmbMedicamentos.FormattingEnabled = true;
+            this.cmbMedicamentos.IntegralHeight = false;
+            this.cmbMedicamentos.ItemHeight = 43;
+            this.cmbMedicamentos.Location = new System.Drawing.Point(1445, 29);
+            this.cmbMedicamentos.MaxDropDownItems = 4;
+            this.cmbMedicamentos.MouseState = MaterialSkin.MouseState.OUT;
+            this.cmbMedicamentos.Name = "cmbMedicamentos";
+            this.cmbMedicamentos.Size = new System.Drawing.Size(247, 49);
+            this.cmbMedicamentos.StartIndex = 0;
+            this.cmbMedicamentos.TabIndex = 5;
+            // 
+            // btnAdicionarMedicamento
+            // 
+            this.btnAdicionarMedicamento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdicionarMedicamento.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnAdicionarMedicamento.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnAdicionarMedicamento.Depth = 0;
+            this.btnAdicionarMedicamento.HighEmphasis = true;
+            this.btnAdicionarMedicamento.Icon = null;
+            this.btnAdicionarMedicamento.Location = new System.Drawing.Point(1785, 36);
+            this.btnAdicionarMedicamento.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnAdicionarMedicamento.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnAdicionarMedicamento.Name = "btnAdicionarMedicamento";
+            this.btnAdicionarMedicamento.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnAdicionarMedicamento.Size = new System.Drawing.Size(98, 36);
+            this.btnAdicionarMedicamento.TabIndex = 6;
+            this.btnAdicionarMedicamento.Text = "Adicionar";
+            this.btnAdicionarMedicamento.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnAdicionarMedicamento.UseAccentColor = false;
+            this.btnAdicionarMedicamento.UseVisualStyleBackColor = true;
+            this.btnAdicionarMedicamento.Click += new System.EventHandler(this.btnAdicionarMedicamento_Click);
+            // 
             // Manager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -907,5 +955,7 @@ namespace ProjetoFinal
         private MaterialSkin.Controls.MaterialButton btnPesquisarFuncionarios;
         private MaterialSkin.Controls.MaterialTextBox pesquisaFuncionario;
         private MaterialSkin.Controls.MaterialButton btnAdicionarReserva;
+        private MaterialSkin.Controls.MaterialButton btnAdicionarMedicamento;
+        private MaterialSkin.Controls.MaterialComboBox cmbMedicamentos;
     }
 }

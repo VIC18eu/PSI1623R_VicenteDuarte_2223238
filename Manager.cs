@@ -71,6 +71,7 @@ namespace ProjetoFinal
             if (sidebar.SelectedTab == stock)
             {
                 CarregarStock();
+                CarregarMedicamentos();
             }
             if (sidebar.SelectedTab == settings)
             {
@@ -1373,10 +1374,62 @@ namespace ProjetoFinal
             }
         }
 
-        private void btnAdicionarStock_Click(object sender, EventArgs e)
+        private void btnAdicionarMedicamento_Click(object sender, EventArgs e)
         {
-            // Ação ao clicar em "Adicionar" no stock
+            if (cmbMedicamentos.SelectedItem == null)
+            {
+                MessageBox.Show("Selecione um medicamento para adicionar ao stock.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Obtem o ID do medicamento selecionado
+            int medicamentoId = (int)cmbMedicamentos.SelectedValue;
+
+            using (var context = new Entities())
+            {
+                // Cria um novo registo de Stock
+                var novoStock = new Stock
+                {
+                    MedicamentoId = medicamentoId,
+                    FarmaciaId = Contas.Farmacia,
+                    Quantidade = 0, // ou outro valor inicial padrão
+                    Preco = (decimal)1.0,
+                };
+
+                context.Stock.Add(novoStock);
+                context.SaveChanges();
+            }
+
+            MessageBox.Show("Medicamento adicionado ao stock com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            // Atualiza a ComboBox para remover o medicamento que acabou de ser adicionado
+            CarregarMedicamentos();
+
+            // (Opcional) Atualiza a tabela de stock na UI, se tiver uma
+            CarregarStock(); // Só se tiveres essa função implementada
         }
+
+
+        private void CarregarMedicamentos()
+        {
+            using (var context = new Entities())
+            {
+                // Obtém IDs dos medicamentos que já estão no Stock
+                var idsNoStock = context.Stock.Select(s => s.MedicamentoId).ToList();
+
+                // Seleciona medicamentos que NÃO estão no stock
+                var medicamentosNaoAdicionados = context.Medicamento
+                    .Where(m => !idsNoStock.Contains(m.Id))
+                    .OrderBy(m => m.Nome)
+                    .ToList();
+
+                // Liga os dados à ComboBox
+                cmbMedicamentos.DataSource = medicamentosNaoAdicionados;
+                cmbMedicamentos.DisplayMember = "Nome";   // Mostra o nome do medicamento
+                cmbMedicamentos.ValueMember = "Id";       // Guarda o Id como valor
+            }
+        }
+
 
         private void btnPesquisarStock_Click(object sender, EventArgs e)
         {
@@ -1395,5 +1448,6 @@ namespace ProjetoFinal
             // Ação ao clicar em "Pesquisar" nos funcionários
         }
 
+        
     }
 }
