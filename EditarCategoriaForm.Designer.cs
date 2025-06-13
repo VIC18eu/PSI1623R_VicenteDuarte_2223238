@@ -103,7 +103,6 @@ namespace ProjetoFinal
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             this.btnConfirmar.Cursor = Cursors.Hand;
-
             // 
             // btnCancelar
             // 

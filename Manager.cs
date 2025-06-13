@@ -1603,7 +1603,7 @@ namespace ProjetoFinal
                     {
                         var f = (Funcionario)((MaterialButton)s).Tag;
 
-                        using (var form = new EditarCategoriaForm(f.EmailUtilizador, f.FarmaciaId, f.Categoria))
+                        using (var form = new EditarCategoriaForm(f.Categoria))
                         {
                             if (form.ShowDialog() == DialogResult.OK)
                             {

@@ -13,17 +13,12 @@ namespace ProjetoFinal
 {
     public partial class EditarCategoriaForm : MaterialForm
     {
-        private string emailFuncionario;
-        private int farmaciaId;
-
         public string NovaCategoria { get; private set; }
 
-        public EditarCategoriaForm(string email, int farmaciaId, string categoriaAtual)
+        public EditarCategoriaForm(string categoriaAtual)
         {
             InitializeComponent();
             Theme.AplicarTema(this, ConfigManager.Configuracoes.ModoEscuro);
-            this.emailFuncionario = email;
-            this.farmaciaId = farmaciaId;
             txtCategoria.Text = categoriaAtual;
         }
 
