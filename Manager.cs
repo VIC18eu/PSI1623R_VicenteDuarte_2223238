@@ -1281,7 +1281,6 @@ namespace ProjetoFinal
                         Size = new Size(80, 30),
                         Hint = "Qtd.",
                         MaxLength = 5,
-                        TabIndex = 0,
                         Anchor = AnchorStyles.Top | AnchorStyles.Right
                     };
 
@@ -1292,7 +1291,6 @@ namespace ProjetoFinal
                         Size = new Size(50, 30),
                         Tag = stock.Id,
                         UseAccentColor = true,
-                        TabIndex = 1,
                         Anchor = AnchorStyles.Top | AnchorStyles.Right
                     };
 
@@ -1331,7 +1329,6 @@ namespace ProjetoFinal
                         Tag = stock.Id,
                         Anchor = AnchorStyles.Top | AnchorStyles.Right,
                         Cursor = Cursors.Hand,
-                        TabIndex = 2
                     };
 
                     btnRemover.Click += (s, e) =>
@@ -1361,12 +1358,55 @@ namespace ProjetoFinal
                         }
                     };
 
+                    var btnEditarPreco = new Button
+                    {
+                        Text = "🖉",
+                        Tag = stock.Id,
+                        Location = new Point(lblPreco.Right + 5, lblPreco.Top - 5),
+                        Size = new Size(35, 35),
+                        FlatStyle = FlatStyle.Flat,
+                        BackColor = Color.Transparent,
+                        ForeColor = Color.DimGray,
+                        Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                        Cursor = Cursors.Hand,
+                        TabStop = false
+                    };
+
+                    btnEditarPreco.FlatAppearance.BorderSize = 0;
+                    btnEditarPreco.FlatAppearance.MouseDownBackColor = Color.Transparent;
+                    btnEditarPreco.FlatAppearance.MouseOverBackColor = Color.Transparent;
+
+
+                    btnEditarPreco.Click += (s, e) =>
+                    {
+                        int idStock = (int)((Button)s).Tag;
+
+                        using (var entities = new Entities())
+                        {
+                            var stockEditar = entities.Stock.FirstOrDefault(m => m.Id == idStock);
+                            if (stockEditar != null)
+                            {
+                                using (var formEditar = new FormEditarPreco(stockEditar.Preco))
+                                {
+                                    if (formEditar.ShowDialog() == DialogResult.OK)
+                                    {
+                                        stockEditar.Preco = formEditar.NovoPreco;
+                                        entities.SaveChanges();
+                                    }
+                                    AjustarTela();
+                                }
+                            }
+                        }
+                    };
+
+
                     card.Controls.Add(lblTitulo);
                     card.Controls.Add(lblQuantidade);
                     card.Controls.Add(lblPreco);
                     card.Controls.Add(txtQuantidadeAdicionar);
                     card.Controls.Add(btnAdicionar);
                     card.Controls.Add(btnRemover);
+                    card.Controls.Add(btnEditarPreco);
 
                     panelStock.Controls.Add(card);
                     yOffset += card.Height + 10;
