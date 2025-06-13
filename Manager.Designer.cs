@@ -409,6 +409,8 @@ namespace ProjetoFinal
             this.btnPesquisarReservas.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnPesquisarReservas.UseAccentColor = false;
             this.btnPesquisarReservas.UseVisualStyleBackColor = true;
+            this.btnPesquisarReservas.Click += new EventHandler(this.btnPesquisaReserva_Click);
+
             // 
             // pesquisaReserva
             // 

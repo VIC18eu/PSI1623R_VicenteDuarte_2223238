@@ -1108,7 +1108,7 @@ namespace ProjetoFinal
 
         // <-------- Tab de Reservas -------->
 
-        private void CarregarReservas()
+        private void CarregarReservas(string filtro = "")
         {
             panelReservas.Controls.Clear();
 
@@ -1127,13 +1127,25 @@ namespace ProjetoFinal
 
             using (var context = new Entities())
             {
-                var reservas = context.Reserva.OrderBy(r => r.DataReserva).ToList();
+                var reservas = context.Reserva.ToList();
 
-                for (int i = 0; i < reservas.Count; i++)
+                if (!string.IsNullOrWhiteSpace(filtro))
                 {
-                    var reserva = reservas[i];
+                    filtro = filtro.Trim().ToLower();
+                    reservas = reservas.Where(r =>
+                        r.NomeCliente?.ToLower().Contains(filtro) == true ||
+                        r.Estado?.ToLower().Contains(filtro) == true ||
+                        (r.DataReserva.HasValue && r.DataReserva.Value.ToString("dd/MM/yyyy HH:mm").ToLower().Contains(filtro))
+                    ).ToList();
+                }
 
-                    // Painel card principal
+                var listaFiltrada = reservas.OrderBy(r => r.DataReserva).ToList();
+
+
+                for (int i = 0; i < listaFiltrada.Count; i++)
+                {
+                    var reserva = listaFiltrada[i];
+
                     var card = new MaterialCard
                     {
                         Width = larguraCard,
@@ -1148,7 +1160,6 @@ namespace ProjetoFinal
                         Tag = reserva.Id
                     };
 
-                    // Nome cliente
                     Label lblNome = new Label
                     {
                         Text = reserva.NomeCliente,
@@ -1159,7 +1170,6 @@ namespace ProjetoFinal
                     };
                     card.Controls.Add(lblNome);
 
-                    // Data reserva
                     Label lblData = new Label
                     {
                         Text = reserva.DataReserva?.ToString("dd/MM/yyyy HH:mm") ?? "Sem data",
@@ -1170,12 +1180,12 @@ namespace ProjetoFinal
                     };
                     card.Controls.Add(lblData);
 
-                    // Estado reserva
                     Label lblEstado = new Label
                     {
-                        Text = "Estado: " + (reserva.Estado),
+                        Text = "Estado: " + reserva.Estado,
                         Font = new Font("Segoe UI", 9, FontStyle.Italic),
-                        ForeColor = reserva.Estado == "Cancelado" ? Color.Red : reserva.Estado == "Confirmado" ? Color.DarkSeaGreen : Color.DarkOrange,
+                        ForeColor = reserva.Estado == "Cancelado" ? Color.Red :
+                                    reserva.Estado == "Confirmado" ? Color.DarkSeaGreen : Color.DarkOrange,
                         Location = new Point(5, 65),
                         AutoSize = true,
                     };
@@ -1188,9 +1198,7 @@ namespace ProjetoFinal
                         DetalhesReserva detalhesReserva = new DetalhesReserva((int)card.Tag);
                         detalhesReserva.ShowDialog();
                         AjustarTela();
-
                     };
-
                 }
             }
         }
@@ -1200,6 +1208,12 @@ namespace ProjetoFinal
             AdicionarReserva adicionarReserva = new AdicionarReserva();
             adicionarReserva.ShowDialog();
             AjustarTela();
+        }
+
+        private void btnPesquisaReserva_Click(object sender, EventArgs e)
+        {
+            string termo = pesquisaReserva.Text;
+            CarregarReservas(termo);
         }
 
         // <-------- Tab de Stock -------->
