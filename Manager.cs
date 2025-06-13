@@ -1427,12 +1427,11 @@ namespace ProjetoFinal
 
             using (var context = new Entities())
             {
-                // Cria um novo registo de Stock
                 var novoStock = new Stock
                 {
                     MedicamentoId = medicamentoId,
                     FarmaciaId = Contas.Farmacia,
-                    Quantidade = 0, // ou outro valor inicial padrão
+                    Quantidade = 0,
                     Preco = (decimal)1.0,
                 };
 
