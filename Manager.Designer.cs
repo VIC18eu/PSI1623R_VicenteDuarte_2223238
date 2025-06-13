@@ -504,6 +504,7 @@ namespace ProjetoFinal
             this.btnPesquisarStock.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnPesquisarStock.UseAccentColor = false;
             this.btnPesquisarStock.UseVisualStyleBackColor = true;
+            this.btnPesquisarStock.Click += new EventHandler(this.btnPesquisarStock_Click);
             // 
             // pesquisaStock
             // 

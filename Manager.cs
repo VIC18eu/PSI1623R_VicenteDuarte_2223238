@@ -1441,11 +1441,8 @@ namespace ProjetoFinal
 
             MessageBox.Show("Medicamento adicionado ao stock com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            // Atualiza a ComboBox para remover o medicamento que acabou de ser adicionado
             CarregarMedicamentos();
-
-            // (Opcional) Atualiza a tabela de stock na UI, se tiver uma
-            CarregarStock(); // Só se tiveres essa função implementada
+            CarregarStock();
         }
 
 
@@ -1472,7 +1469,8 @@ namespace ProjetoFinal
 
         private void btnPesquisarStock_Click(object sender, EventArgs e)
         {
-            // Ação ao clicar em "Pesquisar" no stock
+            string termo = pesquisaStock.Text;
+            CarregarStock(termo);
         }
 
         // <-------- Tab de Funcionários -------->
