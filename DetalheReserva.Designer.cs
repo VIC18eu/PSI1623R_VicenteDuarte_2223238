@@ -54,7 +54,7 @@ namespace ProjetoFinal
             this.lblId.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.lblId.Location = new System.Drawing.Point(23, 103);
             this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(75, 18);
+            this.lblId.Size = new System.Drawing.Size(102, 25);
             this.lblId.TabIndex = 0;
             this.lblId.Text = "ID: (vazio)";
             // 
@@ -72,7 +72,7 @@ namespace ProjetoFinal
             // 
             this.lblData.AutoSize = true;
             this.lblData.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblData.Location = new System.Drawing.Point(331, 113);
+            this.lblData.Location = new System.Drawing.Point(309, 113);
             this.lblData.Name = "lblData";
             this.lblData.Size = new System.Drawing.Size(92, 18);
             this.lblData.TabIndex = 3;
