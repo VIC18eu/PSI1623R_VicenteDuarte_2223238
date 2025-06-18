@@ -87,6 +87,12 @@
     <Compile Include="AdicionarFarmacia.Designer.cs">
       <DependentUpon>AdicionarFarmacia.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdicionarFuncionario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdicionarFuncionario.Designer.cs">
+      <DependentUpon>AdicionarFuncionario.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdicionarReserva.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,6 +217,9 @@
     </Compile>
     <EmbeddedResource Include="AdicionarFarmacia.resx">
       <DependentUpon>AdicionarFarmacia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdicionarFuncionario.resx">
+      <DependentUpon>AdicionarFuncionario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdicionarReserva.resx">
       <DependentUpon>AdicionarReserva.cs</DependentUpon>

@@ -103,7 +103,6 @@ namespace ProjetoFinal
             chartVendasMedicamento.ForeColor = corTexto;
         }
 
-
         private void CarregarPerfil()
         {
             using (var context = new Entities())
@@ -128,7 +127,7 @@ namespace ProjetoFinal
                             }
                         }
                         catch
-                        {
+                        {   
                             // Em caso de erro ao converter imagem, usar imagem padrão
                             ftPerfil.Image = Properties.Resources.pfpDefault;
                             ftPerfil.SizeMode = PictureBoxSizeMode.Zoom;
@@ -1661,12 +1660,16 @@ namespace ProjetoFinal
 
         private void btnAdicionarFuncionario_Click(object sender, EventArgs e)
         {
-            // Ação ao clicar em "Adicionar" nos funcionários
+            AdicionarFuncionario adicionarFuncionario = new AdicionarFuncionario();
+            adicionarFuncionario.ShowDialog();
+
+            AjustarTela();
         }
 
         private void btnPesquisarFuncionarios_Click(object sender, EventArgs e)
         {
-            // Ação ao clicar em "Pesquisar" nos funcionários
+            string filtro = pesquisaFuncionario.Text;
+            CarregarFuncionarios(filtro);
         }
 
         
