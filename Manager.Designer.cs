@@ -83,6 +83,13 @@ namespace ProjetoFinal
             this.groupAppearance = new System.Windows.Forms.GroupBox();
             this.switchDarkMode = new MaterialSkin.Controls.MaterialSwitch();
             this.comboFontSize = new MaterialSkin.Controls.MaterialComboBox();
+            this.groupPharmacy = new System.Windows.Forms.GroupBox();
+            this.textPharmacyName = new MaterialSkin.Controls.MaterialTextBox();
+            this.textPharmacyEmail = new MaterialSkin.Controls.MaterialTextBox();
+            this.textPharmacyPhone = new MaterialSkin.Controls.MaterialTextBox();
+            this.textPharmacyAddress = new MaterialSkin.Controls.MaterialTextBox();
+            this.btnSavePharmacy = new MaterialSkin.Controls.MaterialButton();
+            this.btnDeletePharmacy = new MaterialSkin.Controls.MaterialButton();
             this.sideBarImages = new System.Windows.Forms.ImageList(this.components);
             this.fundo = new System.Windows.Forms.Panel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -104,6 +111,7 @@ namespace ProjetoFinal
             this.groupAccount.SuspendLayout();
             this.groupSystem.SuspendLayout();
             this.groupAppearance.SuspendLayout();
+            this.groupPharmacy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -485,7 +493,7 @@ namespace ProjetoFinal
             this.btnAdicionarMedicamento.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnAdicionarMedicamento.UseAccentColor = false;
             this.btnAdicionarMedicamento.UseVisualStyleBackColor = true;
-            this.btnAdicionarMedicamento.Click += new System.EventHandler(this.btnAdicionarFuncionario_Click);
+            this.btnAdicionarMedicamento.Click += new System.EventHandler(this.btnAdicionarMedicamento_Click);
             // 
             // cmbMedicamentos
             // 
@@ -645,7 +653,6 @@ namespace ProjetoFinal
             this.btnPesquisarFuncionarios.UseAccentColor = false;
             this.btnPesquisarFuncionarios.UseVisualStyleBackColor = true;
             this.btnPesquisarFuncionarios.Click += new System.EventHandler(this.btnPesquisarFuncionarios_Click);
-
             // 
             // pesquisaFuncionario
             // 
@@ -672,6 +679,7 @@ namespace ProjetoFinal
             this.settings.Controls.Add(this.groupAccount);
             this.settings.Controls.Add(this.groupSystem);
             this.settings.Controls.Add(this.groupAppearance);
+            this.settings.Controls.Add(this.groupPharmacy);
             this.settings.Dock = System.Windows.Forms.DockStyle.Fill;
             this.settings.ImageKey = "icons8-settings-48.png";
             this.settings.Location = new System.Drawing.Point(4, 47);
@@ -686,7 +694,7 @@ namespace ProjetoFinal
             this.groupAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.groupAccount.Controls.Add(this.switchKeepSession);
             this.groupAccount.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupAccount.Location = new System.Drawing.Point(0, 440);
+            this.groupAccount.Location = new System.Drawing.Point(0, 726);
             this.groupAccount.Margin = new System.Windows.Forms.Padding(0, 30, 0, 0);
             this.groupAccount.Name = "groupAccount";
             this.groupAccount.Padding = new System.Windows.Forms.Padding(10);
@@ -716,7 +724,7 @@ namespace ProjetoFinal
             this.groupSystem.Controls.Add(this.switchUpdates);
             this.groupSystem.Controls.Add(this.comboLanguage);
             this.groupSystem.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupSystem.Location = new System.Drawing.Point(0, 180);
+            this.groupSystem.Location = new System.Drawing.Point(0, 466);
             this.groupSystem.Name = "groupSystem";
             this.groupSystem.Padding = new System.Windows.Forms.Padding(10);
             this.groupSystem.Size = new System.Drawing.Size(1934, 260);
@@ -785,7 +793,7 @@ namespace ProjetoFinal
             this.groupAppearance.Controls.Add(this.switchDarkMode);
             this.groupAppearance.Controls.Add(this.comboFontSize);
             this.groupAppearance.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupAppearance.Location = new System.Drawing.Point(0, 0);
+            this.groupAppearance.Location = new System.Drawing.Point(0, 286);
             this.groupAppearance.Name = "groupAppearance";
             this.groupAppearance.Padding = new System.Windows.Forms.Padding(10);
             this.groupAppearance.Size = new System.Drawing.Size(1934, 180);
@@ -831,6 +839,139 @@ namespace ProjetoFinal
             this.comboFontSize.Size = new System.Drawing.Size(180, 49);
             this.comboFontSize.StartIndex = 0;
             this.comboFontSize.TabIndex = 1;
+            // 
+            // groupPharmacy
+            // 
+            this.groupPharmacy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.groupPharmacy.Controls.Add(this.textPharmacyName);
+            this.groupPharmacy.Controls.Add(this.textPharmacyEmail);
+            this.groupPharmacy.Controls.Add(this.textPharmacyPhone);
+            this.groupPharmacy.Controls.Add(this.textPharmacyAddress);
+            this.groupPharmacy.Controls.Add(this.btnSavePharmacy);
+            this.groupPharmacy.Controls.Add(this.btnDeletePharmacy);
+            this.groupPharmacy.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupPharmacy.Location = new System.Drawing.Point(0, 0);
+            this.groupPharmacy.Margin = new System.Windows.Forms.Padding(0, 30, 0, 0);
+            this.groupPharmacy.Name = "groupPharmacy";
+            this.groupPharmacy.Padding = new System.Windows.Forms.Padding(10);
+            this.groupPharmacy.Size = new System.Drawing.Size(1934, 286);
+            this.groupPharmacy.TabIndex = 3;
+            this.groupPharmacy.TabStop = false;
+            this.groupPharmacy.Text = "Farmácia";
+            // 
+            // textPharmacyName
+            // 
+            this.textPharmacyName.AnimateReadOnly = false;
+            this.textPharmacyName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textPharmacyName.Depth = 0;
+            this.textPharmacyName.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.textPharmacyName.Hint = "Nome da Farmácia";
+            this.textPharmacyName.LeadingIcon = null;
+            this.textPharmacyName.Location = new System.Drawing.Point(20, 64);
+            this.textPharmacyName.MaxLength = 100;
+            this.textPharmacyName.MouseState = MaterialSkin.MouseState.OUT;
+            this.textPharmacyName.Multiline = false;
+            this.textPharmacyName.Name = "textPharmacyName";
+            this.textPharmacyName.Size = new System.Drawing.Size(600, 50);
+            this.textPharmacyName.TabIndex = 0;
+            this.textPharmacyName.Text = "";
+            this.textPharmacyName.TrailingIcon = null;
+            // 
+            // textPharmacyEmail
+            // 
+            this.textPharmacyEmail.AnimateReadOnly = false;
+            this.textPharmacyEmail.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textPharmacyEmail.Depth = 0;
+            this.textPharmacyEmail.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.textPharmacyEmail.Hint = "Email";
+            this.textPharmacyEmail.LeadingIcon = null;
+            this.textPharmacyEmail.Location = new System.Drawing.Point(650, 64);
+            this.textPharmacyEmail.MaxLength = 100;
+            this.textPharmacyEmail.MouseState = MaterialSkin.MouseState.OUT;
+            this.textPharmacyEmail.Multiline = false;
+            this.textPharmacyEmail.Name = "textPharmacyEmail";
+            this.textPharmacyEmail.Size = new System.Drawing.Size(600, 50);
+            this.textPharmacyEmail.TabIndex = 1;
+            this.textPharmacyEmail.Text = "";
+            this.textPharmacyEmail.TrailingIcon = null;
+            // 
+            // textPharmacyPhone
+            // 
+            this.textPharmacyPhone.AnimateReadOnly = false;
+            this.textPharmacyPhone.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textPharmacyPhone.Depth = 0;
+            this.textPharmacyPhone.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.textPharmacyPhone.Hint = "Telefone";
+            this.textPharmacyPhone.LeadingIcon = null;
+            this.textPharmacyPhone.Location = new System.Drawing.Point(20, 142);
+            this.textPharmacyPhone.MaxLength = 20;
+            this.textPharmacyPhone.MouseState = MaterialSkin.MouseState.OUT;
+            this.textPharmacyPhone.Multiline = false;
+            this.textPharmacyPhone.Name = "textPharmacyPhone";
+            this.textPharmacyPhone.Size = new System.Drawing.Size(400, 50);
+            this.textPharmacyPhone.TabIndex = 2;
+            this.textPharmacyPhone.Text = "";
+            this.textPharmacyPhone.TrailingIcon = null;
+            // 
+            // textPharmacyAddress
+            // 
+            this.textPharmacyAddress.AnimateReadOnly = false;
+            this.textPharmacyAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textPharmacyAddress.Depth = 0;
+            this.textPharmacyAddress.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.textPharmacyAddress.Hint = "Endereço";
+            this.textPharmacyAddress.LeadingIcon = null;
+            this.textPharmacyAddress.Location = new System.Drawing.Point(450, 142);
+            this.textPharmacyAddress.MaxLength = 200;
+            this.textPharmacyAddress.MouseState = MaterialSkin.MouseState.OUT;
+            this.textPharmacyAddress.Multiline = false;
+            this.textPharmacyAddress.Name = "textPharmacyAddress";
+            this.textPharmacyAddress.Size = new System.Drawing.Size(800, 50);
+            this.textPharmacyAddress.TabIndex = 3;
+            this.textPharmacyAddress.Text = "";
+            this.textPharmacyAddress.TrailingIcon = null;
+            // 
+            // btnSavePharmacy
+            // 
+            this.btnSavePharmacy.AutoSize = false;
+            this.btnSavePharmacy.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnSavePharmacy.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnSavePharmacy.Depth = 0;
+            this.btnSavePharmacy.HighEmphasis = true;
+            this.btnSavePharmacy.Icon = null;
+            this.btnSavePharmacy.Location = new System.Drawing.Point(20, 220);
+            this.btnSavePharmacy.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnSavePharmacy.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnSavePharmacy.Name = "btnSavePharmacy";
+            this.btnSavePharmacy.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnSavePharmacy.Size = new System.Drawing.Size(200, 50);
+            this.btnSavePharmacy.TabIndex = 4;
+            this.btnSavePharmacy.Text = "Guardar";
+            this.btnSavePharmacy.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnSavePharmacy.UseAccentColor = false;
+            this.btnSavePharmacy.UseVisualStyleBackColor = true;
+            this.btnSavePharmacy.Click += new System.EventHandler(this.btnSavePharmacy_Click);
+            // 
+            // btnDeletePharmacy
+            // 
+            this.btnDeletePharmacy.AutoSize = false;
+            this.btnDeletePharmacy.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnDeletePharmacy.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.btnDeletePharmacy.Depth = 0;
+            this.btnDeletePharmacy.HighEmphasis = true;
+            this.btnDeletePharmacy.Icon = null;
+            this.btnDeletePharmacy.Location = new System.Drawing.Point(250, 220);
+            this.btnDeletePharmacy.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnDeletePharmacy.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnDeletePharmacy.Name = "btnDeletePharmacy";
+            this.btnDeletePharmacy.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.btnDeletePharmacy.Size = new System.Drawing.Size(200, 50);
+            this.btnDeletePharmacy.TabIndex = 5;
+            this.btnDeletePharmacy.Text = "Eliminar Farmácia";
+            this.btnDeletePharmacy.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btnDeletePharmacy.UseAccentColor = true;
+            this.btnDeletePharmacy.UseVisualStyleBackColor = true;
+            this.btnDeletePharmacy.Click += new System.EventHandler(this.btnDeletePharmacy_Click);
             // 
             // sideBarImages
             // 
@@ -898,6 +1039,7 @@ namespace ProjetoFinal
             this.groupAccount.ResumeLayout(false);
             this.groupSystem.ResumeLayout(false);
             this.groupAppearance.ResumeLayout(false);
+            this.groupPharmacy.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
@@ -940,6 +1082,14 @@ namespace ProjetoFinal
         private MaterialSkin.Controls.MaterialButton btnPesquisarVendas;
         private System.Windows.Forms.Panel panelVendas;
         private MaterialSkin.Controls.MaterialButton btnAdicionarVenda;
+        private System.Windows.Forms.GroupBox groupPharmacy;
+        private MaterialSkin.Controls.MaterialTextBox textPharmacyName;
+        private MaterialSkin.Controls.MaterialTextBox textPharmacyEmail;
+        private MaterialSkin.Controls.MaterialTextBox textPharmacyPhone;
+        private MaterialSkin.Controls.MaterialTextBox textPharmacyAddress;
+        private MaterialSkin.Controls.MaterialButton btnSavePharmacy;
+        private MaterialSkin.Controls.MaterialButton btnDeletePharmacy;
+
         // Reservas
         private System.Windows.Forms.Panel headerReservas;
         private System.Windows.Forms.Panel panelReservas;

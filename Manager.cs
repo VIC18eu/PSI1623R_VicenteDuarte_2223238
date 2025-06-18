@@ -15,6 +15,7 @@ using LiveCharts.Defaults;
 using LiveCharts.Wpf;
 using System.Globalization;
 using System.Data.Entity;
+using System.Text.RegularExpressions;
 
 
 
@@ -903,6 +904,16 @@ namespace ProjetoFinal
             switchNotifications.Checked = ConfigManager.Configuracoes.AtualizacoesAutomaticas;
             switchUpdates.Checked = ConfigManager.Configuracoes.AtualizacoesAutomaticas;
 
+            using (var entities = new Entities())
+            {
+                var farmacia = entities.Farmacia.FirstOrDefault(f => f.Id == Contas.Farmacia);
+
+                textPharmacyEmail.Text = farmacia.Email;
+                textPharmacyAddress.Text = farmacia.Endereco;
+                textPharmacyName.Text = farmacia.Nome;
+                textPharmacyPhone.Text = farmacia.Telefone;
+            }
+
         }
 
         private void switchNotifications_CheckedChanged(object sender, EventArgs e)
@@ -923,6 +934,73 @@ namespace ProjetoFinal
             ConfigManager.Configuracoes.UtilizadorAtual = Contas.Email;
             ConfigManager.Guardar();
         }
+
+        private void btnSavePharmacy_Click(object sender, EventArgs e)
+        {
+            string name = textPharmacyName.Text.Trim();
+            string email = textPharmacyEmail.Text.Trim();
+            string phone = textPharmacyPhone.Text.Trim();
+            string address = textPharmacyAddress.Text.Trim();
+
+            if (string.IsNullOrEmpty(name))
+            {
+                MessageBox.Show("Por favor, insira o nome da farmácia.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textPharmacyName.Focus();
+                return;
+            }
+
+            string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            if (!Regex.IsMatch(email, emailPattern))
+            {
+                MessageBox.Show("Por favor, insira um email válido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textPharmacyEmail.Focus();
+                return;
+            }
+
+            string phoneDigits = Regex.Replace(phone, @"\D", "");
+            if (phoneDigits.Length < 8 || phoneDigits.Length > 15)
+            {
+                MessageBox.Show("Por favor, insira um número de telefone válido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textPharmacyPhone.Focus();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(address))
+            {
+                MessageBox.Show("Por favor, insira o endereço da farmácia.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textPharmacyAddress.Focus();
+                return;
+            }
+
+            try
+            {
+                using (var context = new Entities()) { 
+                    var farmacia = context.Farmacia.SingleOrDefault(f => f.Id == Contas.Farmacia);
+
+                    if (farmacia == null)
+                    {
+                        MessageBox.Show("Farmácia não encontrada.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    farmacia.Nome = name;
+                    farmacia.Email = email;
+                    farmacia.Telefone = phone;
+                    farmacia.Endereco = address;
+
+                    context.SaveChanges();
+                }
+
+                MessageBox.Show("Informações da farmácia atualizadas com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                AjustarTela();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao atualizar a farmácia: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
 
         // <-------- Tab de Vendas -------->
 
@@ -1130,7 +1208,7 @@ namespace ProjetoFinal
 
             using (var context = new Entities())
             {
-                var reservas = context.Reserva.ToList();
+                var reservas = context.Reserva.Where(r => r.FarmaciaId == Contas.Farmacia).ToList();
 
                 if (!string.IsNullOrWhiteSpace(filtro))
                 {
@@ -1510,9 +1588,7 @@ namespace ProjetoFinal
 
             using (var context = new Entities())
             {
-                var funcionarios = context.Funcionario
-                    .Include(f => f.Utilizador)
-                    .ToList();
+                var funcionarios = context.Funcionario.Include(f => f.Utilizador).Where(f => f.FarmaciaId == Contas.Farmacia).ToList();
 
                 if (!string.IsNullOrWhiteSpace(filtro))
                 {
@@ -1672,6 +1748,50 @@ namespace ProjetoFinal
             CarregarFuncionarios(filtro);
         }
 
-        
+        private void btnDeletePharmacy_Click(object sender, EventArgs e)
+        {
+            if (Contas.Farmacia <= 0)
+            {
+                MessageBox.Show("Nenhuma farmácia selecionada para eliminar.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var confirmResult = MessageBox.Show(
+                "Tens a certeza que queres eliminar esta farmácia? Esta ação não pode ser desfeita.",
+                "Confirmar Eliminação",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (confirmResult == DialogResult.Yes)
+            {
+                try
+                {
+                    using (var context = new Entities())
+                    {
+                        var farmacia = context.Farmacia.SingleOrDefault(f => f.Id == Contas.Farmacia);
+
+                        if (farmacia == null)
+                        {
+                            MessageBox.Show("Farmácia não encontrada.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        context.Farmacia.Remove(farmacia);
+                        context.SaveChanges();
+                    }
+
+                    MessageBox.Show("Farmácia eliminada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Farmacias farmacias = new Farmacias();
+                    farmacias.Show();
+                    this.Hide();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao eliminar a farmácia: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            
+        }
+
     }
 }
