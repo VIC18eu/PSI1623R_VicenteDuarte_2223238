@@ -29,7 +29,7 @@ namespace ProjetoFinal
             this.Shown += Manager_Shown;
             sidebar.SelectedIndexChanged += CarregarTab;
             Theme.AplicarTema(this, ConfigManager.Configuracoes.ModoEscuro);
-            AjustarTela();
+            AjustarTela();          
         }
         private void CarregarTab(object sender, EventArgs e)
         {
