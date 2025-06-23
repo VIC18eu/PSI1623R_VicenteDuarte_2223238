@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Perfil));
             this.txtNome = new MaterialSkin.Controls.MaterialTextBox();
             this.ftPerfil = new System.Windows.Forms.PictureBox();
             this.lblEmail = new MaterialSkin.Controls.MaterialLabel();
@@ -38,6 +39,8 @@
             this.btnSalvar = new MaterialSkin.Controls.MaterialButton();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.btnLogout = new MaterialSkin.Controls.MaterialButton();
+            this.lblChangePassword = new System.Windows.Forms.Label();
+            this.txtChangePassword = new MaterialSkin.Controls.MaterialTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.ftPerfil)).BeginInit();
             this.SuspendLayout();
             // 
@@ -201,12 +204,43 @@
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
+            // lblChangePassword
+            // 
+            this.lblChangePassword.AutoSize = true;
+            this.lblChangePassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblChangePassword.Location = new System.Drawing.Point(431, 203);
+            this.lblChangePassword.Name = "lblChangePassword";
+            this.lblChangePassword.Size = new System.Drawing.Size(23, 20);
+            this.lblChangePassword.TabIndex = 10;
+            this.lblChangePassword.Text = "✎";
+            this.lblChangePassword.Click += new System.EventHandler(this.txtChangePassword_Click);
+            // 
+            // txtChangePassword
+            // 
+            this.txtChangePassword.AnimateReadOnly = false;
+            this.txtChangePassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtChangePassword.Depth = 0;
+            this.txtChangePassword.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtChangePassword.LeadingIcon = null;
+            this.txtChangePassword.Location = new System.Drawing.Point(317, 248);
+            this.txtChangePassword.MaxLength = 50;
+            this.txtChangePassword.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtChangePassword.Multiline = false;
+            this.txtChangePassword.Name = "txtChangePassword";
+            this.txtChangePassword.Size = new System.Drawing.Size(136, 50);
+            this.txtChangePassword.TabIndex = 11;
+            this.txtChangePassword.Text = "";
+            this.txtChangePassword.TrailingIcon = null;
+            this.txtChangePassword.Visible = false;
+            // 
             // Perfil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(499, 534);
+            this.Controls.Add(this.txtChangePassword);
+            this.Controls.Add(this.lblChangePassword);
             this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.btnClose);
@@ -217,6 +251,7 @@
             this.Controls.Add(this.ftPerfil);
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.btnLogout);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Perfil";
@@ -241,6 +276,7 @@
         private MaterialSkin.Controls.MaterialButton btnSalvar;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private MaterialSkin.Controls.MaterialButton btnLogout;
-
+        private System.Windows.Forms.Label lblChangePassword;
+        private MaterialSkin.Controls.MaterialTextBox txtChangePassword;
     }
 }

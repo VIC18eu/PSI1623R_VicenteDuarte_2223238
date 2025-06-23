@@ -150,5 +150,25 @@ namespace ProjetoFinal
             login.Show();
             this.Close();
         }
+
+        private void txtChangePassword_Click(object sender, EventArgs e)
+        {
+            txtChangePassword.Visible = !txtChangePassword.Visible;
+
+            if (txtChangePassword.Text != string.Empty)
+            {
+                using (var entities = new Entities())
+                {
+                    var utilizador = entities.Utilizador.FirstOrDefault(u => u.Email == Contas.Email);
+
+                    utilizador.PalavraPasse = txtChangePassword.Text;
+
+                    entities.SaveChanges();
+                }
+
+                CarregarPerfil();
+                txtChangePassword.Text = string.Empty;
+            }
+        }
     }
 }
