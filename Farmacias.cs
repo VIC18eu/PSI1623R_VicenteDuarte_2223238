@@ -112,9 +112,13 @@ namespace ProjetoFinal
             using (var context = new Entities())
             {
                 todasFarmacias = context.Farmacia
-                    .Where(f => f.DonoEmail == Contas.Email)
+                    .Where(f =>
+                        f.DonoEmail == Contas.Email ||
+                        f.Funcionario.Any(func => func.EmailUtilizador == Contas.Email)
+                    )
                     .ToList();
             }
+
 
             MostrarCards(todasFarmacias);
 
