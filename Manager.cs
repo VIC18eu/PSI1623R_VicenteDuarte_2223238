@@ -1428,29 +1428,37 @@ namespace ProjetoFinal
 
                     btnRemover.Click += (s, e) =>
                     {
-                        var resultado = MessageBox.Show(
-                            "Tem a certeza que deseja remover este item de stock?",
-                            "Confirmar remoção",
-                            MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Warning
-                        );
-
-                        if (resultado == DialogResult.Yes)
+                        try
                         {
-                            int idStock = (int)((Button)s).Tag;
+                            var resultado = MessageBox.Show(
+                                                        "Tem a certeza que deseja remover este item de stock?",
+                                                        "Confirmar remoção",
+                                                        MessageBoxButtons.YesNo,
+                                                        MessageBoxIcon.Warning
+                                                    );
 
-                            using (var entities = new Entities())
+                            if (resultado == DialogResult.Yes)
                             {
-                                var stockRemover = entities.Stock.Find(idStock);
-                                if (stockRemover != null)
-                                {
-                                    entities.Stock.Remove(stockRemover);
-                                    entities.SaveChanges();
-                                }
-                            }
+                                int idStock = (int)((Button)s).Tag;
 
-                            CarregarStock(filtro);
+                                using (var entities = new Entities())
+                                {
+                                    var stockRemover = entities.Stock.Find(idStock);
+                                    if (stockRemover != null)
+                                    {
+                                        entities.Stock.Remove(stockRemover);
+                                        entities.SaveChanges();
+                                    }
+                                }
+
+                                CarregarStock(filtro);
+                            }
                         }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("Tem encomendas pedentes com este produto", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        
                     };
 
                     var btnEditarPreco = new Button
@@ -1493,7 +1501,6 @@ namespace ProjetoFinal
                             }
                         }
                     };
-
 
                     card.Controls.Add(lblTitulo);
                     card.Controls.Add(lblQuantidade);
