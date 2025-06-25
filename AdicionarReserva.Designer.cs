@@ -193,7 +193,7 @@
             this.btnGuardar.NoAccentTextColor = System.Drawing.Color.Empty;
             this.btnGuardar.Size = new System.Drawing.Size(140, 36);
             this.btnGuardar.TabIndex = 11;
-            this.btnGuardar.Text = "Guardar Venda";
+            this.btnGuardar.Text = "Guardar Reserva";
             this.btnGuardar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnGuardar.UseAccentColor = false;
             this.btnGuardar.Click += new System.EventHandler(this.BtnGuardar_Click);
@@ -215,7 +215,7 @@
             this.txtDataReserva.AnimateReadOnly = false;
             this.txtDataReserva.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtDataReserva.Depth = 0;
-            this.txtDataReserva.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtDataReserva.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtDataReserva.Hint = "Ex: DD/MM/AAAA";
             this.txtDataReserva.LeadingIcon = null;
             this.txtDataReserva.Location = new System.Drawing.Point(27, 150);
@@ -249,7 +249,7 @@
             this.Name = "AdicionarReserva";
             this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Adicionar Nova Venda";
+            this.Text = "Adicionar Nova Reserva";
             this.ResumeLayout(false);
             this.PerformLayout();
 
