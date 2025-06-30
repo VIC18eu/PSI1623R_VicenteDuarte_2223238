@@ -34,6 +34,8 @@
             this.txtEmail = new MaterialSkin.Controls.MaterialTextBox();
             this.btnCriar = new MaterialSkin.Controls.MaterialButton();
             this.txtTelefone = new MaterialSkin.Controls.MaterialTextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtNome
@@ -117,7 +119,7 @@
             this.txtTelefone.AnimateReadOnly = false;
             this.txtTelefone.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTelefone.Depth = 0;
-            this.txtTelefone.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtTelefone.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtTelefone.Hint = "Telefone da Farmácia";
             this.txtTelefone.LeadingIcon = null;
             this.txtTelefone.Location = new System.Drawing.Point(50, 358);
@@ -130,12 +132,24 @@
             this.txtTelefone.Text = "";
             this.txtTelefone.TrailingIcon = null;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(617, 80);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(331, 498);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
+            // 
             // AdicionarFarmacia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(550, 578);
+            this.ClientSize = new System.Drawing.Size(948, 578);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.txtTelefone);
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.txtEndereco);
@@ -144,9 +158,11 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "AdicionarFarmacia";
+            this.Padding = new System.Windows.Forms.Padding(0, 80, 0, 0);
             this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Criar nova Farmácia";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -158,5 +174,6 @@
         private MaterialSkin.Controls.MaterialTextBox txtEmail;
         private MaterialSkin.Controls.MaterialButton btnCriar;
         private MaterialSkin.Controls.MaterialTextBox txtTelefone;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
