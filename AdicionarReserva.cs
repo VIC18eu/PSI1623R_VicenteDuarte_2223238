@@ -178,6 +178,12 @@ namespace ProjetoFinal
                 return;
             }
 
+            if (dataReserva.Date > DateTime.Today.AddDays(30))
+            {
+                MessageBox.Show("A data da reserva não pode ser superior a 30 dias a partir de hoje.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             try
             {
                 using (var context = new Entities())
@@ -195,7 +201,6 @@ namespace ProjetoFinal
 
                     foreach (var produto in produtosSelecionados)
                     {
-                        // Cria o objeto ReservaProduto
                         var reservaProduto = new ReservaProduto
                         {
                             ReservaId = novaReserva.Id,
@@ -205,13 +210,11 @@ namespace ProjetoFinal
 
                         context.ReservaProduto.Add(reservaProduto);
 
-                        // Reduz a quantidade no stock
                         var stock = context.Stock.FirstOrDefault(s => s.Id == produto.StockId);
                         if (stock != null)
                         {
                             stock.Quantidade -= produto.Quantidade;
 
-                            // Validação extra opcional: evitar stock negativo (defesa contra race condition)
                             if (stock.Quantidade < 0)
                             {
                                 throw new InvalidOperationException("O stock ficou negativo. Operação cancelada.");
@@ -219,7 +222,7 @@ namespace ProjetoFinal
                         }
                     }
 
-                    context.SaveChanges(); // Grava alterações nos produtos e stock
+                    context.SaveChanges();
                 }
 
                 MessageBox.Show("Reserva guardada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -236,6 +239,7 @@ namespace ProjetoFinal
                 MessageBox.Show($"Erro ao guardar na base de dados:\n{ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
     }
 }
