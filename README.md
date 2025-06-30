@@ -4,6 +4,8 @@
 
 O **MyHealth Management** é uma aplicação desenvolvida para facilitar a gestão integrada de farmácias, medicamentos e reservas. O sistema permite o registo e a gestão dos medicamentos disponíveis, acompanhamento de stock, gestão de funcionários, e a realização de reservas e vendas de forma organizada e segura.
 
+![Tela Home](img/home.png)
+
 ---
 
 ## Funcionalidades Principais ✅
