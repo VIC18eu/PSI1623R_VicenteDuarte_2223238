@@ -2,7 +2,7 @@
 
 ## Descrição
 
-O **MyHealth Management** é uma aplicação inovadora desenvolvida para facilitar a gestão integrada de farmácias, medicamentos e reservas. O sistema permite o registo e a gestão dos medicamentos disponíveis, acompanhamento de stock, gestão de funcionários, e a realização de reservas e vendas de forma organizada e segura.
+O **MyHealth Management** é uma aplicação desenvolvida para facilitar a gestão integrada de farmácias, medicamentos e reservas. O sistema permite o registo e a gestão dos medicamentos disponíveis, acompanhamento de stock, gestão de funcionários, e a realização de reservas e vendas de forma organizada e segura.
 
 ---
 
@@ -15,7 +15,7 @@ O **MyHealth Management** é uma aplicação inovadora desenvolvida para facilit
 - **Gestão de Vendas:** Processamento e registo de vendas efetuadas.
 - **Interface intuitiva:** Aplicação Windows Forms com MaterialSkin para uma experiência de utilizador agradável e moderna.
 - **Dashboard com gráficos:** Visualização de estatísticas e indicadores através de gráficos dinâmicos (usando LiveCharts).
-- **Sistema de definições:** Personalização da aplicação, incluindo tema claro/escuro, idioma, tamanho da fonte, notificações, entre outros.
+- **Sistema de definições:** Personalização da aplicação, incluindo tema claro/escuro.
 - **Persistência de dados:** Base de dados relacional para armazenamento eficiente e seguro (exemplo: SQL Server com Entity Framework).
 - **Suporte para perfis de utilizador:** Gestão de sessões e controlo de acesso.
 
@@ -26,7 +26,7 @@ O **MyHealth Management** é uma aplicação inovadora desenvolvida para facilit
 - **Backend & Data Access:** C# com Entity Framework para acesso e manipulação da base de dados.
 - **Interface:** Windows Forms com a biblioteca [MaterialSkin](https://github.com/IgnaceMaes/MaterialSkin) para UI moderna.
 - **Visualização de dados:** LiveCharts 2 (LiveChartsCore.SkiaSharpView.WinForms) para gráficos e dashboards.
-- **Base de dados:** SQL Server (ou outro SGBD relacional compatível).
+- **Base de dados:** SQL Server.
 - **Outras ferramentas:** JSON para armazenamento das definições da aplicação.
 
 ---
