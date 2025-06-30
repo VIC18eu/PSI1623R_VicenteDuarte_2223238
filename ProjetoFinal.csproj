@@ -292,6 +292,7 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="dist\ProjetoFinal.exe" />
+    <Content Include="img\home.png" />
     <Content Include="MyHealthModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MyHealthModel.edmx</DependentUpon>
