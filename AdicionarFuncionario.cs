@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -102,8 +103,6 @@ namespace ProjetoFinal
             }
         }
 
-
-
         private void TxtPesquisaFuncionario_TextChanged(object sender, EventArgs e)
         {
             string textoPesquisa = txtPesquisaFuncionario.Text.ToLower();
@@ -119,13 +118,50 @@ namespace ProjetoFinal
                 comboResultados.Items.Add($"{utilizador.Nome} ({utilizador.Email})");
             }
 
-            if (comboResultados.Items.Count > 0)
-                comboResultados.SelectedIndex = 0;
+            if (comboResultados.Items.Count > 0) comboResultados.SelectedIndex = 0;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
+        private void comboResultados_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selecionado = comboResultados.SelectedItem.ToString();
+            string email = selecionado.Substring(selecionado.LastIndexOf('(') + 1).TrimEnd(')');
+
+            using (var entities = new Entities())
+            {
+                var utilizador = entities.Utilizador.FirstOrDefault(u => u.Email == email);
+
+                if (utilizador != null)
+                {
+                    lblEmail.Text = utilizador.Email;
+                    lblNome.Text = utilizador.Nome;
+
+                    if (!string.IsNullOrEmpty(utilizador.Imagem))
+                    {
+                        try
+                        {
+                            byte[] imageBytes = Convert.FromBase64String(utilizador.Imagem);
+                            using (var ms = new MemoryStream(imageBytes))
+                            {
+                                pfpFuncionario.Image = Image.FromStream(ms);
+                            }
+                        }
+                        catch
+                        {
+                            pfpFuncionario.Image = Properties.Resources.pfpDefault;
+                        }
+                    }
+                    else
+                    {
+                        pfpFuncionario.Image = Properties.Resources.pfpDefault;
+                    }
+                }
+            }
+        }
+
     }
 }
